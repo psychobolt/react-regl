@@ -1,0 +1,12 @@
+{
+  "@psychobolt/generator-react-renderer": {
+    "typesFilename": "Regl.types.js",
+    "componentFilename": "Regl.component.js",
+    "renderer": "ReglRenderer",
+    "rendererFilename": "Regl.renderer.js",
+    "container": "ReglContainer",
+    "containerFilename": "Regl.container.js",
+    "provider": "ReglProvider",
+    "providerFilename": "Regl.provider.js"
+  }
+}

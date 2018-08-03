@@ -1,3 +1,4 @@
-export * from './HelloWorld';
-export { default as HelloWorld } from './HelloWorld';
-export default () => console.log('You are calling the default export!'); // eslint-disable-line no-console
+export * from './Regl.types';
+export { default as ReglContainer } from './Regl.container';
+export * from './Regl.provider';
+export { default as ReglRenderer } from './Regl.renderer';

@@ -1,82 +1,58 @@
-# React Rollup Boilerplate
+# React Regl
 
-[![Dependencies Status](https://david-dm.org/psychobolt/react-rollup-boilerplate.svg)](https://david-dm.org/psychobolt/react-rollup-boilerplate)
-[![Dev Dependencies Status](https://david-dm.org/psychobolt/react-rollup-boilerplate/dev-status.svg)](https://david-dm.org/psychobolt/react-rollup-boilerplate?type=dev)
-[![Peer Dependencies Status](https://david-dm.org/psychobolt/react-rollup-boilerplate/peer-status.svg)](https://david-dm.org/psychobolt/react-rollup-boilerplate?type=peer)
+[![Stability](https://img.shields.io/badge/Stability-Experimental-Orange.svg)](https://nodejs.org/api/documentation.html#documentation_stability_index)
+[![npm](https://img.shields.io/npm/v/@psychobolt/react-regl.svg)](https://www.npmjs.com/package/@psychobolt/react-regl)
+[![Build Status](https://travis-ci.org/psychobolt/react-regl.svg?branch=master)](https://travis-ci.org/psychobolt/react-regl)
+[![codecov](https://codecov.io/gh/psychobolt/react-regl/branch/master/graph/badge.svg)](https://codecov.io/gh/psychobolt/react-regl)
 
-[![Build Status](https://travis-ci.org/psychobolt/react-rollup-boilerplate.svg?branch=master)](https://travis-ci.org/psychobolt/react-rollup-boilerplate)
-[![codecov](https://codecov.io/gh/psychobolt/react-rollup-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/psychobolt/react-rollup-boilerplate)
+[![Dependencies Status](https://david-dm.org/psychobolt/react-regl.svg)](https://david-dm.org/psychobolt/react-regl)
+[![Dev Dependencies Status](https://david-dm.org/psychobolt/react-regl/dev-status.svg)](https://david-dm.org/psychobolt/react-regl?type=dev)
+[![Peer Dependencies Status](https://david-dm.org/psychobolt/react-regl/peer-status.svg)](https://david-dm.org/psychobolt/react-regl?type=peer)
 
-A boilerplate for building React libraries
+React fiber renderer and custom container for [regl](https://github.com/regl-project/regl)
 
-## Included
+## Install
 
-- [React](https://reactjs.org/) with [recompose](https://github.com/acdlite/recompose)
-- [Rollup](https://rollupjs.org/) with [Babel](https://www.npmjs.com/package/rollup-plugin-babel), [SCSS](https://www.npmjs.com/package/rollup-plugin-scss) and other plugins:
-    - [Node Resolve](https://www.npmjs.com/package/rollup-plugin-node-resolve)
-    - [CommonJS](https://www.npmjs.com/package/rollup-plugin-commonjs)
-- [styled-components](https://www.styled-components.com/) with [default](https://www.styled-components.com/docs/tooling#stylelint) [stylelint](https://stylelint.io/) support
-- Run tests with [Jest](https://facebook.github.io/jest/)
-- Code Coverage reporting with [Codecov](https://codecov.io/)
-- Dev sandbox and documentation with [Storybook](https://storybook.js.org/)
-- Structural and interaction testing with [Enzyme](https://github.com/airbnb/enzyme)
-- Type checking with [Flow](https://flow.org)
-- JS style check with [ESLint](http://eslint.org/) using [AirBnb style guide](https://github.com/airbnb/javascript)
-
-## Setup
-
-Install the latest [Node JS LTS](https://nodejs.org/) and [Yarn](https://yarnpkg.com) and simply run ```yarn``` or ```yarn install``` command in the root and stories directory.
-
-## Installing Flow Types
-
-Install flowtypes using the package script:
 ```sh
-yarn flow-typed
+npm install @psychobolt/react-regl
+# or
+yarn add @psychobolt/react-regl
 ```
 
-> It is advised to run the script whenever NPM packages are installed.
+## Example
 
-## Local development
+There are several [demos](https://psychobolt.github.io/react-regl). Also check out their [sources](stories). Here is one to get you started:
 
-During development,
-```sh
-# watch and build new source changes
-yarn start
-# or serve *.stories.js files and manually test on the Storyboard app (optionally run command above in parallel)
-yarn storyboard
-```
+```jsx
+import React from 'react';
 
-## Including NPM packages
+import { ReglContainer, Drawable } from 'src';
 
-```sh
-yarn add [package-name] --dev # for dev tools, story dependencies, libraries to be bundled
-yarn add [package-name] [--peer] # for external dependencies (Note: Include in rollup.config.common.js whenever update)
-```
+import frag from './Basic.frag';
+import vert from './Basic.vert';
 
-## Static Types
+const clear = ({ regl }) => regl.clear({
+  color: [0, 0, 0, 1],
+  depth: 1,
+});
 
-```sh
-yarn flow # performs type checking on files
-```
+const attributes = {
+  position: [[-1, 0], [0, -1], [1, 1]],
+};
 
-## Lint
+const uniforms = {
+  color: [1, 0, 0, 1],
+};
 
-```sh
-yarn lint # runs linter to detect any style issues (css & js)
-yarn lint:css # lint only css
-yarn lint:js # lint only js
-yarn lint:js --fix # tries to fix js lint issues
-```
-
-## Test
-
-```sh
-yarn test # runs functional/unit tests using Jest
-yarn test --coverage # with coverage
-```
-
-## Build
-
-```sh
-yarn build # builds sources at src/
+export default () => (
+  <ReglContainer onMount={clear}>
+    <Drawable
+      frag={frag}
+      vert={vert}
+      attributes={attributes}
+      uniforms={uniforms}
+      count={3}
+    />
+  </ReglContainer>
+);
 ```
