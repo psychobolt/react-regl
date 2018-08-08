@@ -2,7 +2,7 @@
   "name": "react-regl",
   "version": "0.0.1",
   "description": "React fiber renderer and component container for Regl",
-  "main": "dist/index.js",
+  "main": "./index.js",
   "repository": "https://github.com/psychobolt/react-regl.git",
   "author": "psychobolt",
   "license": "MIT",
