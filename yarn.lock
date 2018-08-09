@@ -6331,6 +6331,16 @@ mixin-deep@^1.2.0:
   dependencies:
     minimist "0.0.8"
 
+mouse-change@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/mouse-change/-/mouse-change-1.4.0.tgz#c2b77e5bfa34a43ce1445c8157a4e4dc9895c14f"
+  dependencies:
+    mouse-event "^1.0.0"
+
+mouse-event@^1.0.0:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/mouse-event/-/mouse-event-1.0.5.tgz#b3789edb7109997d5a932d1d01daa1543a501732"
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -8239,6 +8249,10 @@ requires-port@^1.0.0:
 reselect@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/reselect/-/reselect-3.0.1.tgz#efdaa98ea7451324d092b2b2163a6a1d7a9a2147"
+
+resl@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/resl/-/resl-1.0.3.tgz#2c7ca5682285bc519f7dcfb81fe6f3df0005e774"
 
 resolve-cwd@^2.0.0:
   version "2.0.0"

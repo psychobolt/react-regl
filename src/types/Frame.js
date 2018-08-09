@@ -4,8 +4,12 @@ export default class Frame extends Collection {
   children = [];
 
   constructor({ onFrame, ...props }, context) {
-    super(props);
-    this.context = context;
+    super(props, context);
+    this.callOnFrame(onFrame);
+  }
+
+  updateProps({ onFrame, ...props }) {
+    super.updateProps(props);
     this.callOnFrame(onFrame);
   }
 
@@ -18,7 +22,7 @@ export default class Frame extends Collection {
     const { regl } = this.context;
     this.frame = regl.frame(context => {
       this.onFrame({ context, regl });
-      super.draw();
+      super.draw(context);
     });
   }
 

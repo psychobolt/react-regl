@@ -4,7 +4,7 @@ import Collection from './Collection';
 
 export default class Context extends Collection {
   constructor(props) {
-    super();
+    super(props);
     this.regl = regl(props);
   }
 

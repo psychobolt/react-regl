@@ -23,10 +23,12 @@ type State = {
   mergeProps: MergeProps,
 };
 
+const CANVAS_VIEW_TYPE = 'canvas';
+
 function getViewType(view) {
   switch (view.constructor) {
     case HTMLCanvasElement:
-      return 'canvas';
+      return CANVAS_VIEW_TYPE;
     case WebGLRenderingContext:
       return 'gl';
     default:
@@ -58,6 +60,13 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
     const { contextProps } = this.props;
     let { context } = this.state;
     if (context) context.destroy();
+    const viewType = getViewType(view);
+    if (viewType === CANVAS_VIEW_TYPE) {
+      Object.assign(view, {
+        width: view.hasAttribute('width') ? view.width : view.clientWidth,
+        height: view.hasAttribute('height') ? view.height : view.clientHeight,
+      });
+    }
     context = this.renderer.createInstance(CONSTANTS.Regl, {
       ...contextProps,
       [getViewType(view)]: view,

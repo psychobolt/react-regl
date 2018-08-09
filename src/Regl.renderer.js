@@ -62,13 +62,13 @@ const defaultHostConfig = {
   resetTextContent(instance) {
   },
   appendChild(parent, child) {
-    invariant(false, 'appendChild is NOOP. Make sure you implement it.');
+    parent.addChild(child);
   },
   appendChildToContainer(container, child) {
     container.addChild(child);
   },
   insertBefore(parent, child, beforeChild) {
-    invariant(false, 'insertBefore is NOOP. Make sure you implement it.');
+    parent.insertBefore(child, beforeChild);
   },
   insertInContainerBefore(container, child, beforeChild) {
     invariant(false, 'insertInContainerBefore is NOOP. Make sure you implement it.');

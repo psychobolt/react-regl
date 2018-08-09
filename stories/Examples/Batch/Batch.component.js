@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReglContainer, Context, Frame, Drawable } from 'dist';
+import { ReglContainer, Context, Frame, Drawable } from 'src';
 
 import frag from './Batch.frag';
 import vert from './Batch.vert';

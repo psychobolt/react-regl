@@ -26,6 +26,7 @@ export default {
     'react',
     'react-dom',
     'react-is',
-    'styled-components',
+    'regl',
+    'resl',
   ],
 };

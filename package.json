@@ -78,6 +78,7 @@
     "jest": "^23.4.1",
     "jest-styled-components": "^5.0.1",
     "lodash": "4.17.10",
+    "mouse-change": "^1.4.0",
     "prop-types": "15.6.2",
     "raf": "^3.4.0",
     "raf-schd": "^4.0.0",
@@ -103,7 +104,8 @@
     "webpack-glsl-loader": "^1.0.1"
   },
   "dependencies": {
-    "react-is": "^16.4.1"
+    "react-is": "^16.4.1",
+    "resl": "^1.0.3"
   },
   "peerDependencies": {
     "react": "^16.4.1",
