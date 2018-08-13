@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import { defaultMemoize } from 'reselect';
 
 import ReglRenderer from './Regl.renderer';
 import { CONSTANTS } from './Regl.types';
@@ -13,6 +14,7 @@ export type MergeProps = (
 
 type Props = {
   renderer: typeof ReglRenderer,
+  viewProps: {},
   contextProps: {},
   innerRef: React.Ref<any>,
   children: React.Node
@@ -20,10 +22,17 @@ type Props = {
 
 type State = {
   context: GLContext,
+  viewProps?: {},
+  contextProps?: {},
   mergeProps: MergeProps,
 };
 
 const CANVAS_VIEW_TYPE = 'canvas';
+
+const getMergeProps = () => (state, props) => ({
+  ...props,
+  ...state,
+});
 
 function getViewType(view) {
   switch (view.constructor) {
@@ -38,6 +47,10 @@ function getViewType(view) {
 
 export default (Container: React.ComponentType<any>) => class ReglProvider
   extends React.Component<Props, State> {
+  mergeViewProps = defaultMemoize(getMergeProps());
+
+  mergeContextProps = defaultMemoize(getMergeProps());
+
   static defaultProps = {
     renderer: ReglRenderer,
     mergeProps: null,
@@ -78,11 +91,14 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
   renderer: typeof ReglRenderer;
 
   render() {
-    const { innerRef, children, ...rest } = this.props;
+    const { innerRef, children, viewProps, contextProps, ...rest } = this.props;
+    const { viewProps: viewState, contextProps: contextState, ...state } = this.state;
     return (
       <Container
         {...rest}
-        {...this.state}
+        {...state}
+        viewProps={this.mergeViewProps(viewState, viewProps)}
+        contextProps={this.mergeContextProps(contextState, contextProps)}
         ref={innerRef}
         renderer={this.renderer}
         initGLContext={this.initGLContext}

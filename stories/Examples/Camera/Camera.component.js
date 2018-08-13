@@ -1,15 +1,14 @@
 // @flow
 import React from 'react';
 import * as ReactDOM from 'react-dom';
-import styled from 'styled-components';
 import { defaultMemoize } from 'reselect';
 import rafSchedule from 'raf-schd';
 import { identity, perspective, lookAt } from 'gl-mat4';
 
-import { ReglContainer, Context, Frame, Drawable, type MergeProps } from 'src';
+import { Context, Frame, Drawable, type MergeProps } from 'src';
+import ReglContainer from 'stories/Setup/Resizable';
 
 import Bunny from './Bunny';
-import * as styles from './Camera.style';
 
 const MIN_PHI = -Math.PI / 2.0;
 const MAX_PHI = Math.PI / 2.0;
@@ -194,15 +193,8 @@ export class Camera extends React.Component<Props, State> {
   }
 }
 
-const Canvas = styled.canvas`
-  ${styles.canvas}
-`;
-
-// $FlowFixMe
-const View = React.forwardRef((props, ref) => <Canvas {...props} innerRef={ref} />);
-
 export default () => (
-  <ReglContainer View={View}>
+  <ReglContainer>
     <Context.Consumer>
       {({ context, mergeProps }) => (
         <Camera center={[0, 2.5, 0]} regl={context.regl} mergeProps={mergeProps} />
