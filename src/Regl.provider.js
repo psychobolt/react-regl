@@ -4,7 +4,7 @@ import { defaultMemoize } from 'reselect';
 
 import ReglRenderer from './Regl.renderer';
 import { CONSTANTS } from './Regl.types';
-import typeof { Context as GLContext } from './types';
+import { VIEW_TYPE, typeof Context as GLContext } from './types';
 
 export const Context = React.createContext();
 
@@ -27,8 +27,6 @@ type State = {
   mergeProps: MergeProps,
 };
 
-const CANVAS_VIEW_TYPE = 'canvas';
-
 const getMergeProps = () => (state, props) => ({
   ...props,
   ...state,
@@ -37,11 +35,11 @@ const getMergeProps = () => (state, props) => ({
 function getViewType(view) {
   switch (view.constructor) {
     case HTMLCanvasElement:
-      return CANVAS_VIEW_TYPE;
+      return VIEW_TYPE.Canvas;
     case WebGLRenderingContext:
-      return 'gl';
+      return VIEW_TYPE.GL;
     default:
-      return 'container';
+      return VIEW_TYPE.Container;
   }
 }
 
@@ -74,7 +72,7 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
     let { context } = this.state;
     if (context) context.destroy();
     const viewType = getViewType(view);
-    if (viewType === CANVAS_VIEW_TYPE) {
+    if (viewType === VIEW_TYPE.Canvas) {
       Object.assign(view, {
         width: view.hasAttribute('width') ? view.width : view.clientWidth,
         height: view.hasAttribute('height') ? view.height : view.clientHeight,

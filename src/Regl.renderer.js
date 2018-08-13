@@ -28,7 +28,6 @@ const defaultHostConfig = {
   createInstance,
   appendInitialChild(parent, child) {
     parent.addChild(child);
-    // invariant(false, 'appendInitialChild is NOOP. Make sure you implement it.');
   },
   finalizeInitialChildren(instance, type, props) {
     return true;

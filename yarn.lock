@@ -2212,6 +2212,16 @@ caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.300008
   version "1.0.30000865"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000865.tgz#70026616e8afe6e1442f8bb4e1092987d81a2f25"
 
+canvas-orbit-camera@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/canvas-orbit-camera/-/canvas-orbit-camera-1.0.2.tgz#11a199d4efd69a2f4954700a53a03d567aa397d8"
+  dependencies:
+    key-pressed "0.0.1"
+    mouse-position "^1.0.0"
+    mouse-pressed "0.0.1"
+    orbit-camera "0.0.3"
+    scroll-speed "^1.0.0"
+
 capture-exit@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/capture-exit/-/capture-exit-1.2.0.tgz#1c5fcc489fd0ab00d4f1ac7ae1072e3173fbab6f"
@@ -3657,7 +3667,7 @@ event-emitter@~0.3.5:
     d "1"
     es5-ext "~0.10.14"
 
-events@^1.0.0:
+events@^1.0.0, events@^1.0.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
 
@@ -4216,6 +4226,10 @@ getpass@^0.1.1:
 gl-mat4@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/gl-mat4/-/gl-mat4-1.2.0.tgz#49d8a7636b70aa00819216635f4a3fd3f4669b26"
+
+gl-matrix@^2.2.0:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/gl-matrix/-/gl-matrix-2.7.1.tgz#0874a6f641bf4ad12e125b3f4ad8e5a70775fbea"
 
 glamor@^2.20.40:
   version "2.20.40"
@@ -5761,6 +5775,12 @@ jsx-ast-utils@^2.0.1:
   dependencies:
     array-includes "^3.0.3"
 
+key-pressed@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/key-pressed/-/key-pressed-0.0.1.tgz#d682fb4c7c1042929a5bc88636728ca71220debb"
+  dependencies:
+    vkey "0.0.3"
+
 keycode@^2.1.9:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.2.0.tgz#3d0af56dc7b8b8e5cba8d0a97f107204eec22b04"
@@ -6349,6 +6369,18 @@ mouse-event@^1.0.0:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/mouse-event/-/mouse-event-1.0.5.tgz#b3789edb7109997d5a932d1d01daa1543a501732"
 
+mouse-position@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/mouse-position/-/mouse-position-1.0.0.tgz#ff849391499d28d3977fc1639ae50d1f9aa87c99"
+  dependencies:
+    events "^1.0.1"
+
+mouse-pressed@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/mouse-pressed/-/mouse-pressed-0.0.1.tgz#1e62ae992d7966177e5ffc49c839128e1b27b7bb"
+  dependencies:
+    events "^1.0.1"
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -6779,6 +6811,12 @@ optionator@^0.8.1, optionator@^0.8.2:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
     wordwrap "~1.0.0"
+
+orbit-camera@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/orbit-camera/-/orbit-camera-0.0.3.tgz#4f949d1758fb967ec2a678fdfac4cbbdca57a06f"
+  dependencies:
+    gl-matrix "^2.2.0"
 
 original@>=0.0.5:
   version "1.0.1"
@@ -8519,6 +8557,13 @@ schema-utils@^0.4.0, schema-utils@^0.4.5:
     ajv "^6.1.0"
     ajv-keywords "^3.1.0"
 
+scroll-speed@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/scroll-speed/-/scroll-speed-1.0.0.tgz#dcfe409516e76175597b6060002b51ce72ee6ed7"
+  dependencies:
+    events "^1.0.0"
+    wheel "0.0.0"
+
 scss-tokenizer@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/scss-tokenizer/-/scss-tokenizer-0.2.3.tgz#8eb06db9a9723333824d3f5530641149847ce5d1"
@@ -9740,6 +9785,10 @@ vfile@^2.0.0:
     unist-util-stringify-position "^1.0.0"
     vfile-message "^1.0.0"
 
+vkey@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/vkey/-/vkey-0.0.3.tgz#634dd7952eb2c11531bf1859f0e6d419478033df"
+
 vlq@^0.2.2:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/vlq/-/vlq-0.2.3.tgz#8f3e4328cf63b1540c0d67e1b2778386f8975b26"
@@ -9894,6 +9943,10 @@ whatwg-url@^6.4.0, whatwg-url@^6.4.1:
     lodash.sortby "^4.7.0"
     tr46 "^1.0.1"
     webidl-conversions "^4.0.2"
+
+wheel@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/wheel/-/wheel-0.0.0.tgz#04ff9be987175deb1edd4f2482e8b657f32a4165"
 
 whet.extend@~0.9.9:
   version "0.9.9"
