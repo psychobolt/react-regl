@@ -17,7 +17,7 @@ export default class Texture extends Drawable {
     this.initialized = false;
   }
 
-  draw() {
+  update() {
     if (!this.initialized || this.args.copy) {
       this.instance(this.args);
       this.initialized = true;

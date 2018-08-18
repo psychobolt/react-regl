@@ -34,23 +34,18 @@ class ReglContainer extends React.Component<Props> {
     const context = this.viewRef.current ? initGLContext(this.viewRef.current) : ctx;
     this.mountNode = renderer.reconciler.createContainer(context);
     if (onMount) onMount(context);
-    this.update();
   }
 
   componentDidUpdate() {
-    this.update();
+    const { renderer, context, children } = this.props;
+    renderer.reconciler.updateContainer(children, this.mountNode, this);
+    if (context) context.update();
   }
 
   componentWillUnmount() {
     const { renderer, context } = this.props;
     renderer.reconciler.updateContainer(null, this.mountNode, this);
     context.destroy();
-  }
-
-  update = () => {
-    const { renderer, context, children } = this.props;
-    renderer.reconciler.updateContainer(children, this.mountNode, this);
-    if (context) context.draw();
   }
 
   mountNode: any;

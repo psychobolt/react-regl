@@ -11,6 +11,11 @@ import Dynamic from './Dynamic';
 import Elements from './Elements';
 import Feedback from './Feedback';
 import InstanceMesh from './InstanceMesh';
+import InstanceTriangle from './InstanceTriangle';
+import Life from './Life';
+import Lighting from './Lighting';
+import LinePrimitives from './LinePrimitives';
+import Microphone from './Microphone';
 
 storiesOf('Examples', module)
   .add('Basic', withNotes('This example is a simple demonstration of how to use regl to draw a triangle.')(() => <Basic />))
@@ -27,4 +32,9 @@ storiesOf('Examples', module)
   .add('Dynamic', withNotes('This example shows how to pass props to draw commands.')(() => <Dynamic />))
   .add('Elements', withNotes('This example demonstrates how you can use `elements` to draw lines.')(() => <Elements />))
   .add('Feedback', withNotes('This example shows how to use copyTexImage2D to implement feedback effects.')(() => <Feedback />))
-  .add('Instance Mesh', withNotes('In this example, it is shown how you can draw a bunch of bunny meshes using the instancing feature of regl.')(() => <InstanceMesh />));
+  .add('Instance Mesh', withNotes('In this example, it is shown how you can draw a bunch of bunny meshes using the instancing feature of regl.')(() => <InstanceMesh />))
+  .add('Instance Triangle', withNotes('In this example, it is shown how you can draw a bunch of triangles using the instancing feature of regl.')(() => <InstanceTriangle />))
+  .add('Life', withNotes('This example implements the game of life in regl.')(() => <Life />))
+  .add('Lighting', withNotes('This example shows how you can apply multiple light sources to a model')(() => <Lighting />))
+  .add('Line Primatives', withNotes('This example demonstrates how to draw line loops and line strips.')(() => <LinePrimitives />))
+  .add('Microphone', withNotes('This example shows how to create a simple audio visualization, using your microphone as input.')(() => <Microphone />));

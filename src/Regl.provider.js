@@ -17,6 +17,7 @@ type Props = {
   viewProps: {},
   contextProps: {},
   innerRef: React.Ref<any>,
+  View: React.ElementType,
   children: React.Node
 };
 
@@ -25,6 +26,7 @@ type State = {
   viewProps?: {},
   contextProps?: {},
   mergeProps: MergeProps,
+  mounted: boolean,
 };
 
 const getMergeProps = () => (state, props) => ({
@@ -51,6 +53,7 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
 
   static defaultProps = {
     renderer: ReglRenderer,
+    contextProps: {},
     mergeProps: null,
     innerRef: null,
     Canvas: null,
@@ -62,9 +65,17 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
     const Renderer = props.renderer;
     this.renderer = new Renderer();
     this.state = {
-      context: this.renderer.createInstance(CONSTANTS.Regl, {}),
+      context: this.renderer.createInstance(CONSTANTS.Regl, props.contextProps),
       mergeProps: mergeProps => this.setState(state => mergeProps(state, props)),
+      mounted: false,
     };
+  }
+
+  componentDidMount() {
+    const { View } = this.props;
+    if (!View) {
+      this.setState({ mounted: true });
+    }
   }
 
   initGLContext = (view: any) => {
@@ -82,7 +93,7 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
       ...contextProps,
       [getViewType(view)]: view,
     });
-    this.setState({ context });
+    this.setState({ context, mounted: true });
     return context;
   }
 
@@ -90,7 +101,7 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
 
   render() {
     const { innerRef, children, viewProps, contextProps, ...rest } = this.props;
-    const { viewProps: viewState, contextProps: contextState, ...state } = this.state;
+    const { viewProps: viewState, contextProps: contextState, mounted, ...state } = this.state;
     return (
       <Container
         {...rest}
@@ -101,9 +112,11 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
         renderer={this.renderer}
         initGLContext={this.initGLContext}
       >
-        <Context.Provider value={this.state}>
-          {children}
-        </Context.Provider>
+        {mounted && (
+          <Context.Provider value={state}>
+            {children}
+          </Context.Provider>
+        )}
       </Container>
     );
   }

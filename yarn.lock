@@ -765,6 +765,33 @@ astral-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/astral-regex/-/astral-regex-1.0.0.tgz#6c8c3fb827dd43ee3918f27b82782ab7658a6fd9"
 
+async-array-buffer-broker@^2.0.44:
+  version "2.0.44"
+  resolved "https://registry.yarnpkg.com/async-array-buffer-broker/-/async-array-buffer-broker-2.0.44.tgz#eaf49284a0af215b631d0f1fa2e6661de1f946a9"
+  dependencies:
+    async-array-buffer-worker "^3.0.39"
+    babel-runtime "^6.26.0"
+    broker-factory "^1.3.3"
+    fast-unique-numbers "^2.1.0"
+    tslib "^1.9.3"
+
+async-array-buffer-worker@^3.0.39:
+  version "3.0.39"
+  resolved "https://registry.yarnpkg.com/async-array-buffer-worker/-/async-array-buffer-worker-3.0.39.tgz#4e457c18a609fcf091f5bfbf2de7f9e68241bc53"
+  dependencies:
+    babel-runtime "^6.26.0"
+    tslib "^1.9.3"
+    worker-factory "^2.5.2"
+
+async-array-buffer@^1.1.57:
+  version "1.1.57"
+  resolved "https://registry.yarnpkg.com/async-array-buffer/-/async-array-buffer-1.1.57.tgz#1f6c8ee955af90a1abc2fe03d6796a53bdc8167d"
+  dependencies:
+    async-array-buffer-broker "^2.0.44"
+    async-array-buffer-worker "^3.0.39"
+    babel-runtime "^6.26.0"
+    tslib "^1.9.3"
+
 async-each@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
@@ -1954,6 +1981,15 @@ brcast@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/brcast/-/brcast-3.0.1.tgz#6256a8349b20de9eed44257a9b24d71493cd48dd"
 
+broker-factory@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/broker-factory/-/broker-factory-1.3.3.tgz#83511afc56c5fe8d74827e1b5bc539a218959f98"
+  dependencies:
+    babel-runtime "^6.26.0"
+    fast-unique-numbers "^2.1.0"
+    tslib "^1.9.3"
+    worker-factory "^2.5.2"
+
 brorand@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
@@ -2550,6 +2586,15 @@ compare-versions@^3.1.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-3.3.0.tgz#af93ea705a96943f622ab309578b9b90586f39c3"
 
+compilerr@^5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/compilerr/-/compilerr-5.0.5.tgz#6a0a679fbeb7eb66eddaa5b8d4d3ed638988a08c"
+  dependencies:
+    babel-runtime "^6.26.0"
+    dashify "^1.0.0"
+    indefinite-article "0.0.2"
+    tslib "^1.9.3"
+
 component-emitter@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
@@ -2902,6 +2947,10 @@ dashdash@^1.12.0:
   resolved "https://registry.yarnpkg.com/dashdash/-/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
   dependencies:
     assert-plus "^1.0.0"
+
+dashify@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/dashify/-/dashify-1.0.0.tgz#faa9365fbe72a688bcb5d6f2b270d370c96d575e"
 
 data-urls@^1.0.0:
   version "1.0.0"
@@ -3883,6 +3932,13 @@ fast-memoize@^2.2.7:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/fast-memoize/-/fast-memoize-2.5.1.tgz#c3519241e80552ce395e1a32dcdde8d1fd680f5d"
 
+fast-unique-numbers@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/fast-unique-numbers/-/fast-unique-numbers-2.1.0.tgz#2b84c4e3ed9417918f3a59f23169f5d90dd7a8a0"
+  dependencies:
+    babel-runtime "^6.26.0"
+    tslib "^1.9.3"
+
 fastparse@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.1.tgz#d1e2643b38a94d7583b479060e6c4affc94071f8"
@@ -4222,6 +4278,12 @@ getpass@^0.1.1:
   resolved "https://registry.yarnpkg.com/getpass/-/getpass-0.1.7.tgz#5eff8e3e684d569ae4cb2b1282604e8ba62149fa"
   dependencies:
     assert-plus "^1.0.0"
+
+getusermedia@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/getusermedia/-/getusermedia-2.0.1.tgz#f81af9795bc5934649813f7d092dd65030b34655"
+  dependencies:
+    webrtc-adapter "^2.0.2"
 
 gl-mat4@^1.2.0:
   version "1.2.0"
@@ -4788,6 +4850,10 @@ imurmurhash@^0.1.4:
 in-publish@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/in-publish/-/in-publish-2.0.0.tgz#e20ff5e3a2afc2690320b6dc552682a9c7fadf51"
+
+indefinite-article@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/indefinite-article/-/indefinite-article-0.0.2.tgz#4bc855257066cfab61ea68beba75d100d6e2506b"
 
 indent-string@^2.1.0:
   version "2.1.0"
@@ -8571,6 +8637,14 @@ scss-tokenizer@^0.2.3:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
 
+sdp@^1.0.0:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/sdp/-/sdp-1.5.4.tgz#8e038f6ddb14bd765ae1f4b5216e12094511e0d0"
+
+seedrandom@^2.4.4:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/seedrandom/-/seedrandom-2.4.4.tgz#b25ea98632c73e45f58b77cfaa931678df01f9ba"
+
 select@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
@@ -8885,6 +8959,14 @@ ssri@^5.2.4:
 stack-utils@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.1.tgz#d4f33ab54e8e38778b0ca5cfd3b3afb12db68620"
+
+standardized-audio-context@^14.0.1:
+  version "14.0.1"
+  resolved "https://registry.yarnpkg.com/standardized-audio-context/-/standardized-audio-context-14.0.1.tgz#0dce222d203b2c94d4ed9ab8bb6e2b84436de156"
+  dependencies:
+    async-array-buffer "^1.1.57"
+    babel-runtime "^6.26.0"
+    tslib "^1.9.3"
 
 state-toggle@^1.0.0:
   version "1.0.1"
@@ -9434,6 +9516,10 @@ trough@^1.0.0:
   dependencies:
     glob "^6.0.4"
 
+tslib@^1.9.3:
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
+
 tty-browserify@0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
@@ -9911,6 +9997,12 @@ webpack@^3.11.0:
     webpack-sources "^1.0.1"
     yargs "^8.0.2"
 
+webrtc-adapter@^2.0.2:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/webrtc-adapter/-/webrtc-adapter-2.1.0.tgz#612b5bc6ce8e73c9d0660038a21f9255a867bf3e"
+  dependencies:
+    sdp "^1.0.0"
+
 websocket-driver@>=0.5.1:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/websocket-driver/-/websocket-driver-0.7.0.tgz#0caf9d2d755d93aee049d4bdd0d3fe2cca2a24eb"
@@ -9991,6 +10083,15 @@ wordwrap@~0.0.2:
 wordwrap@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
+
+worker-factory@^2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/worker-factory/-/worker-factory-2.5.2.tgz#04042be599098a0765f98257f28f25b0ff4009ad"
+  dependencies:
+    babel-runtime "^6.26.0"
+    compilerr "^5.0.5"
+    fast-unique-numbers "^2.1.0"
+    tslib "^1.9.3"
 
 worker-farm@^1.5.2:
   version "1.6.0"

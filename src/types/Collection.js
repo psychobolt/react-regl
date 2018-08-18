@@ -1,8 +1,7 @@
 export default class Collection {
   children = [];
 
-  constructor({ args = {}, ...props }, context) {
-    this.args = args;
+  constructor(props, context) {
     this.context = context;
     this.props = props;
   }
@@ -14,12 +13,8 @@ export default class Collection {
     };
   }
 
-  setArgs(args) {
-    this.args = args;
-  }
-
-  draw(context) {
-    this.children.forEach(child => child.draw(context));
+  update(context) {
+    this.children.forEach(child => child.update(context));
   }
 
   addChild(child) {

@@ -51,18 +51,20 @@ const onMount = ({ view, regl }) => {
   };
 };
 
-const update = ({ regl }) => {
+const onUpdate = ({ regl, draw }) => {
   regl.clear({
     color: [0, 0, 0, 1],
   });
-
-  camera.tick();
 
   // rotate the bunnies every frame.
   for (let i = 0; i < N * N; i += 1) {
     angles[i] += 0.01;
   }
   angleBuffer.subdata(angles);
+
+  draw();
+
+  camera.tick();
 };
 
 const offset = Array(instances).fill().map((_, i) => [
@@ -96,8 +98,8 @@ const uniforms = {
 export default () => (
   <ReglContainer View={View} contextProps={contextProps} onMount={onMount}>
     <Context.Consumer>
-      {({ context }) => (
-        <Frame onFrame={update}>
+      {() => (
+        <Frame onUpdate={onUpdate}>
           <Drawable
             frag={frag}
             vert={vert}
@@ -105,11 +107,11 @@ export default () => (
               position: bunny.positions,
               normal: normals(bunny.cells, bunny.positions),
               offset: {
-                buffer: context.regl.buffer(offset),
+                buffer: offset,
                 divisor: 1,
               },
               color: {
-                buffer: context.regl.buffer(color),
+                buffer: color,
                 divisor: 1,
               },
               angle,
