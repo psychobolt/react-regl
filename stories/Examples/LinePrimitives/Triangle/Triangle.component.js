@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { Drawable } from 'src';
 
-import { getPosition } from '../LinePrimitives.component';
+import { getPosition } from '../utils';
 
 type Props = {
   lineWidth: number,
