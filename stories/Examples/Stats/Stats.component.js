@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import createStatsWidget from 'regl-stats-widget';
 import attachCamera from 'canvas-orbit-camera';
