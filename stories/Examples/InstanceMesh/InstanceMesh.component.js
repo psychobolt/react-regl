@@ -3,19 +3,12 @@ import attachCamera from 'canvas-orbit-camera';
 import normals from 'angle-normals';
 import mat4 from 'gl-mat4';
 import bunny from 'bunny';
-import styled from 'styled-components';
 
-import { ReglContainer, Context, Frame, Drawable } from 'src';
+import { Context, Frame, Drawable } from 'src';
+import ReglContainer from 'stories/Setup/Resizable';
 
 import frag from './InstanceMesh.frag';
 import vert from './InstanceMesh.vert';
-import * as styles from './InstanceMesh.style';
-
-const Canvas = styled.canvas`
-  ${styles.canvas}
-`;
-
-const View = React.forwardRef((props, ref) => <Canvas {...props} innerRef={ref} />);
 
 const contextProps = {
   extensions: ['angle_instanced_arrays'],
@@ -96,7 +89,7 @@ const uniforms = {
 };
 
 export default () => (
-  <ReglContainer View={View} contextProps={contextProps} onMount={onMount}>
+  <ReglContainer contextProps={contextProps} onMount={onMount}>
     <Context.Consumer>
       {() => (
         <Frame onUpdate={onUpdate}>

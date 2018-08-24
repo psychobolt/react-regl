@@ -24,16 +24,16 @@ export default (Subclass: Collection) => class extends Subclass {
     this.onUpdate = callback;
   }
 
-  draw(context: ReglContext) {
-    super.update(context);
+  draw(args: {}, context: ReglContext) {
+    super.update(args, context);
   }
 
   update(context: ReglContext) {
     if (this.onUpdate) {
       const { regl } = this.context;
-      this.onUpdate({ context, regl, draw: () => this.draw(context) });
+      this.onUpdate({ ...context, regl, draw: args => this.draw(args, context) });
     } else {
-      this.draw(context);
+      this.draw({}, context);
     }
   }
 };

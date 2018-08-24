@@ -13,8 +13,8 @@ export default class Collection {
     };
   }
 
-  update(context) {
-    this.children.forEach(child => child.update(context));
+  update(args, context) {
+    this.children.forEach(child => child.update(args, context));
   }
 
   addChild(child) {
