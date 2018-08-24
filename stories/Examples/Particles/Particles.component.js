@@ -2,13 +2,13 @@ import React from 'react';
 import mat4 from 'gl-mat4';
 import hsv2rgb from 'hsv2rgb';
 
-const NUM_POINTS = 1e4;
-const VERT_SIZE = 4 * (4 + 4 + 3);
-
 import { ReglContainer, Frame, Context, Drawable } from 'src';
 
 import vert from './Particles.vert';
 import frag from './Particles.frag';
+
+const NUM_POINTS = 1e4;
+const VERT_SIZE = 4 * (4 + 4 + 3);
 
 let pointBuffer;
 
