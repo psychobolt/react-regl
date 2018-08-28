@@ -55,6 +55,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "baboon-image": "^2.1.0",
     "bunny": "^1.0.1",
     "canvas-orbit-camera": "^1.0.2",
     "cash-true": "^0.0.2",
@@ -109,6 +110,7 @@
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.3.1",
     "uglify-es": "^3.3.9",
+    "vectorize-text": "^3.0.2",
     "webpack-glsl-loader": "^1.0.1"
   },
   "dependencies": {

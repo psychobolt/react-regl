@@ -22,6 +22,10 @@ import Particles from './Particles';
 import Pong from './Pong';
 import Scope from './Scope';
 import Stats from './Stats';
+import Text from './Text';
+import Texture from './Texture';
+import Theta360 from './Theta360';
+import Tile from './Tile';
 
 storiesOf('Examples', module)
   .add('Basic', withNotes('This example is a simple demonstration of how to use regl to draw a triangle.')(() => <Basic />))
@@ -56,4 +60,8 @@ storiesOf('Examples', module)
     But in order to keep the example short and readab;e. we have refrained from fixing this.
   `)(() => <Pong />))
   .add('Scope', withNotes('This example demonstrates scopes')(() => <Scope />))
-  .add('Stats', withNotes('The example demonstrates the regl-stats-widget, which provides a visual representation of the total GPU-time of draw-calls')(() => <Stats />));
+  .add('Stats', withNotes('The example demonstrates the regl-stats-widget, which provides a visual representation of the total GPU-time of draw-calls')(() => <Stats />))
+  .add('Text', withNotes('This example shows how you can draw vectorized text in regl.')(() => <Text />))
+  .add('Texture', withNotes('This example shows how you can load and draw a texture in regl.')(() => <Texture />))
+  .add('Theta360', withNotes('This example shows how to render a 360 panoramic environment map.')(() => <Theta360 />))
+  .add('Tile', withNotes('This example implements a simple 2D tiled sprite renderer.')(() => <Tile />));

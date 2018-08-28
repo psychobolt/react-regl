@@ -4,23 +4,28 @@ import Collection from './Collection';
 import Updatable from './Updatable';
 
 export default class Drawable extends Updatable(Collection) {
-  constructor({ args = {}, ...props }, context) {
+  constructor({ args = {}, ...props }, context, scoped = true) {
     super(props, context);
     this.setArgs(args);
-    this.init();
+    this.instance = this.init();
+    this.scoped = scoped;
   }
 
   init() {
-    this.command = this.context.regl(this.props);
+    return this.context.regl(this.props);
   }
 
   updateProps(props) {
     super.updateProps(props);
-    this.init();
+    this.instance = this.init();
   }
 
   setArgs(args) {
     this.args = args;
+  }
+
+  getInstance() {
+    return this.instance;
   }
 
   update(args, context) {
@@ -31,9 +36,14 @@ export default class Drawable extends Updatable(Collection) {
       options = { ...options, ...args };
     }
     if (this.children.length) {
-      this.command(options, () => super.update(context));
+      if (this.scoped) {
+        this.instance(options, () => super.update(context));
+      } else {
+        this.instance(options);
+        super.update(context);
+      }
     } else {
-      this.command(options);
+      this.instance(options);
     }
   }
 }
