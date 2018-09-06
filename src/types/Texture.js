@@ -8,13 +8,11 @@ export default class Texture extends Drawable {
   init() {
     if (this.instance) this.instance.destroy();
     const { regl } = this.context;
-    const { image } = this.props;
-    const instance = image ? regl.texture(image) : regl.texture(this.props);
-    let rendered = false;
+    const { source } = this.props;
+    const instance = source ? regl.texture(source) : regl.texture(this.props);
     const result = options => {
-      if (!rendered || this.args.copy) {
+      if (this.args.copy) {
         instance(options);
-        rendered = true;
       }
     };
     result.get = () => instance;

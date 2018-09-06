@@ -6,7 +6,7 @@ import Updatable from './Updatable';
 export default class Drawable extends Updatable(Collection) {
   constructor({ args = {}, ...props }, context, scoped = true) {
     super(props, context);
-    this.setArgs(args);
+    this.args = args;
     this.instance = this.init();
     this.scoped = scoped;
   }
@@ -39,8 +39,8 @@ export default class Drawable extends Updatable(Collection) {
       if (this.scoped) {
         this.instance(options, () => super.update(context));
       } else {
-        this.instance(options);
         super.update(context);
+        this.instance(options);
       }
     } else {
       this.instance(options);

@@ -16,7 +16,7 @@ const attributes = {
 
 export default () => (
   <ReglContainer>
-    <Texture image={baboon}>
+    <Texture source={baboon}>
       {texture => (
         <Drawable
           frag={frag}

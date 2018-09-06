@@ -31,7 +31,9 @@ class Texture extends React.Component<Props, State> {
   }
 
   componentDidUpdate() {
-    this.ref.current.update();
+    if (this.ref.current) {
+      this.ref.current.update();
+    }
   }
 
   render() {
