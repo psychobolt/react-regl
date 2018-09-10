@@ -8,7 +8,7 @@ type Assets = {};
 
 type Props = {
   onDone?: (assets: Assets) => any,
-  children: (assets: Assets) => React.ReactNode,
+  children?: (assets: Assets) => React.ReactNode,
   innerRef: React.RefObject<any>,
 };
 
@@ -19,6 +19,7 @@ type State = {
 class Resl extends React.Component<Props, State> {
   static defaultProps = {
     onDone: () => {},
+    children: () => null,
   }
 
   constructor(props: Props) {

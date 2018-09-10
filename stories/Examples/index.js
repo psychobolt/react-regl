@@ -27,6 +27,7 @@ import Texture from './Texture';
 import Theta360 from './Theta360';
 import Tile from './Tile';
 import Video from './Video';
+import Audio from './Audio';
 
 storiesOf('Examples', module)
   .add('Basic', withNotes('This example is a simple demonstration of how to use regl to draw a triangle.')(() => <Basic />))
@@ -66,4 +67,5 @@ storiesOf('Examples', module)
   .add('Texture', withNotes('This example shows how you can load and draw a texture in regl.')(() => <Texture />))
   .add('Theta360', withNotes('This example shows how to render a 360 panoramic environment map.')(() => <Theta360 />))
   .add('Tile', withNotes('This example implements a simple 2D tiled sprite renderer.')(() => <Tile />))
-  .add('Video', withNotes('This example shows how to overlay a chroma keyed video over a background rendered by regl.')(() => <Video />));
+  .add('Video', withNotes('This example shows how to overlay a chroma keyed video over a background rendered by regl.')(() => <Video />))
+  .add('Audio', withNotes('This example shows how to implement an audio visualization, using an mp3-file as input.')(() => <Audio />));
