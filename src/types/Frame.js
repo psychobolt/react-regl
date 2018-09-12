@@ -21,7 +21,7 @@ export default class Frame extends Updatable(Collection) {
 
   draw(args, context) {
     const { regl } = this.context;
-    this.onFrame({ context, regl });
+    this.onFrame({ ...context, regl });
     super.draw(args, context);
   }
 

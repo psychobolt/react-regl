@@ -12,7 +12,8 @@ export default class Drawable extends Updatable(Collection) {
   }
 
   init() {
-    return this.context.regl(this.props);
+    const { render, ...props } = this.props;
+    return render || this.context.regl(props);
   }
 
   updateProps(props) {

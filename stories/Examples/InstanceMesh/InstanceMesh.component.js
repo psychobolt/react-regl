@@ -44,7 +44,7 @@ const onMount = ({ view, regl }) => {
   };
 };
 
-const onUpdate = ({ regl, draw }) => {
+const onFrame = ({ regl }) => {
   regl.clear({
     color: [0, 0, 0, 1],
   });
@@ -54,8 +54,6 @@ const onUpdate = ({ regl, draw }) => {
     angles[i] += 0.01;
   }
   angleBuffer.subdata(angles);
-
-  draw();
 
   camera.tick();
 };
@@ -92,7 +90,7 @@ export default () => (
   <ReglContainer contextProps={contextProps} onMount={onMount}>
     <Context.Consumer>
       {() => (
-        <Frame onUpdate={onUpdate}>
+        <Frame onFrame={onFrame}>
           <Drawable
             frag={frag}
             vert={vert}

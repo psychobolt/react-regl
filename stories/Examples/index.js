@@ -28,6 +28,7 @@ import Theta360 from './Theta360';
 import Tile from './Tile';
 import Video from './Video';
 import Audio from './Audio';
+import Blur from './Blur';
 
 storiesOf('Examples', module)
   .add('Basic', withNotes('This example is a simple demonstration of how to use regl to draw a triangle.')(() => <Basic />))
@@ -68,4 +69,10 @@ storiesOf('Examples', module)
   .add('Theta360', withNotes('This example shows how to render a 360 panoramic environment map.')(() => <Theta360 />))
   .add('Tile', withNotes('This example implements a simple 2D tiled sprite renderer.')(() => <Tile />))
   .add('Video', withNotes('This example shows how to overlay a chroma keyed video over a background rendered by regl.')(() => <Video />))
-  .add('Audio', withNotes('This example shows how to implement an audio visualization, using an mp3-file as input.')(() => <Audio />));
+  .add('Audio', withNotes('This example shows how to implement an audio visualization, using an mp3-file as input.')(() => <Audio />))
+  .add('Blur', withNotes(`
+    This examples demonstrate how we can render a height map, how to place out several models(using the batching feature),
+    and how to implement a simple fullscreen post-process effect(using the framebuffer feature) in regl.
+
+    The post-process effect is a simple box filter blur.
+  `)(() => <Blur />));
