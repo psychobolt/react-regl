@@ -1,7 +1,7 @@
 import React from 'react';
 import mat4 from 'gl-mat4';
 
-import { ReglContainer, Context, Resource, Frame, Drawable } from 'src';
+import { ReglContainer, Context, Resource, Frame, Drawable } from '@psychobolt/react-regl';
 
 import frag from './Cube.frag';
 import vert from './Cube.vert';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReglContainer, Frame, Context, Drawable } from 'src';
+import { ReglContainer, Frame, Context, Drawable } from '@psychobolt/react-regl';
 
 import frag from './Dynamic.frag';
 import vert from './Dynamic.vert';

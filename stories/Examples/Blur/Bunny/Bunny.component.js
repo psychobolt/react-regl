@@ -4,7 +4,7 @@ import mat4 from 'gl-mat4';
 import normals from 'angle-normals';
 import bunny from 'bunny';
 
-import { Drawable } from 'src';
+import { Drawable } from '@psychobolt/react-regl';
 
 import frag from './Bunny.frag';
 import vert from './Bunny.vert';

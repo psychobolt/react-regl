@@ -3,7 +3,7 @@ import { AudioContext } from 'standardized-audio-context';
 import mouseChange from 'mouse-change';
 import vec2 from 'gl-vec2';
 
-import { ReglContainer, Context, Frame, Drawable } from 'src';
+import { ReglContainer, Context, Frame, Drawable } from '@psychobolt/react-regl';
 
 import frag from './Pong.frag';
 import vert from './Pong.vert';

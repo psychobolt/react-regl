@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReglContainer, Context, Frame, Drawable } from 'src';
+import { ReglContainer, Context, Frame, Drawable } from '@psychobolt/react-regl';
 
 import frag from './InstanceTriangle.frag';
 import vert from './InstanceTriangle.vert';

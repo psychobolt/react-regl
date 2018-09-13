@@ -3,7 +3,7 @@ import vectorizeText from 'vectorize-text';
 import perspective from 'gl-mat4/perspective';
 import lookAt from 'gl-mat4/lookAt';
 
-import { ReglContainer, Frame, Texture, Drawable } from 'src';
+import { ReglContainer, Frame, Texture, Drawable } from '@psychobolt/react-regl';
 
 import Feedback from './Feedback';
 import frag from './Text.frag';

@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 
-import { Drawable } from 'src';
+import { Drawable } from '@psychobolt/react-regl';
 
 import frag from './Terrain.frag';
 import vert from './Terrain.vert';

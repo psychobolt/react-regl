@@ -5,7 +5,7 @@ import { AudioContext } from 'standardized-audio-context';
 import perspective from 'gl-mat4/perspective';
 import lookAt from 'gl-mat4/lookAt';
 
-import { ReglContainer, Resource, Texture, Frame, Drawable } from 'src';
+import { ReglContainer, Resource, Texture, Frame, Drawable } from '@psychobolt/react-regl';
 
 import * as styles from './Audio.style';
 import vert from './Audio.vert';

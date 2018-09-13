@@ -5,7 +5,7 @@ import { defaultMemoize } from 'reselect';
 import rafSchedule from 'raf-schd';
 import { identity, perspective, lookAt } from 'gl-mat4';
 
-import { Context, Frame, Drawable, type MergeProps } from 'src';
+import { Context, Frame, Drawable, type MergeProps } from '@psychobolt/react-regl';
 import ReglContainer from 'stories/Setup/Resizable';
 
 import Bunny from './Bunny';

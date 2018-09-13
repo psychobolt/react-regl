@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReglContainer, Drawable } from 'src';
+import { ReglContainer, Drawable } from '@psychobolt/react-regl';
 
 import frag from './Basic.frag';
 import vert from './Basic.vert';

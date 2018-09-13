@@ -2,7 +2,7 @@ import React from 'react';
 import mat4 from 'gl-mat4';
 import hsv2rgb from 'hsv2rgb';
 
-import { ReglContainer, Frame, Context, Drawable } from 'src';
+import { ReglContainer, Frame, Context, Drawable } from '@psychobolt/react-regl';
 
 import vert from './Particles.vert';
 import frag from './Particles.frag';

@@ -3,7 +3,7 @@ import mat4 from 'gl-mat4';
 import normals from 'angle-normals';
 import bunny from 'bunny';
 
-import { ReglContainer, Frame, Drawable } from 'src';
+import { ReglContainer, Frame, Drawable } from '@psychobolt/react-regl';
 
 import vert from './Lighting.vert';
 import frag from './Lighting.frag';

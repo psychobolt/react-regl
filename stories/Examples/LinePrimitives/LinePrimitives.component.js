@@ -1,7 +1,7 @@
 import * as React from 'react';
 import mat4 from 'gl-mat4';
 
-import { ReglContainer, Context, Frame, Drawable } from 'src';
+import { ReglContainer, Context, Frame, Drawable } from '@psychobolt/react-regl';
 
 import Square from './Square';
 import Triangle from './Triangle';

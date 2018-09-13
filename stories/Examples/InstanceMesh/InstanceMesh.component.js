@@ -4,7 +4,7 @@ import normals from 'angle-normals';
 import mat4 from 'gl-mat4';
 import bunny from 'bunny';
 
-import { Context, Frame, Drawable } from 'src';
+import { Context, Frame, Drawable } from '@psychobolt/react-regl';
 import ReglContainer from 'stories/Setup/Resizable';
 
 import frag from './InstanceMesh.frag';

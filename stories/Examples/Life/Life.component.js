@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ReglContainer, Context, Frame, Drawable } from 'src';
+import { ReglContainer, Context, Frame, Drawable } from '@psychobolt/react-regl';
 
 import Quad from './Quad';
 import frag from './Life.frag';

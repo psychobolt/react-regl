@@ -2,7 +2,7 @@
 import * as React from 'react';
 import mat4 from 'gl-mat4';
 
-import { Context, Drawable } from 'src';
+import { Context, Drawable } from '@psychobolt/react-regl';
 
 import frag from './EnvMap.frag';
 

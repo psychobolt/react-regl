@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 
-import { Drawable } from 'src';
+import { Drawable } from '@psychobolt/react-regl';
 
 type Props = {
   lineWidth: number

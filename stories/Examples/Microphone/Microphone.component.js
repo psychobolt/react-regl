@@ -3,7 +3,7 @@ import * as React from 'react';
 import getusermedia from 'getusermedia';
 import { AudioContext } from 'standardized-audio-context';
 
-import { ReglContainer, Frame, Drawable } from 'src';
+import { ReglContainer, Frame, Drawable } from '@psychobolt/react-regl';
 
 import vert from './Microphone.vert';
 import frag from './Microphone.frag';

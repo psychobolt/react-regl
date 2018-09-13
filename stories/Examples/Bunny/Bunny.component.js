@@ -2,7 +2,7 @@ import React from 'react';
 import mat4 from 'gl-mat4';
 import bunny from 'bunny';
 
-import { ReglContainer, Frame, Drawable } from 'src';
+import { ReglContainer, Frame, Drawable } from '@psychobolt/react-regl';
 
 import vert from './Bunny.vert';
 import frag from './Bunny.frag';

@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 
-import { Drawable } from 'src';
+import { Drawable } from '@psychobolt/react-regl';
 
 const N = 300;
 const A = 1.0;

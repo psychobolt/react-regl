@@ -2,7 +2,7 @@
 import * as React from 'react';
 import seedrandom from 'seedrandom';
 
-import { Drawable } from 'src';
+import { Drawable } from '@psychobolt/react-regl';
 
 const rng = seedrandom('my_seed');
 const N = 70;
