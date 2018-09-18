@@ -29,6 +29,7 @@ import Tile from './Tile';
 import Video from './Video';
 import Audio from './Audio';
 import Blur from './Blur';
+import CubeFBO from './CubeFBO';
 
 storiesOf('Examples', module)
   .add('Basic', withNotes('This example is a simple demonstration of how to use regl to draw a triangle.')(() => <Basic />))
@@ -75,4 +76,5 @@ storiesOf('Examples', module)
     and how to implement a simple fullscreen post-process effect(using the framebuffer feature) in regl.
 
     The post-process effect is a simple box filter blur.
-  `)(() => <Blur />));
+  `)(() => <Blur />))
+  .add('Cube FBO', withNotes('This example shows how you can render reflections using cubic framebuffers.')(() => <CubeFBO />));
