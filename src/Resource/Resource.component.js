@@ -2,7 +2,7 @@
 import * as React from 'react';
 import resl from 'resl';
 
-import { Collection } from '../types';
+import { Collection } from '../Regl.types';
 
 type Assets = {};
 
