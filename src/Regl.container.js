@@ -16,8 +16,7 @@ type Props = {
 };
 
 // $FlowFixMe
-@ReglProvider
-class ReglContainer extends React.Component<Props> {
+export default @ReglProvider class ReglContainer extends React.Component<Props> {
   static defaultProps = {
     onMount: () => {},
     View: null,
@@ -60,6 +59,3 @@ class ReglContainer extends React.Component<Props> {
     return null;
   }
 }
-
-// $FlowFixMe
-export default React.forwardRef((props, ref) => <ReglContainer {...props} innerRef={ref} />);

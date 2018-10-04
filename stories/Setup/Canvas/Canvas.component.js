@@ -5,11 +5,9 @@ import { ReglContainer } from 'dist';
 
 import * as styles from './Canvas.style';
 
-const StyledCanvas = styled.canvas`
+const View = styled.canvas`
   ${styles.canvas}
 `;
-
-const View = React.forwardRef((props, ref) => <StyledCanvas {...props} innerRef={ref} />);
 
 export default () => (
   <ReglContainer View={View} />

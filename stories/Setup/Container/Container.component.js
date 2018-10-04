@@ -5,11 +5,9 @@ import { ReglContainer } from 'dist';
 
 import * as styles from './Container.style';
 
-const StyledContainer = styled.div`
+const View = styled.div`
   ${styles.container}
 `;
-
-const View = React.forwardRef((props, ref) => <StyledContainer {...props} innerRef={ref} />);
 
 export default () => (
   <ReglContainer View={View} />

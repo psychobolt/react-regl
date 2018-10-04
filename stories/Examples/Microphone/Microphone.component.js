@@ -7,6 +7,7 @@ import { ReglContainer, Frame, Drawable } from '@psychobolt/react-regl';
 
 import vert from './Microphone.vert';
 import frag from './Microphone.frag';
+import { forEach } from 'gl-matrix/src/gl-matrix/vec3';
 
 type Props = {};
 
@@ -28,32 +29,24 @@ export default class Microphone extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    if (this.audioContext) this.audioContext.close();
+    if (this.stream) {
+      this.stream.getTracks().forEach(track => track.stop());
+    }
   }
 
   onMount = ({ regl }) => {
+    if (!navigator) return;
+
     // First we need to get permission to use the microphone
-    getusermedia({ audio: true }, (err, stream) => {
-      if (err) return;
-
-      // Next we create an analyser node to intercept data from the mic
-      this.audioContext = new AudioContext();
-      this.analyser = this.audioContext.createAnalyser();
-
-      // And then we connect them together
-      this.audioContext.createMediaStreamSource(stream).connect(this.analyser);
-
-      // Here we preallocate buffers for streaming audio data
-      const fftSize = this.analyser.frequencyBinCount;
-      this.frequencies = new Uint8Array(fftSize);
-      this.fftBuffer = regl.buffer({
-        length: fftSize,
-        type: 'uint8',
-        usage: 'dynamic',
+    if (navigator.getUserMedia) {
+      getusermedia({ audio: true }, (err, stream) => {
+        if (err) return;
+        this.createAudioContext(regl, stream);
       });
-
-      this.setState({ fftSize });
-    });
+    } else if (navigator.mediaDevices) {
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(stream => this.createAudioContext(regl, stream));
+    }
   }
 
   onFrame = ({ regl }) => {
@@ -68,6 +61,27 @@ export default class Microphone extends React.Component<Props, State> {
 
     // Here we use .subdata() to update the buffer in place
     this.fftBuffer.subdata(this.frequencies);
+  }
+
+  createAudioContext(regl, stream) {
+    // Create an analyser node to intercept data from the mic
+    this.audioContext = new AudioContext();
+    this.analyser = this.audioContext.createAnalyser();
+
+    // And then we connect them together
+    this.audioContext.createMediaStreamSource(stream).connect(this.analyser);
+
+    // Here we preallocate buffers for streaming audio data
+    const fftSize = this.analyser.frequencyBinCount;
+    this.frequencies = new Uint8Array(fftSize);
+    this.fftBuffer = regl.buffer({
+      length: fftSize,
+      type: 'uint8',
+      usage: 'dynamic',
+    });
+    this.stream = stream;
+
+    this.setState({ fftSize });
   }
 
   render() {

@@ -11,7 +11,7 @@ export default class Texture extends Drawable {
     const { source } = this.props;
     const instance = source ? regl.texture(source) : regl.texture(this.props);
     const result = options => {
-      if (this.args.copy) {
+      if (this.args?.copy) {
         instance(options);
       }
     };

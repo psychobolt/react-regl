@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { withNotes } from '@storybook/addon-notes';
 import { doc } from 'storybook-readme';
 
 import Container from './Container';
@@ -13,4 +12,6 @@ storiesOf('Setup', module)
   .add('Readme', doc(Readme))
   .add('Container', () => <Container />)
   .add('Canvas', () => <Canvas />)
-  .add('Dynamic Container', withNotes('Drag the left or bottom handles to resize the canvas')(() => <Resizable />));
+  .add('Dynamic Container', () => <Resizable />, {
+    notes: 'Drag the left or bottom handles to resize the canvas',
+  });

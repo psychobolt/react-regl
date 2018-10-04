@@ -79,52 +79,65 @@ const t = ({ tick }) => 0.01 * tick;
 
 const count = 4 * N * N * 6;
 
-const timeSamples = {
-  width: N,
-  height: 1,
-  data: new Uint8Array(N),
-};
-
-const freqSamples = new Uint8Array(N);
-
-type Props = {}
+type Props = {};
 
 type State = {
   audio: string
 };
 
-const Container = styled.div`
+const View = styled.div`
   ${styles.container}
 `;
 
-const View = React.forwardRef((props, ref) => <Container {...props} innerRef={ref} />);
+const STATES = {
+  Ready: 'ready',
+  Playing: 'playing',
+};
 
 export default class Audio extends React.Component<Props, State> {
   state = {
     audio: 'loading',
   };
 
+  timeSamples = {
+    width: N,
+    height: 1,
+    data: new Uint8Array(N),
+  };
+
+  freqSamples = new Uint8Array(N);
+
+  componentWillUnmount() {
+    const { audio } = this.state;
+    if (audio === STATES.Playing) this.song.pause();
+    if (this.source) this.source.disconnect();
+  }
+
   onDone = ({ song }) => {
-    const context = new AudioContext();
-    const source = context // eslint-disable-line react/destructuring-assignment
-      .createMediaElementSource(song);
-    this.analyser = context.createAnalyser(); // eslint-disable-line react/destructuring-assignment
-    source.connect(this.analyser);
-    source.connect(context.destination); // eslint-disable-line react/destructuring-assignment
     this.song = song;
-    this.setState({ audio: 'ready' });
+    this.song.loop = true;
+    this.setState({ audio: STATES.Ready });
   };
 
   play = () => {
-    this.song.play();
-    this.setState({ audio: 'playing' });
+    const context = new AudioContext();
+    const source = context // eslint-disable-line react/destructuring-assignment
+      .createMediaElementSource(this.song);
+    const analyser = context.createAnalyser(); // eslint-disable-line react/destructuring-assignment
+    source.connect(analyser);
+    source.connect(context.destination); // eslint-disable-line react/destructuring-assignment
+    this.source = source;
+    this.analyser = analyser;
+    this.song.play().then(() => {
+      this.setState({ audio: STATES.Playing });
+    });
   }
 
   render() {
     const { audio } = this.state;
     return (
       <div>
-        <button type="button" onClick={this.play} disabled={audio !== 'ready'}>
+        <button type="button" onClick={this.play} disabled={audio !== STATES.Ready}>
           {'Play'}
         </button>
         <ReglContainer View={View} contextProps={contextProps}>
@@ -159,13 +172,16 @@ export default class Audio extends React.Component<Props, State> {
                             depth: 1,
                           });
 
-                          // Update texture
-                          this.analyser.getByteFrequencyData(timeSamples.data);
-                          terrainTexture.subimage(timeSamples, 0, tick % N);
+                          const { audio: state } = this.state;
+                          if (state === STATES.Playing) {
+                            // Update texture
+                            this.analyser.getByteFrequencyData(this.timeSamples.data);
+                            terrainTexture.subimage(this.timeSamples, 0, tick % N);
 
-                          // Update colors
-                          this.analyser.getByteFrequencyData(freqSamples);
-                          colorTexture.subimage(freqSamples);
+                            // Update colors
+                            this.analyser.getByteFrequencyData(this.freqSamples);
+                            colorTexture.subimage(this.freqSamples);
+                          }
                         }}
                       >
                         <Drawable

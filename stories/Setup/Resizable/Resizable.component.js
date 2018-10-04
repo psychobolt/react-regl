@@ -7,11 +7,9 @@ import { ReglContainer } from '@psychobolt/react-regl';
 
 import * as styles from './Resizable.style';
 
-const Canvas = styled.canvas`
+const View = styled.canvas`
   ${styles.canvas}
 `;
-
-const View = React.forwardRef((props, ref) => <Canvas {...props} innerRef={ref} />);
 
 type Props = {
   viewProps: {},
