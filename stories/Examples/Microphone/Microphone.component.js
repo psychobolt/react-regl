@@ -7,7 +7,6 @@ import { ReglContainer, Frame, Drawable } from '@psychobolt/react-regl';
 
 import vert from './Microphone.vert';
 import frag from './Microphone.frag';
-import { forEach } from 'gl-matrix/src/gl-matrix/vec3';
 
 type Props = {};
 
