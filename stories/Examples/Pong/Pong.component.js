@@ -33,7 +33,7 @@ const midline = new Aabb([+0.0, 0.0], [0.005, 1.0]);
 const ball = new Aabb([0.0, 0.0], [0.0, 0.0]); // set velocity
 let ballVel = vec2.fromValues(0.0, 0.0);
 
-const audioContext = new AudioContext();
+let audioContext;
 const volume = 0.1;
 
 function clamp(value, min, max) {
@@ -115,70 +115,77 @@ function playAudioBuffer(audioBuffer) {
   source.start();
 }
 
+let winAudioBuffer;
+let loseAudioBuffer;
+
 // When the ball collides with something, we alternate between playing two sound effects
 // Both sound effects are just simple square waves.
 const hitAudioBuffers = [];
 
-hitAudioBuffers[0] = createAudioBuffer(
-  0.15,
-  (channelData, frameCount) => {
-    let current = volume;
-    for (let i = 0; i < frameCount; i += 1) {
-      if (i % 100 === 0) {
-        current *= -1.0;
-      }
-      channelData[i] = current * (1.0 - i / frameCount); // eslint-disable-line no-param-reassign
-    }
-  },
-);
+function createAudioBuffers() {
+  audioContext = new AudioContext();
 
-hitAudioBuffers[1] = createAudioBuffer(
-  0.15,
-  (channelData, frameCount) => {
-    let current = volume;
-    for (let i = 0; i < frameCount; i += 1) {
-      if (i % 150 === 0) {
-        current *= -1.0;
+  hitAudioBuffers[0] = createAudioBuffer(
+    0.15,
+    (channelData, frameCount) => {
+      let current = volume;
+      for (let i = 0; i < frameCount; i += 1) {
+        if (i % 100 === 0) {
+          current *= -1.0;
+        }
+        channelData[i] = current * (1.0 - i / frameCount); // eslint-disable-line no-param-reassign
       }
-      channelData[i] = current * (1.0 - i / frameCount); // eslint-disable-line no-param-reassign
-    }
-  },
-);
+    },
+  );
 
-// We play this sound when the player wins.
-// It is just a square wave, with some simple frequency modulation.
-const winAudioBuffer = createAudioBuffer(
-  0.4,
-  (channelData, frameCount) => {
-    let current = volume;
-    let period = 50;
-    for (let i = 0; i < frameCount; i += 1) {
-      if (i % period === 0) {
-        current *= -1.0;
+  hitAudioBuffers[1] = createAudioBuffer(
+    0.15,
+    (channelData, frameCount) => {
+      let current = volume;
+      for (let i = 0; i < frameCount; i += 1) {
+        if (i % 150 === 0) {
+          current *= -1.0;
+        }
+        channelData[i] = current * (1.0 - i / frameCount); // eslint-disable-line no-param-reassign
       }
-      if (i % 600 === 0) {
-        period -= 2;
-      }
-      const a = (i / frameCount);
-      channelData[i] = current * (1.0 - a); // eslint-disable-line no-param-reassign
-    }
-  },
-);
+    },
+  );
 
-// We play this sound when the player loses.
-// It is just white noise.
-const loseAudioBuffer = createAudioBuffer(
-  0.5,
-  (channelData, frameCount) => {
-    let current = getRand(-volume, +volume);
-    for (let i = 0; i < frameCount; i += 1) {
-      if (i % 150 === 0) {
-        current = getRand(-volume, +volume);
+  // We play this sound when the player wins.
+  // It is just a square wave, with some simple frequency modulation.
+  winAudioBuffer = createAudioBuffer(
+    0.4,
+    (channelData, frameCount) => {
+      let current = volume;
+      let period = 50;
+      for (let i = 0; i < frameCount; i += 1) {
+        if (i % period === 0) {
+          current *= -1.0;
+        }
+        if (i % 600 === 0) {
+          period -= 2;
+        }
+        const a = (i / frameCount);
+        channelData[i] = current * (1.0 - a); // eslint-disable-line no-param-reassign
       }
-      channelData[i] = current * (1.0 - i / frameCount); // eslint-disable-line no-param-reassign
-    }
-  },
-);
+    },
+  );
+
+  // We play this sound when the player loses.
+  // It is just white noise.
+  loseAudioBuffer = createAudioBuffer(
+    0.5,
+    (channelData, frameCount) => {
+      let current = getRand(-volume, +volume);
+      for (let i = 0; i < frameCount; i += 1) {
+        if (i % 150 === 0) {
+          current = getRand(-volume, +volume);
+        }
+        channelData[i] = current * (1.0 - i / frameCount); // eslint-disable-line no-param-reassign
+      }
+    },
+  );
+}
 
 // compute the reflection vector for an incident vector `v` against
 // a surface with the normal `n`.
@@ -217,122 +224,145 @@ const cull = {
   enable: true,
 };
 
-const onMount = () => resetBall(true);
-
-const onUpdate = ({ viewportWidth, viewportHeight, pixelRatio, regl, draw }) => {
-  regl.clear({
-    color: [0, 0, 0, 1],
-  });
-
-  const deltaTime = 0.017;
-
-  // We use this ratio r in order to make sure that all renderered
-  // objects keep their proportions on different screen sizes
-  // Note that we made the assumption that the screen has greater width
-  // than height!
-  // And we can't just calculate this value once and then cache it, because the
-  // user may resize the browser window while playing!
-  const r = viewportWidth / viewportHeight;
-
-  //
-  // BEGIN GAME LOGIC
-  //
-
-  const minY = -1 + playerPaddle.r[1] * r;
-  const maxY = +1 + playerPaddle.r[1] * r;
-  // player paddle follows the mouse
-  if (mouseY !== null) {
-    // this maps the mouse y-coordinates to the range[0,1]
-    // we must take the pixel ratio in to account, so that it handles
-    // retina displays and such.
-    const a = 1.0 - (mouseY * pixelRatio) / viewportHeight;
-    // Map from [0,1] to our coordinates system(which is [-1, -1])
-    // also, clamp to ensure that the paddle does not move outside the screen boundaries.
-    playerPaddle.c[1] = clamp(-1.0 + 2.0 * (a), minY, maxY);
+export default class Pong extends React.PureComponent {
+  componentWillUnmount() {
+    if (this.view) this.view.removeEventListener('click', this.startGame);
   }
 
-  // AI paddle follows the ball.
-  const dist = (ball.c[1] - aiPaddle.c[1]);
-  aiPaddle.c[1] = clamp(aiPaddle.c[1] + dist * deltaTime * 1.9, minY, maxY);
-
-  // Move ball.
-  vec2.scaleAndAdd(ball.c, ball.c, ballVel, deltaTime);
-
-  // Handle ball collision north wall
-  if ((ball.c[1] + r * ball.r[1]) >= 1.0) {
-    ballVel = reflect(ballVel, vec2.fromValues(0.0, -1.0));
+  startGame = () => {
+    if (this.view) {
+      this.view.removeEventListener('click', this.startGame);
+      createAudioBuffers();
+      this.start = true;
+    }
   }
 
-  // Handle ball collision east wall
-  if ((ball.c[0] + ball.r[0]) >= 1.0) {
-    playAudioBuffer(winAudioBuffer);
-    // player win. Reset ball
+  onMount = ({ view }) => {
     resetBall(true);
+    this.view = view;
+    this.view.addEventListener('click', this.startGame);
+    console.log('Click to start game.'); // eslint-disable-line no-console
   }
 
-  // Handle ball collision south wall
-  if ((ball.c[1] - r * ball.r[1]) <= -1.0) {
-    ballVel = reflect(ballVel, vec2.fromValues(0.0, 1.0));
+  onUpdate = ({ viewportWidth, viewportHeight, pixelRatio, regl, draw }) => {
+    regl.clear({
+      color: [0, 0, 0, 1],
+    });
+
+    const deltaTime = 0.017;
+
+    // We use this ratio r in order to make sure that all renderered
+    // objects keep their proportions on different screen sizes
+    // Note that we made the assumption that the screen has greater width
+    // than height!
+    // And we can't just calculate this value once and then cache it, because the
+    // user may resize the browser window while playing!
+    const r = viewportWidth / viewportHeight;
+
+    if (this.start) {
+      //
+      // BEGIN GAME LOGIC
+      //
+
+      const minY = -1 + playerPaddle.r[1] * r;
+      const maxY = +1 + playerPaddle.r[1] * r;
+      // player paddle follows the mouse
+      if (mouseY !== null) {
+        // this maps the mouse y-coordinates to the range[0,1]
+        // we must take the pixel ratio in to account, so that it handles
+        // retina displays and such.
+        const a = 1.0 - (mouseY * pixelRatio) / viewportHeight;
+        // Map from [0,1] to our coordinates system(which is [-1, -1])
+        // also, clamp to ensure that the paddle does not move outside the screen boundaries.
+        playerPaddle.c[1] = clamp(-1.0 + 2.0 * (a), minY, maxY);
+      }
+
+      // AI paddle follows the ball.
+      const dist = (ball.c[1] - aiPaddle.c[1]);
+      aiPaddle.c[1] = clamp(aiPaddle.c[1] + dist * deltaTime * 1.9, minY, maxY);
+
+      // Move ball.
+      vec2.scaleAndAdd(ball.c, ball.c, ballVel, deltaTime);
+
+      // Handle ball collision north wall
+      if ((ball.c[1] + r * ball.r[1]) >= 1.0) {
+        ballVel = reflect(ballVel, vec2.fromValues(0.0, -1.0));
+      }
+
+      // Handle ball collision east wall
+      if ((ball.c[0] + ball.r[0]) >= 1.0) {
+        playAudioBuffer(winAudioBuffer);
+        // player win. Reset ball
+        resetBall(true);
+      }
+
+      // Handle ball collision south wall
+      if ((ball.c[1] - r * ball.r[1]) <= -1.0) {
+        ballVel = reflect(ballVel, vec2.fromValues(0.0, 1.0));
+      }
+
+      // Handle ball collision west wall
+      if ((ball.c[0] - ball.r[0]) <= -1.0) {
+        playAudioBuffer(loseAudioBuffer);
+        // player loss. Reset ball.
+        resetBall(false);
+      }
+
+      // handle ball and AI paddle collision
+      let result = detectAabbCollision(aiPaddle, ball, r);
+      if (result !== false) {
+        const n = result; // if collision, the return value is the contact normal.
+        ballVel = reflect(ballVel, n);
+      }
+
+      // handle ball and player paddle collision
+      result = detectAabbCollision(playerPaddle, ball, r);
+      if (result !== false) {
+        const n = result; // if collision, the return value is the contact normal.
+        ballVel = reflect(ballVel, n);
+      }
+
+      //
+      // END GAME LOGIC
+      //
+    }
+
+    //
+    // Render everything.
+    //
+
+    draw([
+      { aabb: playerPaddle },
+      { aabb: aiPaddle },
+      { aabb: midline },
+      { aabb: ball },
+    ]);
+  };
+
+  render() {
+    return (
+      <ReglContainer onMount={this.onMount}>
+        <Frame onUpdate={this.onUpdate}>
+          <Context.Consumer>
+            {({ context }) => (
+              <Drawable
+                frag={frag}
+                vert={vert}
+                attributes={attributes}
+                uniforms={{
+                  offset,
+                  scale,
+                  viewportWidth: context.regl.context('viewportWidth'),
+                  viewportHeight: context.regl.context('viewportHeight'),
+                }}
+                depth={depth}
+                cull={cull}
+                count={6}
+              />
+            )}
+          </Context.Consumer>
+        </Frame>
+      </ReglContainer>
+    );
   }
-
-  // Handle ball collision west wall
-  if ((ball.c[0] - ball.r[0]) <= -1.0) {
-    playAudioBuffer(loseAudioBuffer);
-    // player loss. Reset ball.
-    resetBall(false);
-  }
-
-  // handle ball and AI paddle collision
-  let result = detectAabbCollision(aiPaddle, ball, r);
-  if (result !== false) {
-    const n = result; // if collision, the return value is the contact normal.
-    ballVel = reflect(ballVel, n);
-  }
-
-  // handle ball and player paddle collision
-  result = detectAabbCollision(playerPaddle, ball, r);
-  if (result !== false) {
-    const n = result; // if collision, the return value is the contact normal.
-    ballVel = reflect(ballVel, n);
-  }
-
-  //
-  // END GAME LOGIC
-  //
-
-  //
-  // Render everything.
-  //
-
-  draw([
-    { aabb: playerPaddle },
-    { aabb: aiPaddle },
-    { aabb: midline },
-    { aabb: ball },
-  ]);
-};
-
-export default () => (
-  <ReglContainer onMount={onMount}>
-    <Frame onUpdate={onUpdate}>
-      <Context.Consumer>
-        {({ context }) => (
-          <Drawable
-            frag={frag}
-            vert={vert}
-            attributes={attributes}
-            uniforms={{
-              offset,
-              scale,
-              viewportWidth: context.regl.context('viewportWidth'),
-              viewportHeight: context.regl.context('viewportHeight'),
-            }}
-            depth={depth}
-            cull={cull}
-            count={6}
-          />
-        )}
-      </Context.Consumer>
-    </Frame>
-  </ReglContainer>
-);
+}
