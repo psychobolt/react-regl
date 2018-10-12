@@ -29,6 +29,8 @@ import Video from './Video';
 import Audio from './Audio';
 import Blur from './Blur';
 import CubeFBO from './CubeFBO';
+import DDS from './DDS';
+import DeferredShading from './DeferredShading';
 
 storiesOf('Examples', module)
   .add('Basic', () => <Basic />, {
@@ -130,4 +132,17 @@ storiesOf('Examples', module)
   })
   .add('Cube FBO', () => <CubeFBO />, {
     notes: 'This example shows how you can render reflections using cubic framebuffers.',
+  })
+  .add('DDS', () => <DDS />, {
+    notes: 'This example shows how you can parse dds files with resl.',
+  })
+  .add('Deferred Shading', () => <DeferredShading />, {
+    notes: `
+      This example is a simple implementation of deferred shading.
+
+      The focus of this implementation was readability, so it is not an optimized implementation, and can certainly be made more efficient.
+      (by for instance getting ride of the "position" render target. It can be computed from the depth buffer.)
+
+      This example demonstrates the usage of Multiple-render targets in regl.
+    `,
   });

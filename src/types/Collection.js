@@ -14,7 +14,7 @@ export default class Collection {
   }
 
   update(args, context) {
-    this.children.forEach(child => child.update(args, context));
+    this.children.forEach(child => child.update && child.update(args, context));
   }
 
   addChild(child) {
@@ -31,6 +31,6 @@ export default class Collection {
   }
 
   destroy() {
-    this.children.forEach(child => child.destroy());
+    this.children.forEach(child => child.destroy && child.destroy());
   }
 }

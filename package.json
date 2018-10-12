@@ -102,6 +102,8 @@
     "lodash": "4.17.11",
     "minimatch": "^3.0.4",
     "mouse-change": "^1.4.0",
+    "parse-dds": "^1.2.1",
+    "primitive-sphere": "^3.0.0",
     "prop-types": "^15.6.2",
     "raf": "^3.4.0",
     "raf-schd": "^4.0.0",

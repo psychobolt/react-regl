@@ -41,8 +41,8 @@ const defaultHostConfig = {
   shouldDeprioritizeSubtree(type, props) {
     return false;
   },
-  createTextInstance(text, paper, hostContext, internalInstanceHandle) {
-    invariant(false, 'createTextInstance is NOOP. Make sure you implement it or return text.');
+  createTextInstance(text, container, hostContext, internalInstanceHandle) {
+    return text;
   },
   scheduleDeferredCallback: window.requestIdleCallback,
   prepareForCommit() {

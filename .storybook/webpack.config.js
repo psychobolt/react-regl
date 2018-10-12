@@ -17,7 +17,7 @@ module.exports = (baseConfig, env, defaultConfig) => ({
         || (rule.use && rule.use.length && rule.use.find(({ loader }) => loader === 'babel-loader'))
       )),
       {
-        test: /\.svg/,
+        test: /\.(svg|dds)/,
         loader: require.resolve('file-loader'),
         query: {
           name: 'static/media/[name].[hash:8].[ext]',
