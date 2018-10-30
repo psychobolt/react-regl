@@ -1,22 +1,22 @@
 // @flow
 import * as React from 'react';
 
-import typeof { Texture as TextureType } from '../types';
+import typeof { Cube as CubeType } from '../types';
 import { CONSTANTS } from '../Regl.types';
 
 type Props = {
-  children?: texture => React.ReactNode,
+  children?: cube => React.Node,
   innerRef: React.RefObject<any>,
 };
 
 type State = {
-  ref: TextureType
+  ref: CubeType
 }
 
-class Texture extends React.Component<Props, State> {
+class Cube extends React.Component<Props, State> {
   static defaultProps = {
     children: () => null,
-  };
+  }
 
   constructor(props: Props) {
     super(props);
@@ -35,20 +35,21 @@ class Texture extends React.Component<Props, State> {
   }
 
   componentDidUpdate() {
-    if (this.ref.current) {
-      this.ref.current.update();
+    const ref = this.ref.current;
+    if (ref) {
+      ref.update();
     }
   }
 
   render() {
     const { children, innerRef, ...props } = this.props;
-    const { ref: texture } = this.state;
+    const { ref: cube } = this.state;
     return (
-      <CONSTANTS.Texture ref={this.ref} {...props}>
-        {texture ? children(texture.getInstance()) : null}
-      </CONSTANTS.Texture>
+      <CONSTANTS.Cube ref={this.ref} {...props}>
+        {cube ? children(cube.getInstance()) : null}
+      </CONSTANTS.Cube>
     );
   }
 }
 
-export default React.forwardRef((props, ref) => <Texture {...props} innerRef={ref} />);
+export default React.forwardRef((props, ref) => <Cube {...props} innerRef={ref} />);

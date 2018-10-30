@@ -1,12 +1,8 @@
-import Drawable from './Drawable';
+import Instance from './Instance';
 
-export default class Texture extends Drawable {
-  constructor(props, context) {
-    super(props, context, false);
-  }
-
+export default class Texture extends Instance {
   init() {
-    if (this.instance) this.instance.destroy();
+    super.init();
     const { regl } = this.context;
     const { source } = this.props;
     const instance = source ? regl.texture(source) : regl.texture(this.props);
@@ -18,19 +14,5 @@ export default class Texture extends Drawable {
     result.get = () => instance;
     result.destroy = () => instance.destroy();
     return result;
-  }
-
-  setArgs(args) {
-    super.setArgs(args);
-    this.instance = this.init();
-  }
-
-  getInstance() {
-    return this.instance.get();
-  }
-
-  destroy() {
-    this.instance.destroy();
-    super.destroy();
   }
 }

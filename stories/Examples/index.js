@@ -32,6 +32,7 @@ import Cloth from './Cloth';
 import CubeFBO from './CubeFBO';
 import DDS from './DDS';
 import DeferredShading from './DeferredShading';
+import Envmap from './Envmap';
 
 storiesOf('Examples', module)
   .add('Basic', () => <Basic />, {
@@ -154,5 +155,10 @@ storiesOf('Examples', module)
       (by for instance getting ride of the "position" render target. It can be computed from the depth buffer.)
 
       This example demonstrates the usage of Multiple-render targets in regl.
+    `,
+  })
+  .add('Envmap', () => <Envmap />, {
+    notes: `
+      This example shows how you can render reflections with a environment map.
     `,
   });

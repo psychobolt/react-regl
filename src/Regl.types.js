@@ -6,6 +6,7 @@ export const CONSTANTS = {
   Frame: 'Frame',
   Texture: 'Texture',
   Collection: 'Collection',
+  Cube: 'Cube',
 };
 
 export default {
@@ -14,6 +15,7 @@ export default {
   [CONSTANTS.Frame]: (props, context) => new Types.Frame(props, context),
   [CONSTANTS.Texture]: (props, context) => new Types.Texture(props, context),
   [CONSTANTS.Collection]: (props, context) => new Types.Collection(props, context),
+  [CONSTANTS.Cube]: (props, context) => new Types.Cube(props, context),
 };
 
 export const {
