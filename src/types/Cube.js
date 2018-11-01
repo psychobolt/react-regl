@@ -1,3 +1,4 @@
+import Collection from './Collection';
 import Instance from './Instance';
 
 export default class Cube extends Instance {
@@ -9,6 +10,10 @@ export default class Cube extends Instance {
   }
 
   update(args, context) {
-    this.children.forEach(child => child.update(args, context));
+    if (this.args || args) {
+      super.update(args, context);
+    } else {
+      Collection.prototype.update.call(this, args, context);
+    }
   }
 }
