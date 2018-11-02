@@ -33,6 +33,7 @@ import CubeFBO from './CubeFBO';
 import DDS from './DDS';
 import DeferredShading from './DeferredShading';
 import Envmap from './Envmap';
+import Geomorph from './Geomorph';
 
 storiesOf('Examples', module)
   .add('Basic', () => <Basic />, {
@@ -161,4 +162,5 @@ storiesOf('Examples', module)
     notes: `
       This example shows how you can render reflections with a environment map.
     `,
-  });
+  })
+  .add('Geomorph', () => <Geomorph />);
