@@ -34,6 +34,7 @@ import DDS from './DDS';
 import DeferredShading from './DeferredShading';
 import Envmap from './Envmap';
 import Geomorph from './Geomorph';
+import Graph from './Graph';
 
 storiesOf('Examples', module)
   .add('Basic', () => <Basic />, {
@@ -163,4 +164,5 @@ storiesOf('Examples', module)
       This example shows how you can render reflections with a environment map.
     `,
   })
-  .add('Geomorph', () => <Geomorph />);
+  .add('Geomorph', () => <Geomorph />)
+  .add('Graph', () => <Graph />);
