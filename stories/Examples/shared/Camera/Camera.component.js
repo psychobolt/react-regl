@@ -5,7 +5,7 @@ import { defaultMemoize } from 'reselect';
 import rafSchedule from 'raf-schd';
 import { identity, perspective, lookAt } from 'gl-mat4';
 
-import { Drawable, type MergeProps } from '@psychobolt/react-regl';
+import { Context, Drawable, type MergeProps } from '@psychobolt/react-regl';
 
 const MIN_PHI = -Math.PI / 2.0;
 const MAX_PHI = Math.PI / 2.0;
@@ -56,7 +56,7 @@ type State = {
   },
 };
 
-export default class Camera extends React.Component<Props, State> {
+class Camera extends React.Component<Props, State> {
   updateRotation = rafSchedule(newState => ReactDOM
     .flushSync(() => this.setState(newState)));
 
@@ -185,3 +185,11 @@ export default class Camera extends React.Component<Props, State> {
     );
   }
 }
+
+export default React.forwardRef((props, ref) => (
+  <Context.Consumer>
+    {({ context, mergeProps }) => (
+      <Camera {...props} ref={ref} regl={context.regl} mergeProps={mergeProps} />
+    )}
+  </Context.Consumer>
+));

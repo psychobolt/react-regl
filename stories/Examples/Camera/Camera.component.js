@@ -1,5 +1,5 @@
 import React from 'react';
-import { Context, Frame } from '@psychobolt/react-regl';
+import { Frame } from '@psychobolt/react-regl';
 import ReglContainer from 'stories/Setup/Resizable';
 
 
@@ -13,13 +13,9 @@ const clear = ({ regl }) => regl.clear({
 export default () => (
   <ReglContainer>
     <Frame onFrame={clear}>
-      <Context.Consumer>
-        {({ context, mergeProps }) => (
-          <Camera center={[0, 2.5, 0]} regl={context.regl} mergeProps={mergeProps}>
-            <Bunny />
-          </Camera>
-        )}
-      </Context.Consumer>
+      <Camera center={[0, 2.5, 0]}>
+        <Bunny />
+      </Camera>
     </Frame>
   </ReglContainer>
 );

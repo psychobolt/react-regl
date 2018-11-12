@@ -35,6 +35,7 @@ import DeferredShading from './DeferredShading';
 import Envmap from './Envmap';
 import Geomorph from './Geomorph';
 import Graph from './Graph';
+import ImplicitSurface from './ImplicitSurface';
 
 storiesOf('Examples', module)
   .add('Basic', () => <Basic />, {
@@ -165,4 +166,11 @@ storiesOf('Examples', module)
     `,
   })
   .add('Geomorph', () => <Geomorph />)
-  .add('Graph', () => <Graph />);
+  .add('Graph', () => <Graph />)
+  .add('Implicit Surface', () => <ImplicitSurface />, {
+    notes: {
+      markdown: `
+        Implicit surface raytracing demo. Many ideas and pieces of code taken from [here](https://github.com/kevinrost/webglshaders/blob/master/distancefield1.html) and [here](http://www.iquilezles.org/www/articles/disfunctions/distfunctions.htm).
+      `,
+    },
+  });
