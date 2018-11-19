@@ -36,6 +36,7 @@ import Envmap from './Envmap';
 import Geomorph from './Geomorph';
 import Graph from './Graph';
 import ImplicitSurface from './ImplicitSurface';
+import Line from './Line';
 
 storiesOf('Examples', module)
   .add('Basic', () => <Basic />, {
@@ -171,6 +172,15 @@ storiesOf('Examples', module)
     notes: {
       markdown: `
         Implicit surface raytracing demo. Many ideas and pieces of code taken from [here](https://github.com/kevinrost/webglshaders/blob/master/distancefield1.html) and [here](http://www.iquilezles.org/www/articles/disfunctions/distfunctions.htm).
+      `,
+    },
+  })
+  .add('Line', () => <Line />, {
+    notes: {
+      markdown: `
+        This example demonstrates rendering screen space projected lines from a technique described <a href="https://mattdesl.svbtle.com/drawing-lines-is-hard">here</a>.
+
+        This technique requires each vertex to reference the previous and next vertex in the line; this example utilizes attribute byte offsets to share a single position buffer for all three of these attributes.
       `,
     },
   });

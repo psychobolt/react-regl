@@ -1,9 +1,9 @@
 import React from 'react';
 import { ReglContainer, Context, Frame, Drawable } from '@psychobolt/react-regl';
+import Camera from 'stories/Examples/shared/Camera';
 
 import vert from './ImplicitSurface.vert';
 import frag from './ImplicitSurface.frag';
-import Camera from '../shared/Camera';
 
 const center = [-12, 5, 1];
 
