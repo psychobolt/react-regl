@@ -15,11 +15,11 @@ let mouse;
 let bunnyFBO;
 let teapotFBO;
 
-const onMount = ({ regl, view }) => {
+const onMount = ({ regl }) => {
   bunnyFBO = regl.framebufferCube(CUBE_MAP_SIZE);
   teapotFBO = regl.framebufferCube(CUBE_MAP_SIZE);
 
-  mouse = mouseChange(view);
+  mouse = mouseChange();
 };
 
 const teapotPos = [0, 3, 0];
