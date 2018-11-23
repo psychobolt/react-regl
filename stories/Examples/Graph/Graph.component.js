@@ -62,7 +62,7 @@ const onMount = ({ regl }) => {
   ];
 
   if (lineWidth > regl.limits.lineWidthDims[1]) {
-    lineWidth = regl.limits.limeWidthDims[1]; // eslint-disable-line prefer-destructuring
+    lineWidth = regl.limits.lineWidthDims[1]; // eslint-disable-line prefer-destructuring
   }
 };
 

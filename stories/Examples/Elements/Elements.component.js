@@ -47,7 +47,7 @@ export default () => (
           uniforms={uniforms}
           elements={elements}
           lineWidth={context.regl.limits.lineWidthDims[1] < LINE_WIDTH
-            ? context.reg.limits.lineWidthDims[1] : LINE_WIDTH}
+            ? context.regl.limits.lineWidthDims[1] : LINE_WIDTH}
         />
       )}
     </Context.Consumer>
