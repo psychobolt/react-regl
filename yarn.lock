@@ -2066,6 +2066,14 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
+ammonext@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/ammonext/-/ammonext-0.0.3.tgz#016bc4f683b0e0b3ec26caaa5ce3f0cf60fcd563"
+  integrity sha1-AWvE9oOw4LPsJsqqXOPwz2D81WM=
+  dependencies:
+    fs "0.0.2"
+    path "^0.12.7"
+
 angle-normals@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/angle-normals/-/angle-normals-1.0.0.tgz#958574986aa3f02946a45cd108cb2a3b8907c9ac"
@@ -9567,6 +9575,14 @@ path@^0.11.14:
   resolved "https://registry.yarnpkg.com/path/-/path-0.11.14.tgz#cbc7569355cb3c83afeb4ace43ecff95231e5a7d"
   integrity sha1-y8dWk1XLPIOv60rOQ+z/lSMeWn0=
 
+path@^0.12.7:
+  version "0.12.7"
+  resolved "https://registry.yarnpkg.com/path/-/path-0.12.7.tgz#d4dc2a506c4ce2197eb481ebfcd5b36c0140b10f"
+  integrity sha1-1NwqUGxM4hl+tIHr/NWzbAFAsQ8=
+  dependencies:
+    process "^0.11.1"
+    util "^0.10.3"
+
 pbkdf2@^3.0.3:
   version "3.0.17"
   resolved "https://registry.yarnpkg.com/pbkdf2/-/pbkdf2-3.0.17.tgz#976c206530617b14ebb32114239f7b09336e93a6"
@@ -9948,7 +9964,7 @@ process-nextick-args@~2.0.0:
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.0.tgz#a37d732f4271b4ab1ad070d35508e8290788ffaa"
   integrity sha512-MtEC1TqN0EU5nephaJ4rAtThHtC86dNN9qCuEhtshvpVBkAW5ZO7BASN9REnF9eoXGcRub+pFuKEpOHE+HbEMw==
 
-process@^0.11.10:
+process@^0.11.1, process@^0.11.10:
   version "0.11.10"
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
   integrity sha1-czIwDoQBYb2j5podHZGn1LwW8YI=

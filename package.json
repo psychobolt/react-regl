@@ -60,6 +60,7 @@
     "@storybook/addon-links": "4.0.7",
     "@storybook/addon-notes": "4.0.7",
     "@storybook/react": "4.0.7",
+    "ammonext": "^0.0.3",
     "angle-normals": "^1.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "10.0.1",

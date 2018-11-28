@@ -16,7 +16,8 @@ type Props = {
 };
 
 // $FlowFixMe
-export default @ReglProvider class ReglContainer extends React.Component<Props> {
+@ReglProvider
+export default class ReglContainer extends React.Component<Props> {
   static defaultProps = {
     onMount: () => {},
     View: null,
