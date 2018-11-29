@@ -4,7 +4,7 @@ import mat4 from 'gl-mat4';
 import vec3 from 'gl-vec3';
 import sphere from 'primitive-sphere';
 
-import { BtSphereShape, BtDefaultMotionState, BtTransform, BtQuaternion, BtVector3, BtRigidBodyConstructionInfo, BtRigidBody, getModelMatrix } from '../ammo';
+import { BtSphereShape, BtDefaultMotionState, BtTransform, BtQuaternion, BtVector3, BtRigidBodyConstructionInfo, BtRigidBody } from '../ammo';
 import Normal from '../Normal';
 import Mesh from '../Mesh';
 
@@ -77,8 +77,6 @@ export default class Sphere extends React.Component<Props, State> {
     const rigidBody = new BtRigidBody(ci);
     physicsWorld.addRigidBody(rigidBody);
 
-    this.model = getModelMatrix(rigidBody);
-
     /*
       Now send the rigid body flying!
     */
@@ -87,15 +85,16 @@ export default class Sphere extends React.Component<Props, State> {
       new BtVector3(rayOrigin[0], rayOrigin[1], rayOrigin[2]),
     );
 
+    this.rigidBody = rigidBody;
     this.setState({ mounted: true });
   }
 
   mesh: typeof sphere;
 
-  model: number[];
+  rigidBody: number[];
 
   render() {
-    const { mesh, model, state } = this;
+    const { mesh, rigidBody, state } = this;
     const { mounted } = state;
     return mounted
       ? (
@@ -105,7 +104,7 @@ export default class Sphere extends React.Component<Props, State> {
             position={mesh.positions}
             normal={mesh.normals}
             color={color}
-            model={model}
+            rigidBody={rigidBody}
           />
         </Normal>
       )

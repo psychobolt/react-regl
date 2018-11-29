@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 
-import { BtBoxShape, BtDefaultMotionState, BtTransform, BtQuaternion, BtVector3, BtRigidBodyConstructionInfo, BtRigidBody, getModelMatrix } from '../../ammo';
+import { BtBoxShape, BtDefaultMotionState, BtTransform, BtQuaternion, BtVector3, BtRigidBodyConstructionInfo, BtRigidBody } from '../../ammo';
 import Normal from '../../Normal';
 import Mesh from '../../Mesh';
 
@@ -106,17 +106,24 @@ export default class Box extends React.Component<Props, State> {
     const ci = new BtRigidBodyConstructionInfo(mass, motionState, shape, localInertia);
     const rigidBody = new BtRigidBody(ci);
     physicsWorld.addRigidBody(rigidBody);
-    this.model = getModelMatrix(rigidBody);
+    this.rigidBody = rigidBody;
     this.setState({ mounted: true });
   }
 
   render() {
-    const { color } = this.props;
-    const { position: p, mounted } = this.state;
+    const { props, state, rigidBody } = this;
+    const { color } = props;
+    const { position: p, mounted } = state;
     return mounted
       ? (
         <Normal>
-          <Mesh elements={elements} position={p} normal={normal} color={color} model={this.model} />
+          <Mesh
+            elements={elements}
+            position={p}
+            normal={normal}
+            color={color}
+            rigidBody={rigidBody}
+          />
         </Normal>
       )
       : null;

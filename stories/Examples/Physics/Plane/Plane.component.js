@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import Normal from '../Normal';
 import Mesh from '../Mesh';
-import { type BtDiscreteDynamicsWorld, BtVector3, BtStaticPlaneShape, BtDefaultMotionState, BtTransform, BtQuaternion, BtRigidBodyConstructionInfo, BtRigidBody, getModelMatrix } from '../ammo';
+import { type BtDiscreteDynamicsWorld, BtVector3, BtStaticPlaneShape, BtDefaultMotionState, BtTransform, BtQuaternion, BtRigidBodyConstructionInfo, BtRigidBody } from '../ammo';
 
 const A = 1000.0; // plane size.
 
@@ -53,7 +53,7 @@ export default class Plane extends React.Component<Props, State> {
     const rigidBody = new BtRigidBody(ci);
     const { physicsWorld } = this.props;
     physicsWorld.addRigidBody(rigidBody);
-    this.model = getModelMatrix(rigidBody);
+    this.rigidBody = rigidBody;
     this.setState({ mounted: true });
   }
 
@@ -68,7 +68,7 @@ export default class Plane extends React.Component<Props, State> {
             position={position}
             normal={normal}
             color={color}
-            model={this.model}
+            rigidBody={this.rigidBody}
           />
         </Normal>
       )

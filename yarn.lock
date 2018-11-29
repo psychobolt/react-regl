@@ -8561,6 +8561,13 @@ mouse-position@^1.0.0:
   dependencies:
     events "^1.0.1"
 
+mouse-position@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/mouse-position/-/mouse-position-2.1.0.tgz#07da807a5b085397ba17ba2e8cee48e67001bd20"
+  integrity sha512-Ra8/RFn9e9/D2v9syhF5bLo4yiWvqZzcC/5bHOvkixDAkvO3WhlWN2xQRHSirMoYk2bagIae2upXXwxTxzI3BQ==
+  dependencies:
+    events "^1.0.1"
+
 mouse-pressed@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/mouse-pressed/-/mouse-pressed-0.0.1.tgz#1e62ae992d7966177e5ffc49c839128e1b27b7bb"

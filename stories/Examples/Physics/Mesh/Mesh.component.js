@@ -2,6 +2,10 @@
 import * as React from 'react';
 import { Drawable } from '@psychobolt/react-regl';
 
+import { getModelMatrix } from '../ammo';
+
+const model = (_, props) => props.model;
+
 const cull = {
   enable: true,
 };
@@ -11,10 +15,10 @@ type Props = {
   position: number[][],
   normal: number[][],
   color: number[][],
-  model: number[],
+  rigidBody: any,
 };
 
-export default ({ elements, position, normal, color, model }: Props) => (
+export default ({ elements, position, normal, color, rigidBody }: Props) => (
   <Drawable
     uniforms={{
       model,
@@ -28,5 +32,6 @@ export default ({ elements, position, normal, color, model }: Props) => (
     }}
     elements={elements}
     cull={cull}
+    args={() => ({ model: getModelMatrix(rigidBody) })}
   />
 );
