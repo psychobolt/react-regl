@@ -111,8 +111,8 @@ export default class Box extends React.Component<Props, State> {
   }
 
   render() {
-    const { props, state, rigidBody } = this;
-    const { color } = props;
+    const { state, rigidBody } = this;
+    const { color } = this.props;
     const { position: p, mounted } = state;
     return mounted
       ? (
