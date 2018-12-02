@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import * as ReactIs from 'react-is';
 
 import ReglRenderer from './Regl.renderer';
 import ReglProvider from './Regl.provider'; // eslint-disable-line no-unused-vars
@@ -10,7 +11,9 @@ type Props = {
   renderer: typeof ReglRenderer,
   context: Context,
   initGLContext: (canvasRef: mixed) => Context,
-  viewProps: {},
+  viewProps: {
+    ref: React.Ref<any>
+  },
   View?: React.ElementType,
   children?: React.Node
 };
@@ -26,7 +29,8 @@ export default class ReglContainer extends React.Component<Props> {
 
   constructor(props: Props) {
     super(props);
-    this.viewRef = React.createRef();
+    const { viewProps } = props;
+    this.viewRef = viewProps.ref || React.createRef();
   }
 
   componentDidMount() {
@@ -54,7 +58,7 @@ export default class ReglContainer extends React.Component<Props> {
 
   render() {
     const { viewProps, View } = this.props;
-    if (View) {
+    if (ReactIs.isValidElementType(View)) {
       return <View {...viewProps} ref={this.viewRef} />;
     }
     return null;

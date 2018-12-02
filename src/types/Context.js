@@ -12,13 +12,8 @@ export default class Context extends Collection {
   constructor(props) {
     super(props);
     this.regl = regl(props);
-    const { _gl } = this.regl;
-    this.view = Context.getView(_gl, props);
-  }
-
-  static getView(gl, props) {
-    const { [Object.values(VIEW_TYPE).find(type => type in props) || 'canvas']: view } = props;
-    return view || gl.canvas;
+    const { _gl: gl } = this.regl;
+    this.view = gl.canvas;
   }
 
   destroy() {

@@ -56,7 +56,6 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
     contextProps: {},
     mergeProps: null,
     innerRef: null,
-    Canvas: null,
     children: null,
   }
 
