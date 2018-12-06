@@ -73,7 +73,7 @@ const defaultHostConfig = {
     invariant(false, 'insertInContainerBefore is NOOP. Make sure you implement it.');
   },
   removeChild(parent, child) {
-    invariant(false, 'removeChild is NOOP. Make sure you implement it.');
+    parent.removeChild(child);
   },
   removeChildFromContainer(container, child) {
     container.removeChild(child);

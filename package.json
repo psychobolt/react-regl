@@ -105,6 +105,7 @@
     "minimatch": "^3.0.4",
     "mouse-change": "^1.4.0",
     "mouse-position": "^2.1.0",
+    "mouse-pressed": "^1.0.0",
     "ndarray": "^1.0.18",
     "parse-dds": "^1.2.1",
     "primitive-sphere": "^3.0.0",

@@ -8575,6 +8575,13 @@ mouse-pressed@0.0.1:
   dependencies:
     events "^1.0.1"
 
+mouse-pressed@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/mouse-pressed/-/mouse-pressed-1.0.0.tgz#c01e14180f8da1205073995939e4f96fef227e32"
+  integrity sha1-wB4UGA+NoSBQc5lZOeT5b+8ifjI=
+  dependencies:
+    events "^1.0.1"
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"

@@ -6,7 +6,7 @@ import ReglRenderer from './Regl.renderer';
 import { CONSTANTS } from './Regl.types';
 import { VIEW_TYPE, typeof Context as GLContext } from './types';
 
-export const Context = React.createContext();
+export const Context = React.createContext<any>();
 
 export type MergeProps = (
   mergeProps: ((state: State, props: Props) => any) // eslint-disable-line no-use-before-define

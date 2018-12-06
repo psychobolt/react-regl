@@ -58,7 +58,7 @@ export default class ReglContainer extends React.Component<Props> {
 
   render() {
     const { viewProps, View } = this.props;
-    if (ReactIs.isValidElementType(View)) {
+    if (View && ReactIs.isValidElementType(View)) {
       return <View {...viewProps} ref={this.viewRef} />;
     }
     return null;
