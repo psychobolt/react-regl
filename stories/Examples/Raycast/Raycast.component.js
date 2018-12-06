@@ -245,9 +245,11 @@ export default class Raycast extends React.Component {
       <ReglContainer onMount={this.onMount}>
         <Frame onFrame={onFrame}>
           <Drawable uniforms={uniforms}>
+            {/* draw objects normally */}
             {unselected.map(props => <Normal key={`${props.key}_normal`}><Mesh {...props} /></Normal>)}
+            {/* we need to render the selected object last */}
             {selected.map(props => [
-              <Outline key={`${props.key}_outline`}><Mesh {...props} /></Outline>,
+              <Outline key={`${props.key}_outline`}><Mesh isRound={props.elements !== boxElements} {...props} /></Outline>,
               <Normal key={`${props.key}_normal`}><Mesh {...props} /></Normal>,
             ])}
           </Drawable>
