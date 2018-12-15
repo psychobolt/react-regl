@@ -1,7 +1,6 @@
 const path = require('path');
 
 module.exports = (baseConfig, env, defaultConfig) => ({
-  ...baseConfig,
   ...defaultConfig,
   resolve: {
     ...defaultConfig.resolve,
