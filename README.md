@@ -13,6 +13,8 @@ React fiber renderer and custom container for [regl](https://github.com/regl-pro
 
 ## Install
 
+> Recommended: regl@1.3.x
+
 ```sh
 npm install @psychobolt/react-regl
 # or
