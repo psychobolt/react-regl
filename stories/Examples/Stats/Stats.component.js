@@ -58,6 +58,9 @@ export default class Stats extends React.Component {
     this.camera = attachCamera(view);
     this.camera.rotate([0.0, 0.0], [0.0, -0.4]);
     this.camera.zoom(300.0);
+  }
+
+  onRender = () => {
     this.statsWidget = createStatsWidget([
       [this.plane.current.getInstance(), 'Plane'],
       [this.bunny.current.getInstance(), 'Bunny'],
@@ -66,7 +69,7 @@ export default class Stats extends React.Component {
       [this.scope2.current.getInstance(), 'Scope2'],
       [this.scope3.current.getInstance(), 'Scope3'],
     ]);
-  };
+  }
 
   onFrame = ({ regl }) => {
     regl.clear({
@@ -81,7 +84,7 @@ export default class Stats extends React.Component {
 
   render() {
     return (
-      <ReglContainer onMount={this.onMount} contextProps={contextProps}>
+      <ReglContainer onMount={this.onMount} onRender={this.onRender} contextProps={contextProps}>
         <Frame onFrame={this.onFrame}>
           <Scope1 ref={this.scope1} view={this.view}>
             <Scope2 ref={this.scope2}>

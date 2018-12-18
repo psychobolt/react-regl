@@ -7,10 +7,11 @@ import ReglRenderer from './Regl.renderer';
 import ReglProvider from './Regl.provider'; // eslint-disable-line no-unused-vars
 import typeof { Context } from './types';
 
-type ContainerMountCallback = (context: Context) => any;
+type Callback = (context: Context) => any;
 
 type Props = {
-  onMount?: ContainerMountCallback,
+  onMount?: Callback,
+  onRender?: Callback,
   renderer: typeof ReglRenderer,
   context: Context,
   initGLContext: (canvasRef: mixed) => Context,
@@ -26,29 +27,31 @@ type Props = {
 export default class ReglContainer extends React.Component<Props> {
   static defaultProps = {
     onMount: () => {},
+    onRender: () => {},
     View: null,
     children: null,
   };
 
   constructor(props: Props) {
     super(props);
-    const { viewProps, onMount } = props;
-    this.onMount = _.once(context => {
-      if (onMount) onMount(context);
+    const { viewProps, onRender } = props;
+    this.onRender = _.once(context => {
+      if (onRender) onRender(context);
     });
     this.viewRef = viewProps.ref || React.createRef();
   }
 
   componentDidMount() {
-    const { renderer, context: ctx, initGLContext } = this.props;
+    const { renderer, context: ctx, initGLContext, onMount } = this.props;
     const context = this.viewRef.current ? initGLContext(this.viewRef.current) : ctx;
     this.mountNode = renderer.reconciler.createContainer(context);
+    if (onMount) onMount(context);
   }
 
   componentDidUpdate() {
     const { renderer, context, children } = this.props;
     renderer.reconciler.updateContainer(children, this.mountNode, this, () => {
-      this.onMount(context);
+      this.onRender(context);
     });
     if (context) context.update();
   }
@@ -59,7 +62,7 @@ export default class ReglContainer extends React.Component<Props> {
     context.destroy();
   }
 
-  onMount: ContainerMountCallback;
+  onRender: Callback;
 
   mountNode: any;
 
