@@ -92,6 +92,7 @@
     "fbjs": "1.0.0",
     "flow-bin": "^0.89.0",
     "flow-typed": "2.5.1",
+    "geo-3d-transform-mat4": "^1.0.0",
     "getusermedia": "^2.0.1",
     "gl-mat3": "^2.0.0",
     "gl-mat4": "^1.2.0",
@@ -139,6 +140,7 @@
     "stylelint-processor-styled-components": "^1.5.1",
     "uglify-es": "^3.3.9",
     "vectorize-text": "^3.2.0",
+    "vertices-bounding-box": "^1.0.0",
     "webpack-glsl-loader": "^1.0.1"
   },
   "dependencies": {
