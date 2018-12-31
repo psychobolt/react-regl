@@ -1,5 +1,5 @@
 {
-  "name": "react-regl",
+  "name": "@psychobolt/react-regl",
   "version": "0.0.1",
   "description": "React fiber renderer and component container for Regl",
   "main": "./dist/index.js",
@@ -121,7 +121,6 @@
     "react-resize-detector": "^3.2.1",
     "recompose": "^0.30.0",
     "regl": "^1.3.11",
-    "regl-stats-widget": "^0.0.1",
     "rimraf": "^2.6.2",
     "rollup": "^1.0.0",
     "rollup-plugin-alias": "^1.5.1",
@@ -132,7 +131,7 @@
     "rollup-plugin-uglify": "^6.0.0",
     "seedrandom": "^2.4.4",
     "source-map-loader": "^0.2.4",
-    "standardized-audio-context": "^17.3.2",
+    "standardized-audio-context": "^17.4.0",
     "storybook-readme": "^4.0.2",
     "styled-components": "^4.1.3",
     "stylelint": "^9.9.0",
@@ -151,6 +150,6 @@
   "peerDependencies": {
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "regl": "^1.3.7"
+    "regl": "^1.3.11"
   }
 }

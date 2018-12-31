@@ -37,9 +37,12 @@ function centerMesh(mesh) {
   ];
   const translate = mat4.create();
   mat4.translate(translate, translate, t);
-  Object.assign(mesh, { positions: tform(mesh.positions, translate) });
+  return {
+    ...mesh,
+    positions: tform(mesh.positions, translate),
+  };
 }
-centerMesh(bunny);
+const bunnyMesh = centerMesh(bunny);
 
 // side faces
 const boxPosition = [
@@ -126,9 +129,9 @@ const cull = {
 
 const Bunny = props => (
   <Mesh
-    elements={bunny.cells}
-    position={bunny.positions}
-    normal={normals(bunny.cells, bunny.positions)}
+    elements={bunnyMesh.cells}
+    position={bunnyMesh.positions}
+    normal={normals(bunnyMesh.cells, bunnyMesh.positions)}
     {...props}
   />
 );

@@ -3,7 +3,6 @@ import * as React from 'react';
 import { defaultMemoize } from 'reselect';
 import bunny from 'bunny';
 import normals from 'angle-normals';
-import mat4 from 'gl-mat4';
 
 import Mesh from '../Mesh';
 
@@ -47,21 +46,7 @@ const getBunnies = defaultMemoize(S => {
       // translation
       const t = [xs * S / 2.0 + xd, -0.2, zs * S / 2.0 + zd];
 
-      // we create the model matrix by combining
-      // translation, scaling and rotation matrices.
-      const m = mat4.identity([]);
-
-      mat4.translate(m, m, t);
-
-      if (typeof s === 'number') {
-        mat4.scale(m, m, [s, s, s]);
-      } else { // else, we assume an array
-        mat4.scale(m, m, s);
-      }
-
-      if (typeof r !== 'undefined') {
-        mat4.rotateY(m, m, r);
-      }
+      const args = { scale: s, translate: t, yRotate: r };
 
       bunnies.push(
         <Mesh
@@ -69,8 +54,8 @@ const getBunnies = defaultMemoize(S => {
           elements={bunny.cells}
           position={bunny.positions}
           normal={normals(bunny.cells, bunny.positions)}
-          model={m}
           color={c}
+          args={args}
         />,
       );
     }

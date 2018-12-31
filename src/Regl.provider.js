@@ -12,13 +12,17 @@ export type MergeProps = (
   mergeProps: ((state: State, props: Props) => any) // eslint-disable-line no-use-before-define
 ) => void;
 
+type Callback = (context: Context) => any;
+
 type Props = {
-  renderer: typeof ReglRenderer,
+  onRender?: Callback,
+  renderer?: typeof ReglRenderer,
   viewProps: {},
-  contextProps: {},
-  innerRef: React.Ref<any>,
+  contextProps?: {},
+  innerRef?: React.Ref<any>,
+  statsWidget: boolean,
   View: React.ElementType,
-  children: React.Node
+  children?: React.Node
 };
 
 type State = {
@@ -27,6 +31,7 @@ type State = {
   contextProps?: {},
   mergeProps: MergeProps,
   mounted: boolean,
+  rendered: boolean,
 };
 
 const getMergeProps = () => (state, props) => ({
@@ -45,6 +50,8 @@ function getViewType(view) {
   }
 }
 
+const StatsWidget = React.lazy(() => import('./StatsWidget'));
+
 export default (Container: React.ComponentType<any>) => class ReglProvider
   extends React.Component<Props, State> {
   mergeViewProps = defaultMemoize(getMergeProps());
@@ -52,9 +59,9 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
   mergeContextProps = defaultMemoize(getMergeProps());
 
   static defaultProps = {
+    onRender: () => {},
     renderer: ReglRenderer,
     contextProps: {},
-    mergeProps: null,
     innerRef: null,
     children: null,
   }
@@ -67,6 +74,7 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
       context: this.renderer.createInstance(CONSTANTS.Regl, props.contextProps),
       mergeProps: mergeProps => this.setState(state => mergeProps(state, props)),
       mounted: false,
+      rendered: false,
     };
   }
 
@@ -96,27 +104,46 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
     return context;
   }
 
+  onRender = (context: GLContext) => {
+    const { onRender } = this.props;
+    if (onRender) onRender(context);
+    this.setState({ rendered: true });
+  }
+
   renderer: typeof ReglRenderer;
 
   render() {
-    const { innerRef, children, viewProps, contextProps, ...rest } = this.props;
-    const { viewProps: viewState, contextProps: contextState, mounted, ...state } = this.state;
+    const { innerRef, statsWidget, children, viewProps, contextProps, ...rest } = this.props;
+    const {
+      viewProps: viewState,
+      contextProps: contextState,
+      mounted,
+      rendered,
+      ...state
+    } = this.state;
+    const { context } = state;
     return (
-      <Container
-        {...rest}
-        {...state}
-        viewProps={this.mergeViewProps(viewState, viewProps)}
-        contextProps={this.mergeContextProps(contextState, contextProps)}
-        ref={innerRef}
-        renderer={this.renderer}
-        initGLContext={this.initGLContext}
-      >
-        {mounted && (
-          <Context.Provider value={state}>
-            {children}
-          </Context.Provider>
+      <>
+        <Container
+          {...rest}
+          {...state}
+          viewProps={this.mergeViewProps(viewState, viewProps)}
+          contextProps={this.mergeContextProps(contextState, contextProps)}
+          ref={innerRef}
+          onRender={this.onRender}
+          renderer={this.renderer}
+          initGLContext={this.initGLContext}
+        >
+          {mounted && (
+            <Context.Provider value={state}>
+              {children}
+            </Context.Provider>
+          )}
+        </Container>
+        {rendered && statsWidget && (
+          <React.Suspense fallback={null}><StatsWidget context={context} /></React.Suspense>
         )}
-      </Container>
+      </>
     );
   }
 };

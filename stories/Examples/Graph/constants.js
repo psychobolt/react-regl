@@ -12,28 +12,26 @@ function indexVertex(i, j) {
 
 // Initialize vertex data
 export const VERTEX_COUNT = VERTEX_TEXTURE_SIZE * VERTEX_TEXTURE_SIZE;
-const vertexStateData = new Float32Array(4 * VERTEX_COUNT);
-const vertexIds = new Float32Array(2 * VERTEX_COUNT);
+export const VERTEX_STATE_DATA = new Float32Array(4 * VERTEX_COUNT);
+export const VERTEX_IDS = new Float32Array(2 * VERTEX_COUNT);
 for (let i = 0; i < VERTEX_TEXTURE_SIZE; i += 1) {
   for (let j = 0; j < VERTEX_TEXTURE_SIZE; j += 1) {
     const ptr = VERTEX_TEXTURE_SIZE * i + j;
-    vertexIds[2 * ptr] = i / VERTEX_TEXTURE_SIZE;
-    vertexIds[2 * ptr + 1] = j / VERTEX_TEXTURE_SIZE;
+    VERTEX_IDS[2 * ptr] = i / VERTEX_TEXTURE_SIZE;
+    VERTEX_IDS[2 * ptr + 1] = j / VERTEX_TEXTURE_SIZE;
 
     // Initial configuration of vertices
-    vertexStateData[4 * ptr] = Math.random();
-    vertexStateData[4 * ptr + 1] = Math.random();
+    VERTEX_STATE_DATA[4 * ptr] = Math.random();
+    VERTEX_STATE_DATA[4 * ptr + 1] = Math.random();
   }
 }
-export const VERTEX_STATE_DATA = vertexStateData;
-export const VERTEX_IDS = vertexIds;
 
 // Initialize edges
-const arcs = [];
+export const ARCS = [];
 function edge(si, sj, ti, tj) {
   const s = indexVertex(si, sj);
   const t = indexVertex(ti, tj);
-  arcs.push([s, t], [t, s]);
+  ARCS.push([s, t], [t, s]);
 }
 for (let i = 0; i < VERTEX_TEXTURE_SIZE; i += 1) {
   for (let j = 0; j < VERTEX_TEXTURE_SIZE; j += 1) {
@@ -45,4 +43,3 @@ for (let i = 0; i < VERTEX_TEXTURE_SIZE; i += 1) {
     }
   }
 }
-export const ARCS = arcs;

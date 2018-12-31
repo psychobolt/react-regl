@@ -3,9 +3,14 @@ import _ from 'lodash';
 import Collection from './Collection';
 import Updatable from './Updatable';
 
+let drawId = 0;
+
 export default class Drawable extends Updatable(Collection) {
-  constructor({ args, ...props }, context, scoped = true) {
+  constructor({ name, args, ...props }, context, scoped = true) {
     super(props, context);
+    drawId += 1;
+    this.id = `drawable_${drawId}`;
+    this.name = name;
     this.args = args;
     this.instance = this.init();
     this.scoped = scoped;

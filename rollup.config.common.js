@@ -30,6 +30,7 @@ const config = {
     'react-is',
     'regl',
     'resl',
+    'styled-components',
   ],
 };
 

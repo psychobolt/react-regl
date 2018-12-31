@@ -248,6 +248,7 @@ for (let i = 0; i < 1.0; i += 0.1) {
 
   boxes.push(
     <Box
+      key={`box_${i + 1}`}
       color={[r, g, b]}
       args={({ tick }) => {
         const phi1 = -0.006 * tick;
