@@ -1,2 +1,2 @@
-import './Setup';
-import './Examples';
+import './Core';
+import './packages';

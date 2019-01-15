@@ -19,7 +19,6 @@ export default {
 };
 
 export const {
-  Regl,
   Drawable,
   Frame,
   Collection,

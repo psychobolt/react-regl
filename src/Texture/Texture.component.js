@@ -5,8 +5,8 @@ import typeof { Texture as TextureType } from '../types';
 import { CONSTANTS } from '../Regl.types';
 
 type Props = {
-  children?: texture => React.ReactNode,
-  innerRef: React.RefObject<any>,
+  children?: TextureType => React.Node,
+  innerRef?: React.Ref<TextureType>,
 };
 
 type State = {
@@ -16,11 +16,12 @@ type State = {
 class Texture extends React.Component<Props, State> {
   static defaultProps = {
     children: () => null,
+    innerRef: React.createRef(),
   };
 
   constructor(props: Props) {
     super(props);
-    this.ref = props.innerRef || React.createRef();
+    this.ref = props.innerRef || React.createRef<TextureType>();
   }
 
   state = {
@@ -39,6 +40,8 @@ class Texture extends React.Component<Props, State> {
       this.ref.current.update();
     }
   }
+
+  ref: React.Ref<CubeType>
 
   render() {
     const { children, innerRef, ...props } = this.props;

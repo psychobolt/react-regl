@@ -1,38 +1,22 @@
 // @flow
 import * as React from 'react';
 import { defaultMemoize } from 'reselect';
+import _ from 'lodash';
 
 import ReglRenderer from './Regl.renderer';
 import { CONSTANTS } from './Regl.types';
 import { VIEW_TYPE, typeof Context as GLContext } from './types';
 
-export const Context = React.createContext<any>();
-
 export type MergeProps = (
-  mergeProps: ((state: State, props: Props) => any) // eslint-disable-line no-use-before-define
+  mergeProps: (state: State, props?: Props) => void // eslint-disable-line no-use-before-define
 ) => void;
 
-type Callback = (context: Context) => any;
-
-type Props = {
-  onRender?: Callback,
-  renderer?: typeof ReglRenderer,
-  viewProps: {},
-  contextProps?: {},
-  innerRef?: React.Ref<any>,
-  statsWidget: boolean,
-  View: React.ElementType,
-  children?: React.Node
-};
-
-type State = {
+type ReglContext = {
   context: GLContext,
-  viewProps?: {},
-  contextProps?: {},
-  mergeProps: MergeProps,
-  mounted: boolean,
-  rendered: boolean,
-};
+  mergeProps: (mergeProps: MergeProps) => any
+}
+
+export const Context = React.createContext<ReglContext>({});
 
 const getMergeProps = () => (state, props) => ({
   ...props,
@@ -52,6 +36,25 @@ function getViewType(view) {
 
 const StatsWidget = React.lazy(() => import('./StatsWidget'));
 
+type Props = {
+  onRender?: (context: GLContext) => any,
+  renderer: typeof ReglRenderer,
+  viewProps?: {},
+  contextProps?: {},
+  innerRef?: React.Ref<any>,
+  statsWidget?: boolean,
+  children?: React.Node
+};
+
+type State = {
+  context: GLContext,
+  mergeProps: (mergeProps: MergeProps) => any,
+  viewProps?: {},
+  contextProps?: {},
+  mounted: boolean,
+  rendered: boolean,
+};
+
 export default (Container: React.ComponentType<any>) => class ReglProvider
   extends React.Component<Props, State> {
   mergeViewProps = defaultMemoize(getMergeProps());
@@ -59,11 +62,9 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
   mergeContextProps = defaultMemoize(getMergeProps());
 
   static defaultProps = {
-    onRender: () => {},
     renderer: ReglRenderer,
     contextProps: {},
-    innerRef: null,
-    children: null,
+    mergeProps: () => {},
   }
 
   constructor(props: Props) {
@@ -72,18 +73,21 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
     this.renderer = new Renderer();
     this.state = {
       context: this.renderer.createInstance(CONSTANTS.Regl, props.contextProps),
-      mergeProps: mergeProps => this.setState(state => mergeProps(state, props)),
+      mergeProps: (mergeProps: Function) => this.setState(state => mergeProps(state, props)),
       mounted: false,
       rendered: false,
     };
   }
 
   componentDidMount() {
-    const { View } = this.props;
-    if (!View) {
-      this.setState({ mounted: true });
-    }
+    this.setState({ mounted: true });
   }
+
+  onRender = _.once((context: GLContext) => {
+    const { onRender } = this.props;
+    if (onRender) onRender(context);
+    this.setState({ rendered: true });
+  })
 
   initGLContext = (view: any) => {
     const { contextProps } = this.props;
@@ -100,14 +104,8 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
       ...contextProps,
       [getViewType(view)]: view,
     });
-    this.setState({ context, mounted: true });
+    this.setState({ context });
     return context;
-  }
-
-  onRender = (context: GLContext) => {
-    const { onRender } = this.props;
-    if (onRender) onRender(context);
-    this.setState({ rendered: true });
   }
 
   renderer: typeof ReglRenderer;

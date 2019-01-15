@@ -25,10 +25,12 @@ const config = {
     }),
   ],
   external: [
+    '@psychobolt/react-regl',
     'react',
     'react-dom',
     'react-is',
     'regl',
+    'multi-regl',
     'resl',
     'styled-components',
   ],

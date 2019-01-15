@@ -66,7 +66,7 @@ export default class extends React.Component<Props, State> {
     }
   }
 
-  update = deltaTime => {
+  update = (deltaTime: number) => {
     const { context } = this.props;
     let { frameTimeCount } = this.state;
     this.totalTime += deltaTime;

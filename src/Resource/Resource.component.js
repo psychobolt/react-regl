@@ -8,8 +8,8 @@ type Assets = {};
 
 type Props = {
   onDone?: (assets: Assets) => any,
-  children?: (assets: Assets) => React.ReactNode,
-  innerRef: React.RefObject<any>,
+  children?: (assets: Assets) => React.Node,
+  innerRef?: React.Ref<typeof Collection>,
 };
 
 type State = {
@@ -20,11 +20,12 @@ class Resl extends React.Component<Props, State> {
   static defaultProps = {
     onDone: () => {},
     children: () => null,
+    innerRef: React.createRef(),
   }
 
   constructor(props: Props) {
     super(props);
-    this.ref = props.innerRef || React.createRef();
+    this.ref = props.innerRef || React.createRef<typeof Collection>();
   }
 
   state = {
@@ -51,13 +52,15 @@ class Resl extends React.Component<Props, State> {
     this.setState({ assets });
   }
 
+  ref: React.Ref<CubeType>
+
   render() {
     const { children } = this.props;
     const { assets } = this.state;
     if (assets) {
       return (
         <Collection ref={this.ref}>
-          {children(assets)}
+          {typeof children === 'function' ? children(assets) : children}
         </Collection>
       );
     }

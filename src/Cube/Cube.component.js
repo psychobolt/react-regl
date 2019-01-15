@@ -5,8 +5,8 @@ import typeof { Cube as CubeType } from '../types';
 import { CONSTANTS } from '../Regl.types';
 
 type Props = {
-  children?: cube => React.Node,
-  innerRef: React.RefObject<any>,
+  children?: CubeType => React.Node,
+  innerRef: React.Ref<CubeType>,
 };
 
 type State = {
@@ -40,6 +40,8 @@ class Cube extends React.Component<Props, State> {
       ref.update();
     }
   }
+
+  ref: React.Ref<CubeType>
 
   render() {
     const { children, innerRef, ...props } = this.props;

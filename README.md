@@ -13,7 +13,7 @@ React fiber renderer and custom container for [regl](https://github.com/regl-pro
 
 ## Install
 
-> Recommended: regl@1.3.x
+> Recommended: (react|react-dom)@16.7.x and regl@1.3.x.
 
 ```sh
 npm install @psychobolt/react-regl
@@ -23,7 +23,7 @@ yarn add @psychobolt/react-regl
 
 ## Example
 
-There are several [demos](https://psychobolt.github.io/react-regl). Also check out their [sources](stories). Here is one to get you started:
+There are several [demos](https://psychobolt.github.io/react-regl). Also check out their [sources](https://github.com/psychobolt/react-regl/blob/master/stories). Here is one to get you started:
 
 ```jsx
 import React from 'react';
@@ -58,3 +58,9 @@ export default () => (
   </ReglContainer>
 );
 ```
+
+Please see [documentation](https://github.com/psychobolt/react-regl/blob/master/src/README.md) for more details.
+
+## Extensions
+
+See [packages](https://github.com/psychobolt/blob/master/packages).

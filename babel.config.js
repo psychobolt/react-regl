@@ -46,6 +46,9 @@ module.exports = {
       {
         root: ['./'],
         cwd: './',
+        alias: {
+          '^@psychobolt/(?!react-regl$)(.+)': './packages/\\1',
+        },
       },
     ],
     'babel-plugin-styled-components',
