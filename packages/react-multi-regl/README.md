@@ -13,7 +13,7 @@ A [react-regl](https://github.com/psychobolt/react-regl) container and renderer 
 
 ## Install
 
-> Recommended: (react|react-dom)@16.7.x, regl@1.13.x, and multi-regl@1.1.1
+> Recommended: (react|react-dom) @ 16.7.x, regl @ 1.13.x, and multi-regl @ 1.1.x
 
 ```sh
 npm install --save @psychobolt/react-regl @psychobolt/react-multi-regl
@@ -23,7 +23,7 @@ yarn add @psychobolt/react-regl @psychobolt/react-multi-regl
 
 ## Examples
 
-See [demos](https://psychobolt.github.io/react-regl?selectedKind=Core%2Freact-multi-regl%2FSetup&selectedStory=Readme). Also check out their [sources](https://github.com/psychobolt/react-regl/blob/master/stories/packages/react-multi-regl). Here is one to get you started:
+See [demos](https://psychobolt.github.io/react-regl/?selectedKind=packages%2Freact-multi-regl&selectedStory=Readme). Also check out their [sources](https://github.com/psychobolt/react-regl/blob/master/stories/packages/react-multi-regl). Here is one to get you started:
 
 ```jsx
 import React from 'react';

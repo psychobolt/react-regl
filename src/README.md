@@ -6,7 +6,7 @@ Common usage with [ReglContainer](#reglcontainer) and its default [renderer](#re
 
 ### ReglContainer
 
-Creates a Regl context that is accessible through a [consumer](#context.consumer). All children are rendered into a view (default: fullscreen canvas) with [ReglRenderer](#reglrenderer) by default.
+Creates a Regl context that is accessible through a [consumer](#contextconsumer). All children are rendered into a view (default: fullscreen canvas) with [ReglRenderer](#reglrenderer) by default.
 
 > To prevent context loss, it is advised to have at most one container component. There is a [react-multi-regl](https://github.com/psychobolt/react-regl/blob/master/packages/react-multi-regl) package, if you wish to multiplex a regl instance across different views.
 
@@ -170,6 +170,8 @@ export default () => <Cube images={images}>{cube => <Scene cube={cube} />}</Cube
 
 ##### Props
 
+Inherits props from [Drawable](#drawable).
+
 ###### ```images?: Image[]```
 
 A array of images for faces: positive X, negative X, positive Y, negative Y, positive Z, and negative Z. Providing this prop is equivilent to ```regl.cube(...images)```. Hence, other props besides ```args``` are ignored.
@@ -216,6 +218,8 @@ export default () => <Texture source={image}>{texture => <Scene texture={texture
 
 ##### Props
 
+Inherits props from [Drawable](#drawable).
+
 ###### ```source?: | number[] | Image | CanvasRenderingContext2D | HTMLVideoElement```
 
 A object that consist of the media. Providing this prop is equivilant to ```regl.texture(source)```. Hence, other props besides ```args``` are ignored.
@@ -247,7 +251,9 @@ Currently a synchronous but extensible implementation.
 
 The host config that is passed into React Reconciler by default. __This should not be mutated__. Instead, extend ReglRenderer with a ```getHostConfig``` function.
 
-##### ```defaultTypes: { [type: string]: (props: {}, context: ReglContext ) => Object }```
+##### ```defaultTypes: { [type: string]: (props: {}, context: ContextContainer ) => Object }```
+
+A mapping of types with their instance factory method. ___This should not be mutated___. Instead, extend ReglRenderer with a getHostConfig function.
 
 #### Extension Example
 
