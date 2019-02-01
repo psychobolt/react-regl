@@ -17,7 +17,7 @@ type Props = {
   viewProps: {
     ref: React.Ref<any>
   },
-  View?: React.ElementType | WebGLRenderingContext,
+  View?: React.ElementType | typeof WebGLRenderingContext | typeof Element,
   children?: React.Node
 };
 
@@ -37,14 +37,18 @@ export default class ReglContainer extends React.Component<Props> {
   }
 
   componentDidMount() {
-    const { renderer, context: _context, initGLContext, onMount } = this.props;
-    const context = this.viewRef.current ? initGLContext(this.viewRef.current) : _context;
+    const { View, renderer, context: _context, initGLContext, onMount } = this.props;
+    const view = View instanceof Element ? View : this.viewRef.current;
+    const context = view ? initGLContext(view) : _context;
     this.mountNode = renderer.reconciler.createContainer(context);
     if (onMount) onMount(context);
   }
 
   componentDidUpdate() {
-    const { onRender, renderer, context, children } = this.props;
+    const { View, viewProps, onRender, renderer, context, children } = this.props;
+    if (View instanceof Element) {
+      Object.assign(View, viewProps);
+    }
     renderer.reconciler.updateContainer(children, this.mountNode, this, () => onRender(context));
     if (context) context.update();
   }

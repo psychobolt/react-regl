@@ -13,12 +13,12 @@ A [react-regl](https://github.com/psychobolt/react-regl) container and renderer 
 
 ## Install
 
-> Recommended: (react|react-dom) @ 16.7.x, regl @ 1.13.x, and multi-regl @ 1.1.x
+> Recommended: multi-regl @ 1.1.x
 
 ```sh
-npm install --save @psychobolt/react-regl @psychobolt/react-multi-regl
+npm install --save @psychobolt/react-multi-regl
 # or
-yarn add @psychobolt/react-regl @psychobolt/react-multi-regl
+yarn add @psychobolt/react-multi-regl
 ```
 
 ## Examples

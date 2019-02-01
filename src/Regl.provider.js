@@ -102,7 +102,7 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
     }
     context = this.renderer.createInstance(CONSTANTS.Regl, {
       ...contextProps,
-      [getViewType(view)]: view,
+      [viewType]: view,
     });
     this.setState({ context });
     return context;

@@ -7,7 +7,9 @@
   "author": "psychobolt",
   "license": "MIT",
   "peerDependencies": {
-    "@psychobolt/react-regl": "~0.0.1",
     "multi-regl": "^1.1.1"
+  },
+  "dependencies": {
+    "@psychobolt/react-regl": "^0.0.1"
   }
 }

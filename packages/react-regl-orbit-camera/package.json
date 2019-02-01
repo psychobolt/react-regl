@@ -1,0 +1,12 @@
+{
+  "name": "react-regl-orbit-camera",
+  "version": "0.0.1",
+  "description": "Configurable orbit camera model and controls for react-regl",
+  "main": "dist/index.js",
+  "repository": "https://github.com/psychobolt/react-regl/blob/master/packages/react-regl-orbit-camera",
+  "author": "psychobolt",
+  "license": "MIT",
+  "dependencies": {
+    "@psychobolt/react-regl": "^0.0.1"
+  }
+}

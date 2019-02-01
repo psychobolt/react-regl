@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReglContainer, Context, Frame, Drawable } from '@psychobolt/react-regl';
-import Camera from 'stories/Core/Examples/shared/Camera';
+import Camera from '@psychobolt/react-regl-orbit-camera';
 
 import vert from './ImplicitSurface.vert';
 import frag from './ImplicitSurface.frag';

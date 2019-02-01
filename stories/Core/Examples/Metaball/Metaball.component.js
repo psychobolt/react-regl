@@ -1,10 +1,10 @@
 import React from 'react';
 import { ReglContainer, Context, Resource, Frame, Drawable } from '@psychobolt/react-regl';
+import Camera from '@psychobolt/react-regl-orbit-camera';
 import surfaceNets from 'surface-nets';
 import ndarray from 'ndarray';
 import normals from 'angle-normals';
 import mat3 from 'gl-mat3';
-import Camera from 'stories/Core/Examples/shared/Camera';
 
 import Background from './Background';
 import vert from './Metaball.vert';
