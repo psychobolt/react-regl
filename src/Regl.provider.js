@@ -38,7 +38,7 @@ const StatsWidget = React.lazy(() => import('./StatsWidget'));
 
 type Props = {
   onRender?: (context: GLContext) => any,
-  renderer: typeof ReglRenderer,
+  renderer?: typeof ReglRenderer,
   viewProps?: {},
   contextProps?: {},
   innerRef?: React.Ref<any>,
@@ -62,15 +62,19 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
   mergeContextProps = defaultMemoize(getMergeProps());
 
   static defaultProps = {
+    onRender: () => {},
     renderer: ReglRenderer,
+    viewProps: {},
     contextProps: {},
-    mergeProps: () => {},
+    innerRef: null,
+    statsWidget: false,
+    children: null,
   }
 
   constructor(props: Props) {
     super(props);
     const Renderer = props.renderer;
-    this.renderer = new Renderer();
+    this.renderer = Renderer ? new Renderer() : new ReglRenderer();
     this.state = {
       context: this.renderer.createInstance(CONSTANTS.Regl, props.contextProps),
       mergeProps: (mergeProps: Function) => this.setState(state => mergeProps(state, props)),
