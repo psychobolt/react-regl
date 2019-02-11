@@ -1,4 +1,5 @@
 import path from 'path';
+import postcss from 'rollup-plugin-postcss';
 
 import { configs } from './rollup.config.common';
 
@@ -16,6 +17,10 @@ function getConfig(pathname, base) {
     },
     plugins: [
       ...base.plugins,
+      postcss({
+        extract: path.resolve(dist, 'styles.dev.css'),
+        sourceMap: true,
+      }),
     ],
   };
 }
