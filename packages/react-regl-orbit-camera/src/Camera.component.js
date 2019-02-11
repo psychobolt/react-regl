@@ -90,6 +90,7 @@ class Camera extends React.Component<Props, State> {
         theta,
         phi,
         distance,
+        eye,
         view,
       },
     });
@@ -133,12 +134,7 @@ class Camera extends React.Component<Props, State> {
 
   componentDidMount() {
     const { mergeProps } = this.props;
-    mergeProps(() => ({
-      viewProps: {
-        onMouseMove: this.onMouseMove,
-        onWheel: this.onWheel,
-      },
-    }));
+    mergeProps(this.createHandlers);
     this.setState(({ context }, { regl }) => ({
       uniforms: Object.keys(context)
         .reduce((uniforms, name) => ({ ...uniforms, [name]: regl.context(name) }), {}),
@@ -155,8 +151,18 @@ class Camera extends React.Component<Props, State> {
     this.updateDistance.cancel();
   }
 
-  onMouseMove = (event: SyntheticMouseEvent<HTMLCanvasElement>) => {
-    const { buttons, movementX, movementY } = event.nativeEvent;
+  createHandlers = (state, { View }) => {
+    const isElement = View instanceof Element;
+    return {
+      viewProps: {
+        [isElement ? 'onmousemove' : 'onMouseMove']: event => this.onMouseMove(isElement ? event : event.nativeEvent),
+        [isElement ? 'onwheel' : 'onWheel']: this.onWheel,
+      },
+    };
+  }
+
+  onMouseMove = (event: MouseEvent) => {
+    const { buttons, movementX, movementY } = event;
     if (buttons === 1) {
       const dx = movementX / (event.target: HTMLCanvasElement).clientWidth;
       const dy = movementY / (event.target: HTMLCanvasElement).clientHeight;
@@ -178,11 +184,11 @@ class Camera extends React.Component<Props, State> {
   render() {
     const { context, uniforms } = this.state;
     const { children } = this.props;
-    return (
+    return children ? (
       <Drawable context={context} uniforms={uniforms}>
         {children}
       </Drawable>
-    );
+    ) : null;
   }
 }
 

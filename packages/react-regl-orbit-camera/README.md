@@ -47,7 +47,7 @@ export default () => (
 );
 ```
 
-The above wraps the view with orbit controls with the bunny's position (0, 2.5, 0). The Camera component computes on control actions (orbit/dolly) and passes the ```view``` matrix to regl's context. Holding left mouse and dragging will orbit the camera around the rabbit. Scrolling the mouse wheel will dolly the camera.
+The above wraps the view with orbit controls with the bunny's position (0, 2.5, 0). The Camera component computes on control actions (orbit/dolly) and passes the ```projection``` and ```view``` model matrices to regl's context. Holding left mouse and dragging will orbit the camera around the rabbit. Scrolling the mouse wheel will dolly the camera.
 
 ## Components
 
@@ -57,7 +57,7 @@ The above wraps the view with orbit controls with the bunny's position (0, 2.5, 
 
 ##### ```center?: number[] | number```
 
-The target the camera is looking at. Default value is ```[3, 3, 3]```.
+The position of the camera. Default value is ```[3, 3, 3]```.
 
 ##### ```theta?: number```
 

@@ -19,6 +19,7 @@ type Props = {
   data: number[],
   regl: Object,
   onUpdate: () => void,
+  getResult: (value: number) => void,
 };
 
 /*
@@ -47,7 +48,7 @@ type Props = {
   And to simplify things, we will be making the assumption that data.length will be the
   one of the numbers 1x1, 2x2, 4x4, 8x8, 16x16, ...
 */
-export default ({ data, regl, onUpdate }: Props) => {
+export default ({ data, regl, onUpdate, getResult = () => {} }: Props) => {
   // We must use a texture format of type RGBA. Because you cannot create a single FBO of
   // type ALPHA in WebGL.
   const textureData = [];
@@ -92,7 +93,12 @@ export default ({ data, regl, onUpdate }: Props) => {
   }
 
   return (
-    <Drawable onUpdate={onUpdate}>
+    <Drawable onUpdate={context => {
+      onUpdate(context);
+      // now retrieve the result from the GPU
+      context.regl({ framebuffer: fbos[fbos.length - 1] })(() => getResult(context.regl.read()));
+    }}
+    >
       <Pass key="pass_0" tex={firstTexture} framebuffer={fbos[0]} rcpDim={1.0 / (fbos[0].width * 2)} />
       {passes}
     </Drawable>
