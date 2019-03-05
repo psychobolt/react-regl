@@ -1,5 +1,5 @@
 {
-  "name": "react-regl-orbit-camera",
+  "name": "@psychobolt/react-regl-orbit-camera",
   "version": "0.0.1",
   "description": "Configurable orbit camera model and controls for react-regl",
   "main": "dist/index.js",
