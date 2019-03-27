@@ -6,6 +6,9 @@
   "repository": "https://github.com/psychobolt/react-regl/blob/master/packages/react-regl-orbit-camera",
   "author": "psychobolt",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@psychobolt/react-regl": "^0.0.1"
   }

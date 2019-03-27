@@ -6,6 +6,9 @@
   "repository": "https://github.com/psychobolt/react-regl/blob/master/packages/react-multi-regl",
   "author": "psychobolt",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "multi-regl": "^1.1.1"
   },

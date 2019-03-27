@@ -6,6 +6,9 @@
   "repository": "https://github.com/psychobolt/react-regl.git",
   "author": "psychobolt",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "flow-typed-update": "lerna exec -- flow-typed update -s -i peer -p \\$LERNA_ROOT_PATH",
     "flow-typed-install": "rimraf flow-typed/npm && npm run flow-typed-update",
