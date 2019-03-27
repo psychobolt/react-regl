@@ -18,7 +18,7 @@ type Props = {
 
 export default ({ children, ...props }: Props) => (
   <ReactResizeDetector handleWidth handleHeight>
-    {(width, height) => (
+    {({ width, height }) => (
       <ReglContainer {...props} View={View} viewProps={{ width, height, ...props.viewProps }}>
         {children || (width && height && console.log(`${width} x ${height}`)) /* eslint-disable-line no-console */ }
       </ReglContainer>
