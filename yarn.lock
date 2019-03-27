@@ -954,14 +954,14 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-transform-typescript" "^7.1.0"
 
-"@babel/runtime@7.3.1", "@babel/runtime@^7.3.1":
+"@babel/runtime@7.3.1":
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.3.1.tgz#574b03e8e8a9898eaf4a872a92ea20b7846f6f2a"
   integrity sha512-7jGW8ppV0ant637pIqAcFfQDDH1orEPGJb8aXfUozuCU3QqX7rX4DA8iwrbPrR1hcH0FTTHz47yQnk+bl5xHQA==
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0", "@babel/runtime@^7.3.4":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.0":
   version "7.4.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.2.tgz#f5ab6897320f16decd855eed70b705908a313fe8"
   integrity sha512-7Bl2rALb7HpvXFL7TETNzKSAeBVCPHELzc0C//9FCxN8nsiueWSJBqaF+2oIJScyILStASR/Cx5WMkXGYTiJFA==
@@ -10841,9 +10841,9 @@ pn@^1.1.0:
   integrity sha512-2qHaIQr2VLRFoxe2nASzsV6ef4yOOH+Fi9FBOVH6cqeSgUnoyySPZkxzLuzd+RYOQTRpROA0ztTMqxROKSb/nA==
 
 pngjs@^3.3.3:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-3.3.3.tgz#85173703bde3edac8998757b96e5821d0966a21b"
-  integrity sha512-1n3Z4p3IOxArEs1VRXnZ/RXdfEniAUS9jb68g58FIXMNkPJeZd+Qh4Uq7/e0LVxAQGos1eIUrqrt4FpjdnEd+Q==
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-3.4.0.tgz#99ca7d725965fb655814eaf65f38f12bbdbf555f"
+  integrity sha512-NCrCHhWmnQklfH4MtJMRjZ2a8c80qXeMlQMv2uVp9ISJMTt562SbGd6n2oq0PaPgKm7Z6pL9E2UlLIhC+SHL3w==
 
 pngjs@~0.4.0-alpha:
   version "0.4.0"
@@ -11886,17 +11886,17 @@ react-popper@^1.3.3:
     typed-styles "^0.0.7"
     warning "^4.0.2"
 
-react-reconciler@0.19.1:
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.19.1.tgz#0735fc290617780a2c9735218a4762e7d77797e6"
-  integrity sha512-zgzY3mLQ2CpQ9hP3tEZi6wlRW628V4WYiRigaSbrgvN013STZn3/N19p8pW4/dn4oCKapRuL7dycbtwRcOzE+w==
+react-reconciler@^0.20.3:
+  version "0.20.3"
+  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.20.3.tgz#ff5f75eb73e004a2a8757b41cd645baf442ea4b9"
+  integrity sha512-kKowgno8ZRNhFSQcuQ2ja/Lrvav58qnwy4w7bVbA4x+WKlDrP1vU42AQwwi2fMltVRTprD6OVMuCumPFPrB9fQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.13.1"
+    scheduler "^0.13.5"
 
-react-resize-detector@^3.2.1, react-resize-detector@^3.4.0:
+react-resize-detector@^3.2.1:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-3.4.0.tgz#2ccd399958a0efe9b7c52c5db5a13d87e47cd585"
   integrity sha512-T96I8Iqa1hGWyooeFA2Sl6FdPoMhXWINfEKg2/EJLxhP37+/94VNuyuyz9CRqpmApD83IWRR+lbB3r0ADMoKJg==
@@ -11904,6 +11904,17 @@ react-resize-detector@^3.2.1, react-resize-detector@^3.4.0:
     lodash "^4.17.11"
     lodash-es "^4.17.11"
     prop-types "^15.6.2"
+    resize-observer-polyfill "^1.5.1"
+
+react-resize-detector@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-4.0.5.tgz#25eb7df5f34fd69ee1ef2229b1f5e728e14e8300"
+  integrity sha512-JbTkf+08No1R2lcplc1Xfcgyc/S7931ujs09tFtWKRy/cthZMuc2Nj25Pox7g6e4CwHk+OH8AQ6jF5s7utIQlA==
+  dependencies:
+    lodash "^4.17.11"
+    lodash-es "^4.17.11"
+    prop-types "^15.7.2"
+    raf-schd "^4.0.0"
     resize-observer-polyfill "^1.5.1"
 
 react-syntax-highlighter@^8.0.1:
@@ -12839,14 +12850,6 @@ sax@^1.2.4, sax@~1.2.4:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-scheduler@^0.13.1:
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.2.tgz#969eaee2764a51d2e97b20a60963b2546beff8fa"
-  integrity sha512-qK5P8tHS7vdEMCW5IPyt8v9MJOHqTrOUgPXib7tqm9vh834ibBX5BNhwkplX/0iOzHW5sXyluehYfS9yrkz9+w==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-
 scheduler@^0.13.5:
   version "0.13.5"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.5.tgz#b7226625167041298af3b98088a9dbbf6d7733a8"
@@ -12885,10 +12888,10 @@ sdp@^1.0.0:
   resolved "https://registry.yarnpkg.com/sdp/-/sdp-1.5.4.tgz#8e038f6ddb14bd765ae1f4b5216e12094511e0d0"
   integrity sha1-jgOPbdsUvXZa4fS1IW4SCUUR4NA=
 
-seedrandom@^2.4.4:
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/seedrandom/-/seedrandom-2.4.4.tgz#b25ea98632c73e45f58b77cfaa931678df01f9ba"
-  integrity sha512-9A+PDmgm+2du77B5i0Ip2cxOqqHjgNxnBgglxLcX78A2D6c2rTo61z4jnVABpF4cKeDMDG+cmXXvdnqse2VqMA==
+seedrandom@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/seedrandom/-/seedrandom-3.0.1.tgz#eb3dde015bcf55df05a233514e5df44ef9dce083"
+  integrity sha512-1/02Y/rUeU1CJBAGLebiC5Lbo5FnB22gQbIFFYTLkwvp1xdABZJH1sn4ZT1MzXmPpzv+Rf/Lu2NcsLJiK4rcDg==
 
 select@^1.1.2:
   version "1.1.2"
@@ -13376,12 +13379,12 @@ stack-utils@^1.0.1:
   resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.2.tgz#33eba3897788558bebfc2db059dc158ec36cebb8"
   integrity sha512-MTX+MeG5U994cazkjd/9KNAapsHnibjMLnfXodlkXw76JEea0UiNzrqidzo1emMwk7w5Qhc9jd4Bn9TBb1MFwA==
 
-standardized-audio-context@^18.0.0:
-  version "18.0.0"
-  resolved "https://registry.yarnpkg.com/standardized-audio-context/-/standardized-audio-context-18.0.0.tgz#328c43f232d6426262e0c5b7fdf301993424cc7f"
-  integrity sha512-PVMU/NDdrTNSkRhEOqi+RkqBpFd8aU1nEJqMUiZ0GvARzPen6uSW6OpXm8SzWhErevtjO8Ddy2uLB8CIqRuEWA==
+standardized-audio-context@^19.0.7:
+  version "19.0.7"
+  resolved "https://registry.yarnpkg.com/standardized-audio-context/-/standardized-audio-context-19.0.7.tgz#c0d32a8ca63f40d0009587b919478c58c84ccfb1"
+  integrity sha512-zwYX0h2BA0z5tNWhX2b+HLGn3r4h95aIyAUYucXhc47vHSdnZwdOqa2RQOSqVX/TVx8sTbcgS7YKPKKhMaIEkg==
   dependencies:
-    "@babel/runtime" "^7.3.1"
+    "@babel/runtime" "^7.4.0"
     tslib "^1.9.3"
 
 state-toggle@^1.0.0:

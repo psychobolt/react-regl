@@ -1,5 +1,6 @@
 import Reconciler from 'react-reconciler';
 import invariant from 'fbjs/lib/invariant';
+import { unstable_now as now, unstable_scheduleCallback as scheduleCallback, unstable_cancelCallback as cancelCallback } from 'scheduler';
 
 import TYPES from './Regl.types';
 import { diffProps, updateProps } from './Regl.component';
@@ -49,7 +50,9 @@ const defaultHostConfig = {
   },
   resetAfterCommit() {
   },
-  now: Date.now,
+  now,
+  schedulePassiveEffects: scheduleCallback,
+  cancelPassiveEffects: cancelCallback,
   supportsMutation: true,
   commitUpdate(instance, updatePayload, type, oldProps, newProps, internalInstanceHandle) {
     updateProps(instance, updatePayload);

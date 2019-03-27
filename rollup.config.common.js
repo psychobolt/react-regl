@@ -32,6 +32,13 @@ const config = {
     resolve(),
     commonjs({
       include: 'node_modules/**',
+      namedExports: {
+        scheduler: [
+          'unstable_now',
+          'unstable_scheduleCallback',
+          'unstable_cancelCallback',
+        ],
+      },
     }),
     babel({
       exclude: 'node_modules/**',

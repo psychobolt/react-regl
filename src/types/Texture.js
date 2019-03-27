@@ -5,14 +5,6 @@ export default class Texture extends Instance {
     super.init();
     const { regl } = this.context;
     const { source } = this.props;
-    const instance = source ? regl.texture(source) : regl.texture(this.props);
-    const result = options => {
-      if (this.args) {
-        instance(options);
-      }
-    };
-    result.get = () => instance;
-    result.destroy = () => instance.destroy();
-    return result;
+    return source ? regl.texture(source) : regl.texture(this.props);
   }
 }

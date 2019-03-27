@@ -1,3 +1,4 @@
+import Collection from './Collection';
 import Drawable from './Drawable';
 
 export default class Instance extends Drawable {
@@ -17,6 +18,15 @@ export default class Instance extends Drawable {
 
   getInstance() {
     return this.instance?.get?.() || this.instance;
+  }
+
+  update(args, context) {
+    const argument = args || this.args;
+    if (argument) {
+      super.update(args, context);
+    } else {
+      Collection.prototype.update.call(this, args, context);
+    }
   }
 
   destroy() {

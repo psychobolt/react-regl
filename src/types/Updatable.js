@@ -24,7 +24,7 @@ export default (Subclass: Collection) => class extends Subclass {
     this.onUpdate = callback;
   }
 
-  draw(args: {}, context: ReglContext) {
+  draw(args?: {}, context: ReglContext) {
     super.update(args, context);
   }
 
@@ -33,7 +33,7 @@ export default (Subclass: Collection) => class extends Subclass {
       const { regl } = this.context;
       this.onUpdate({ ...context, regl, draw: args => this.draw(args, context) });
     } else {
-      this.draw({}, context);
+      this.draw(undefined, context);
     }
   }
 };

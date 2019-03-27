@@ -13,16 +13,19 @@ function collectDrawables(drawCalls, children) {
     profile = typeof profile === 'undefined' || profile;
     if (profile) {
       if (child instanceof Drawable) {
-        Object.assign(drawCalls, {
-          [child.id]: {
-            name: child.name,
-            instance: child.getInstance(),
-            totalFrameTime: 0,
-            avgFrameTime: 0,
-            prevGpuTimes: 0,
-            ...drawCalls[child.id],
-          },
-        });
+        const instance = child.getInstance();
+        if (instance.stats) {
+          Object.assign(drawCalls, {
+            [child.id]: {
+              name: child.name,
+              instance,
+              totalFrameTime: 0,
+              avgFrameTime: 0,
+              prevGpuTimes: 0,
+              ...drawCalls[child.id],
+            },
+          });
+        }
       }
       collectDrawables(drawCalls, child.children);
     }

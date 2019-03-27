@@ -1,6 +1,7 @@
 export { default as Resource } from './Resource';
 export { default as Texture } from './Texture';
 export { default as Cube } from './Cube';
+export { default as Framebuffer } from './Framebuffer';
 export * as Types from './types';
 export * from './Regl.types';
 export { default as ReglContainer } from './Regl.container';
