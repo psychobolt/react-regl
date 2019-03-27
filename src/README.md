@@ -153,6 +153,29 @@ function onUpdate({ draw, ...context)) {
   draw({}); // drawCallback?: (args: {}) => void
 }
 ```
+#### Framebuffer
+
+A component helper to create and provide a [framebuffer](http://regl.party/api#framebuffers).
+
+```jsx
+import React from 'react';
+import { Framebuffer } from '@psychobolt/react-regl';
+
+export default ({ children, ...props }) => (
+<Framebuffer {...props}>{fbo => children(fbo)}</Framebuffer>
+```
+
+##### Props
+
+Inherits props from [Drawable](#drawable). Pass in any props that is taken by regl's framebuffer [constructor](http://regl.party/api#constructor-5).
+
+###### ```children?: fbo => React.Node```
+
+The framebuffer object can be accessed from the children prop function.
+
+###### ```fitView?: boolean```
+
+If true, the framebuffer will automatically be sized as viewport's width and height. Default is false.
 
 #### Cube
 
@@ -176,10 +199,6 @@ Inherits props from [Drawable](#drawable).
 
 A array of images for faces: positive X, negative X, positive Y, negative Y, positive Z, and negative Z. Providing this prop is equivilent to ```regl.cube(...images)```. Hence, other props besides ```args``` are ignored.
 
-###### ```args?: {} | (context: ReglContext) => {}```
-
-Arguments that are passed to the cube on update. You may use a function that accepts regl's [context](http://regl.party/api#context) variables to construct arguments.
-
 #### Resource
 
 Preload and provide resource objects. See API for [resl](https://github.com/regl-project/resl) for more details.
@@ -202,6 +221,10 @@ const manifest = {
 export default () => <Resource manifest={manifest}>{video => <Scene video={video} />}</Resource>;
 ```
 
+##### Props
+
+All props are passed to the constructor.
+
 #### Texture
 
 Create and provide a regl [texture](http://regl.party/api#textures).
@@ -223,10 +246,6 @@ Inherits props from [Drawable](#drawable).
 ###### ```source?: | number[] | Image | CanvasRenderingContext2D | HTMLVideoElement```
 
 A object that consist of the media. Providing this prop is equivilant to ```regl.texture(source)```. Hence, other props besides ```args``` are ignored.
-
-###### ```args?: {} | (context: ReglContext) => {}```
-
-Arguments that are passed to the texture on update. You may use a function that accepts regl's [context](http://regl.party/api#context) variables to construct arguments.
 
 ## API
 
