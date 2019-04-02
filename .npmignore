@@ -12,6 +12,7 @@ storybook-static
 .flowconfig
 .stylelintrc
 .travis.yml
+.yo-rc.json
 babel.config.js
 jsconfig.json
 lerna.json
