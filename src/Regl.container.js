@@ -37,9 +37,9 @@ export default class ReglContainer extends React.Component<Props> {
   }
 
   componentDidMount() {
-    const { View, renderer, context: _context, initGLContext, onMount } = this.props;
-    const view = View instanceof Element ? View : this.viewRef.current;
-    const context = view ? initGLContext(view) : _context;
+    const { View, renderer, initGLContext, onMount } = this.props;
+    const view = this.viewRef.current || View;
+    const context = initGLContext(view);
     this.mountNode = renderer.reconciler.createContainer(context);
     if (onMount) onMount(context);
   }

@@ -24,10 +24,11 @@ const getMergeProps = () => (state, props) => ({
 });
 
 function getViewType(view) {
-  switch (view.constructor) {
-    case HTMLCanvasElement:
+  if (!view) return null;
+  switch (view.constructor?.name) {
+    case 'HTMLCanvasElement':
       return VIEW_TYPE.Canvas;
-    case WebGLRenderingContext:
+    case 'WebGLRenderingContext':
       return VIEW_TYPE.GL;
     default:
       return VIEW_TYPE.Container;
@@ -76,7 +77,7 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
     const Renderer = props.renderer;
     this.renderer = Renderer ? new Renderer() : new ReglRenderer();
     this.state = {
-      context: this.renderer.createInstance(CONSTANTS.Regl, props.contextProps),
+      context: null,
       mergeProps: (mergeProps: Function) => this.setState(state => mergeProps(state, props)),
       mounted: false,
       rendered: false,
@@ -95,8 +96,6 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
 
   initGLContext = (view: any) => {
     const { contextProps } = this.props;
-    let { context } = this.state;
-    if (context) context.destroy();
     const viewType = getViewType(view);
     if (viewType === VIEW_TYPE.Canvas) {
       Object.assign(view, {
@@ -104,9 +103,9 @@ export default (Container: React.ComponentType<any>) => class ReglProvider
         height: view.hasAttribute('height') ? view.height : view.clientHeight,
       });
     }
-    context = this.renderer.createInstance(CONSTANTS.Regl, {
+    const context = this.renderer.createInstance(CONSTANTS.Regl, {
       ...contextProps,
-      [viewType]: view,
+      ...(viewType ? { [viewType]: view } : undefined),
     });
     this.setState({ context });
     return context;
