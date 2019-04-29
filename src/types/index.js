@@ -1,6 +1,6 @@
-export * from './Context';
+// @flow
 export { default as Collection } from './Collection';
-export { default as Context } from './Context';
+export { default as Context, VIEW_TYPE } from './Context';
 export { default as Cube } from './Cube';
 export { default as Drawable } from './Drawable';
 export { default as Frame } from './Frame';

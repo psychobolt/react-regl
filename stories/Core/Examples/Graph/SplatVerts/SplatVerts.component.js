@@ -1,10 +1,12 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import { VERTEX_COUNT } from '../constants';
 import vert from './SplatVerts.vert';
 import frag from './SplatVerts.frag';
+
+const { Drawable } = ReactRegl;
 
 type Props = {
   id: any,

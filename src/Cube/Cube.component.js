@@ -1,26 +1,24 @@
 // @flow
 import * as React from 'react';
 
-import typeof { Cube as CubeType } from '../types';
+import { Cube as CubeType } from '../types';
 import { CONSTANTS } from '../Regl.types';
 
+type Ref<T> = { current: null | T } | (current: null | T) => mixed;
+
 type Props = {
-  children?: CubeType => React.Node,
-  innerRef: React.Ref<CubeType>,
+  children: CubeType => React.Node,
+  innerRef: Ref<CubeType>,
 };
 
 type State = {
-  ref: CubeType
+  ref: ?CubeType
 }
 
 class Cube extends React.Component<Props, State> {
-  static defaultProps = {
-    children: () => null,
-  }
-
   constructor(props: Props) {
     super(props);
-    this.ref = props.innerRef || React.createRef();
+    this.ref = props.innerRef || React.createRef<CubeType>();
   }
 
   state = {
@@ -41,7 +39,7 @@ class Cube extends React.Component<Props, State> {
     }
   }
 
-  ref: React.Ref<CubeType>
+  ref: Ref<CubeType>
 
   render() {
     const { children, innerRef, ...props } = this.props;
@@ -54,4 +52,6 @@ class Cube extends React.Component<Props, State> {
   }
 }
 
-export default React.forwardRef((props, ref) => <Cube {...props} innerRef={ref} />);
+export default React.forwardRef<Props, CubeType>(
+  (props, ref) => <Cube {...props} innerRef={ref} />,
+);

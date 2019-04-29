@@ -1,10 +1,12 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 import mat4 from 'gl-mat4';
 
 import frag from './Normal.frag';
 import vert from './Normal.vert';
+
+const { Drawable } = ReactRegl;
 
 const projection = ({ viewportWidth, viewportHeight }) => mat4.perspective(
   [],

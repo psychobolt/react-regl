@@ -1,10 +1,12 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 import mat4 from 'gl-mat4';
 
 import frag from './Scope1.frag';
 import vert from './Scope1.vert';
+
+const { Drawable } = ReactRegl;
 
 const cull = {
   enable: true,
@@ -22,7 +24,7 @@ type Props = {
   view: () => number[]
 };
 
-export default React.forwardRef(({ view, ...props }: Props, ref) => (
+export default React.forwardRef<Props, Drawable>(({ view, ...props }: Props, ref) => (
   <Drawable
     ref={ref}
     cull={cull}

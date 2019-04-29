@@ -1,11 +1,13 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import vert from './BlurPass.vert';
 import frag from './BlurPass.frag';
 
 import { FIELD_RES } from '../constants';
+
+const { Drawable } = ReactRegl;
 
 const attributes = {
   p: [-4, 0, 4, 4, 4, -4],

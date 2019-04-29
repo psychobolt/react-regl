@@ -1,10 +1,12 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import { VERTEX_TEXTURE_SIZE, ARCS, vertexIndex } from '../constants';
 import vert from './Edges.vert';
 import frag from './Edges.frag';
+
+const { Drawable } = ReactRegl;
 
 const attributes = {
   id: ARCS.map(arc => {

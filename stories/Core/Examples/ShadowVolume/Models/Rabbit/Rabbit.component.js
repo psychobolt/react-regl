@@ -1,10 +1,12 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import DATA from './shadow_bunny.json';
 import vert from '../Models.vert';
 import frag from '../Models.frag';
+
+const { Drawable } = ReactRegl;
 
 const DIFFUSE_COLOR_RABBIT = [0.7, 0.3, 0.3];
 const AMBIENT_COLOR_RABBIT = [0.3, 0.2, 0.3];

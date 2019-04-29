@@ -1,33 +1,44 @@
+// @flow
+import Context from './Context';
 import Collection from './Collection';
 import Updatable from './Updatable';
 
-export default class Frame extends Updatable(Collection) {
-  children = [];
+type Callback = {} => void
 
-  constructor({ onFrame, ...props }, context) {
+type Props = {
+  onFrame: Callback,
+  onUpdate?: Callback
+}
+
+export default class Frame extends Updatable(Collection) {
+  constructor({ onFrame, ...props }: Props, context: Context) {
     super(props, context);
     this.callOnFrame(onFrame);
   }
 
-  updateProps(newProps) {
+  frame: any
+
+  onFrame: Callback
+
+  updateProps(newProps: Props) {
     const { onFrame, ...props } = newProps;
     super.updateProps(props);
-    if (onFrame in newProps) this.callOnFrame(onFrame);
+    if ('onFrame' in newProps) this.callOnFrame(onFrame);
   }
 
-  callOnFrame(callback = () => {}) {
+  callOnFrame(callback: Callback = () => {}) {
     this.onFrame = callback;
   }
 
-  draw(args, context) {
-    const { regl } = this.context;
+  draw(args?: {}, context?: {}) {
+    const { regl } = this.context || {};
     this.onFrame({ ...context, regl });
     super.draw(args, context);
   }
 
   update() {
     if (this.frame) return;
-    const { regl } = this.context;
+    const { regl } = this.context || {};
     this.frame = regl.frame(context => super.update(context));
   }
 

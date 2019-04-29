@@ -1,10 +1,12 @@
 // @flow
-import React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as React from 'react';
+import * as ReactRegl from '@psychobolt/react-regl';
 import mouseChange from 'mouse-change';
 
 import vert from './SplatMouse.vert';
 import frag from './SplatMouse.frag';
+
+const { Drawable } = ReactRegl;
 
 const mouse = mouseChange();
 

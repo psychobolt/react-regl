@@ -1,8 +1,8 @@
 import React from 'react';
+import { Context, Drawable, Resource, Frame } from '@psychobolt/react-regl';
 import attachCamera from 'canvas-orbit-camera';
 import mat4 from 'gl-mat4';
 
-import { Context, Drawable, Resource, Frame } from '@psychobolt/react-regl';
 import ReglContainer from 'stories/Core/Setup/Resizable';
 
 import Terrain from './Terrain';

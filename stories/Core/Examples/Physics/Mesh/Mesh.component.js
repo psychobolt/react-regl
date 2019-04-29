@@ -1,8 +1,10 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import { getModelMatrix } from '../ammo';
+
+const { Drawable } = ReactRegl;
 
 const model = (_, props) => props.model;
 

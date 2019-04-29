@@ -1,11 +1,13 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import vert from './SpringForces.vert';
 import frag from './SpringForces.frag';
 
 import { VERTEX_TEXTURE_SIZE, ARCS, vertexIndex } from '../constants';
+
+const { Drawable } = ReactRegl;
 
 const EDGE_LENGTH = 0.5 / VERTEX_TEXTURE_SIZE;
 const EDGE_STIFFNESS = 0.08;

@@ -1,9 +1,11 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import frag from './Verts.frag';
 import vert from './Verts.vert';
+
+const { Drawable } = ReactRegl;
 
 const DT = 0.0001;
 const DAMPING = 0.98;

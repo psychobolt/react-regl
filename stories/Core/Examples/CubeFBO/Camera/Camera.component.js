@@ -1,8 +1,9 @@
 // @flow
 import * as React from 'react';
+import * as ReactRegl from '@psychobolt/react-regl';
 import mat4 from 'gl-mat4';
 
-import { Context, Drawable } from '@psychobolt/react-regl';
+const { Context, Drawable } = ReactRegl;
 
 const fov = Math.PI / 4.0;
 const up = [0, 1, 0];

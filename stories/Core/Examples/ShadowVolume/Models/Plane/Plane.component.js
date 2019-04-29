@@ -1,9 +1,11 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import vert from '../Models.vert';
 import frag from '../Models.frag';
+
+const { Drawable } = ReactRegl;
 
 const DIFFUSE_COLOR_PLANE = [0.7, 0.7, 0.7];
 const AMBIENT_COLOR_PLANE = [0.3, 0.3, 0.3];

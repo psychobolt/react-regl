@@ -1,7 +1,6 @@
 import * as React from 'react';
+import * as ReactRegl from '@psychobolt/react-regl';
 import mat4 from 'gl-mat4';
-
-import { ReglContainer, Context, Frame, Drawable } from '@psychobolt/react-regl';
 
 import Square from './Square';
 import Triangle from './Triangle';
@@ -14,6 +13,8 @@ import SineCurve from './SineCurve';
 import SineDecayCurve from './SineDecayCurve';
 import frag from './LinePrimatives.frag';
 import vert from './LinePrimatives.vert';
+
+const { ReglContainer, Context, Frame, Drawable } = ReactRegl;
 
 const uniforms = {
   tick: ({ tick }) => tick,

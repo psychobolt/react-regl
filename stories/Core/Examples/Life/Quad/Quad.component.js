@@ -1,10 +1,11 @@
 // @flow
 import * as React from 'react';
-
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import frag from './Quad.frag';
 import vert from './Quad.vert';
+
+const { Drawable } = ReactRegl;
 
 const attributes = {
   position: [-4, -4, 4, -4, 0, 4],

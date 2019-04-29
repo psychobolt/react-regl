@@ -1,7 +1,8 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
+import * as ReactRegl from '@psychobolt/react-regl';
 
-import { Drawable } from '@psychobolt/react-regl';
+const { Drawable } = ReactRegl;
 
 type Props = {
   lineWidth: number

@@ -19,9 +19,3 @@ export default {
   [CONSTANTS.Cube]: (props, context) => new Types.Cube(props, context),
   [CONSTANTS.Framebuffer]: (props, context) => new Types.Framebuffer(props, context),
 };
-
-export const {
-  Drawable,
-  Frame,
-  Collection,
-} = CONSTANTS;

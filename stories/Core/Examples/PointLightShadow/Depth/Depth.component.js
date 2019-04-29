@@ -1,15 +1,17 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 import mat4 from 'gl-mat4';
 
 import frag from './Depth.frag';
 import vert from './Depth.vert';
 
+const { Drawable } = ReactRegl;
+
 const projection = mat4.perspective([], Math.PI / 2.0, 1.0, 0.25, 70.0);
 
 type Props = {
-  lightPos: [],
+  lightPos: number[],
   shadowFbo: any,
   children: React.Node,
 };

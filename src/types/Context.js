@@ -1,3 +1,4 @@
+// @flow
 import regl from 'regl';
 
 import Collection from './Collection';
@@ -8,14 +9,20 @@ export const VIEW_TYPE = {
   Container: 'container',
 };
 
-export default class Context extends Collection {
-  constructor(props) {
+type Props = {};
+
+export default class Context extends Collection<Props> {
+  constructor(props: Props) {
     super(props);
     this.context = this;
     this.regl = regl(props);
     const { _gl: gl } = this.regl;
     this.view = gl.canvas;
   }
+
+  regl: any
+
+  view: HTMLCanvasElement
 
   destroy() {
     super.destroy();

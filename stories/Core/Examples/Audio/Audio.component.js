@@ -1,16 +1,17 @@
 // @flow
 import * as React from 'react';
+import * as ReactRegl from '@psychobolt/react-regl';
 import styled from 'styled-components';
 import { AudioContext } from 'standardized-audio-context';
 import perspective from 'gl-mat4/perspective';
 import lookAt from 'gl-mat4/lookAt';
 
-import { ReglContainer, Resource, Texture, Frame, Drawable } from '@psychobolt/react-regl';
-
 import * as styles from './Audio.style';
 import vert from './Audio.vert';
 import frag from './Audio.frag';
 import mp3 from './8bitpeoples-bamboo-cactus.mp3';
+
+const { ReglContainer, Resource, Texture, Frame, Drawable } = ReactRegl;
 
 const N = 256;
 
@@ -113,7 +114,7 @@ export default class Audio extends React.Component<Props, State> {
     if (this.source) this.source.disconnect();
   }
 
-  onDone = ({ song }) => {
+  onDone = ({ song }: { song: any }) => {
     this.song = song;
     this.song.loop = true;
     this.setState({ audio: STATES.Ready });
@@ -121,17 +122,22 @@ export default class Audio extends React.Component<Props, State> {
 
   play = () => {
     const context = new AudioContext();
-    const source = context // eslint-disable-line react/destructuring-assignment
-      .createMediaElementSource(this.song);
-    const analyser = context.createAnalyser(); // eslint-disable-line react/destructuring-assignment
+    const source = context.createMediaElementSource(this.song);
+    const analyser = context.createAnalyser();
     source.connect(analyser);
-    source.connect(context.destination); // eslint-disable-line react/destructuring-assignment
+    source.connect(context.destination);
     this.source = source;
     this.analyser = analyser;
     this.song.play().then(() => {
       this.setState({ audio: STATES.Playing });
     });
   }
+
+  source: any
+
+  analyser: any
+
+  song: any
 
   render() {
     const { audio } = this.state;

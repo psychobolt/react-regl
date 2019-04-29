@@ -2,7 +2,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Frame, Drawable, typeof Context } from '../types';
+import { Frame, Drawable, Context } from '../types';
 import * as styles from './StatsWidget.style';
 
 const N = 50;
@@ -45,7 +45,7 @@ type State = {
 }
 
 export default class extends React.Component<Props, State> {
-  drawCalls = {};
+  drawCalls= {};
 
   // we update the widget every second, we need to keep track of the time:
   totalTime = 1.1
@@ -60,11 +60,10 @@ export default class extends React.Component<Props, State> {
     if (children.length === 1) {
       const child = children[0];
       if (child instanceof Frame) {
-        const { draw } = child;
-        child.draw = (args, ctx) => {
-          draw.call(child, args, ctx);
+        child.overrideUpdate(({ draw }) => {
+          draw();
           this.update(0.017);
-        };
+        });
       }
     }
   }
@@ -80,7 +79,7 @@ export default class extends React.Component<Props, State> {
 
     collectDrawables(this.drawCalls, context.children);
 
-    Object.values(this.drawCalls).forEach(drawCall => {
+    (Object.values(this.drawCalls): any).forEach(drawCall => {
       const { gpuTime } = drawCall.instance.stats;
       let { prevGpuTimes, totalFrameTime, avgFrameTime } = drawCall;
       const frameTime = gpuTime - prevGpuTimes;
@@ -112,7 +111,7 @@ export default class extends React.Component<Props, State> {
     return (
       <Container>
         <h1>Stats</h1>
-        {Object.values(drawCalls).map(({ name, avgFrameTime }, index) => (
+        {(Object.values(drawCalls): any).map(({ name, avgFrameTime }, index) => (
           <Stats key={`stats_${index + 1}`}>{`${name}: ${Math.round(100.0 * avgFrameTime) / 100}ms`}</Stats>
         ))}
       </Container>

@@ -1,10 +1,11 @@
 // @flow
 import * as React from 'react';
-
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import frag from './Terrain.frag';
 import vert from './Terrain.vert';
+
+const { Drawable } = ReactRegl;
 
 type Args = {
   heightTexture: any,

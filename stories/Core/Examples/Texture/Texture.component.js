@@ -1,7 +1,6 @@
 import React from 'react';
-import baboon from 'baboon-image';
-
 import { ReglContainer, Texture, Drawable } from '@psychobolt/react-regl';
+import baboon from 'baboon-image';
 
 import frag from './Texture.frag';
 import vert from './Texture.vert';

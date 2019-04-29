@@ -1,6 +1,8 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
+
+const { Drawable } = ReactRegl;
 
 const uniforms = {
   yScale: -1.0,

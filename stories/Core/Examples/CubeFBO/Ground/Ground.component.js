@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Context, Drawable } from '@psychobolt/react-regl';
 
 import frag from './Ground.frag';

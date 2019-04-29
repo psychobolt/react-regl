@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Drawable } from '@psychobolt/react-regl';
 
 import vert from './Background.vert';

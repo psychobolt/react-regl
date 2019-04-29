@@ -1,20 +1,20 @@
 // @flow
-import typeof Collection from './Collection';
-import typeof Context from './Context';
+import Collection from './Collection';
+import type Context from './Context';
 
 type Props = {
-  onUpdate: () => any
+  onUpdate?: {} => void
 }
 
-type ReglContext = {};
-
-export default (Subclass: Collection) => class extends Subclass {
+export default (Subclass: typeof Collection) => class extends Subclass<any> {
   constructor({ onUpdate, ...props }: Props, context: Context) {
     super(props, context);
     this.overrideUpdate(onUpdate);
   }
 
-  updateProps(newProps: Props) {
+  onUpdate: any => void
+
+  updateProps(newProps: any) {
     const { onUpdate, ...props } = newProps;
     super.updateProps(props);
     if ('onUpdate' in newProps) this.overrideUpdate(onUpdate);
@@ -24,13 +24,13 @@ export default (Subclass: Collection) => class extends Subclass {
     this.onUpdate = callback;
   }
 
-  draw(args?: {}, context: ReglContext) {
+  draw(args?: {}, context?: {}) {
     super.update(args, context);
   }
 
-  update(context: ReglContext) {
+  update(context?: {}) {
     if (this.onUpdate) {
-      const { regl } = this.context;
+      const { regl } = this.context || {};
       this.onUpdate({ ...context, regl, draw: args => this.draw(args, context) });
     } else {
       this.draw(undefined, context);

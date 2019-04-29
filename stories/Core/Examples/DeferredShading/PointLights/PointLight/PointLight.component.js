@@ -1,11 +1,13 @@
 // @flow
 import * as React from 'react';
-import { Context, Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 import createSphere from 'primitive-sphere';
 import mat4 from 'gl-mat4';
 
 import frag from './PointLight.frag';
 import vert from './PointLight.vert';
+
+const { Context, Drawable } = ReactRegl;
 
 const sphereMesh = createSphere(1.0, {
   segments: 16,

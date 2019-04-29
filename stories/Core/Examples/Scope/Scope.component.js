@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ReglContainer, Drawable } from '@psychobolt/react-regl';
 
 import frag from './Scope.frag';

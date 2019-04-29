@@ -1,8 +1,7 @@
 import React from 'react';
+import { Drawable } from '@psychobolt/react-regl';
 import bunny from 'bunny';
 import normals from 'angle-normals';
-
-import { Drawable } from '@psychobolt/react-regl';
 
 import frag from './Bunny.frag';
 import vert from './Bunny.vert';

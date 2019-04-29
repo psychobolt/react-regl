@@ -1,14 +1,18 @@
 // @flow
 import * as React from 'react';
-import { ReglContainer } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
+import type { ContainerProps } from '@psychobolt/react-regl';
 
 import MultiReglRenderer from './MultiRegl.renderer';
 
+const { ReglContainer } = ReactRegl;
+
 type Props = {
   viewCount?: number,
-  viewProps?: {},
-  children: React.Node | HTMLElement[] => React.Node
-};
+  viewProps?: {
+    ref: React.Ref<any>
+  },
+} & ContainerProps;
 
 type State = {
   mounted: boolean
@@ -26,13 +30,13 @@ export default class extends React.Component<Props, State> {
     mounted: false,
   }
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
-    const { viewCount, viewProps } = this.props;
+    const { viewCount = 0, viewProps = {} } = this.props;
     this.viewProps = {
       ...viewProps,
       ref: view => {
-        if (viewProps.ref) viewProps.ref(view);
+        if (typeof viewProps.ref === 'function') viewProps.ref(view);
         this.views.push(view);
         if (this.views.length >= viewCount) {
           this.setState({ mounted: true });
@@ -40,6 +44,8 @@ export default class extends React.Component<Props, State> {
       },
     };
   }
+
+  viewProps: {}
 
   render() {
     const { viewProps, children, ...props } = this.props;

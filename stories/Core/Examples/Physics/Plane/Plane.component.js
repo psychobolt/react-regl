@@ -57,6 +57,8 @@ export default class Plane extends React.Component<Props, State> {
     this.setState({ mounted: true });
   }
 
+  rigidBody: {}
+
   render() {
     const { color } = this.props;
     const { mounted } = this.state;

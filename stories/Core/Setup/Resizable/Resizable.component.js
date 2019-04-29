@@ -1,11 +1,12 @@
 // @flow
 import * as React from 'react';
+import * as ReactRegl from '@psychobolt/react-regl';
 import ReactResizeDetector from 'react-resize-detector';
 import styled from 'styled-components';
 
-import { ReglContainer } from '@psychobolt/react-regl';
-
 import * as styles from './Resizable.style';
+
+const { ReglContainer } = ReactRegl;
 
 const View = styled.canvas`
   ${styles.canvas}

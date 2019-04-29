@@ -1,13 +1,14 @@
 // @flow
 import * as React from 'react';
+import * as ReactRegl from '@psychobolt/react-regl';
 import mat4 from 'gl-mat4';
 import normals from 'angle-normals';
 import bunny from 'bunny';
 
-import { Drawable } from '@psychobolt/react-regl';
-
 import frag from './Bunny.frag';
 import vert from './Bunny.vert';
+
+const { Drawable } = ReactRegl;
 
 const attributes = {
   position: bunny.positions,

@@ -1,9 +1,11 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import vert from './GradPass.vert';
 import frag from './GradPass.frag';
+
+const { Drawable } = ReactRegl;
 
 const attributes = {
   p: [-4, 0, 4, 4, 4, -4],

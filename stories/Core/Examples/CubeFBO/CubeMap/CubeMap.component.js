@@ -1,9 +1,8 @@
 // @flow
 import * as React from 'react';
+import { Drawable } from '@psychobolt/react-regl';
 import mat4 from 'gl-mat4';
 import vec3 from 'gl-vec3';
-
-import { Drawable } from '@psychobolt/react-regl';
 
 const CUBEMAP_SIDES = [
   { eye: [0, 0, 0], target: [1, 0, 0], up: [0, -1, 0] },

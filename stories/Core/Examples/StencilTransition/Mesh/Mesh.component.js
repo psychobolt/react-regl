@@ -1,10 +1,12 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 import mat4 from 'gl-mat4';
 
 import frag from './Mesh.frag';
 import vert from './Mesh.vert';
+
+const { Drawable } = ReactRegl;
 
 const view = mat4.lookAt([], [0.0, 10.0, 20.0], [0, 0, 0], [0, 1, 0]);
 

@@ -2,14 +2,17 @@
 import * as React from 'react';
 import resl from 'resl';
 
-import { Collection } from '../Regl.types';
+import { CONSTANTS } from '../Regl.types';
+import { Collection as CollectionType } from '../types';
+
+type Ref<T> = { current: null | T } | (current: null | T) => mixed;
 
 type Assets = {};
 
 type Props = {
-  onDone?: (assets: Assets) => any,
+  onDone: (assets: Assets) => any,
   children?: (assets: Assets) => React.Node,
-  innerRef?: React.Ref<typeof Collection>,
+  innerRef: Ref<CollectionType<any>>,
 };
 
 type State = {
@@ -18,14 +21,12 @@ type State = {
 
 class Resl extends React.Component<Props, State> {
   static defaultProps = {
-    onDone: () => {},
     children: () => null,
-    innerRef: React.createRef(),
   }
 
   constructor(props: Props) {
     super(props);
-    this.ref = props.innerRef || React.createRef<typeof Collection>();
+    this.ref = props.innerRef || React.createRef<CollectionType<any>>();
   }
 
   state = {
@@ -48,24 +49,26 @@ class Resl extends React.Component<Props, State> {
 
   onDone = (assets: Assets) => {
     const { onDone } = this.props;
-    onDone(assets);
+    if (onDone) onDone(assets);
     this.setState({ assets });
   }
 
-  ref: React.Ref<CubeType>
+  ref: Ref<CollectionType<any>>
 
   render() {
     const { children } = this.props;
     const { assets } = this.state;
     if (assets) {
       return (
-        <Collection ref={this.ref}>
+        <CONSTANTS.Collection ref={this.ref}>
           {typeof children === 'function' ? children(assets) : children}
-        </Collection>
+        </CONSTANTS.Collection>
       );
     }
     return null;
   }
 }
 
-export default React.forwardRef((props, ref) => <Resl {...props} innerRef={ref} />);
+export default React.forwardRef<Props, CollectionType<any>>(
+  (props, ref) => <Resl {...props} innerRef={ref} />,
+);

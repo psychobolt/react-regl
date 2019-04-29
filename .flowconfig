@@ -1,4 +1,7 @@
 [options]
 module.system.node.resolve_dirname=node_modules
-module.system.node.resolve_dirname=packages/node_modules
+module.system.node.resolve_dirname=packages/react-multi-regl/node_modules
+module.system.node.resolve_dirname=packages/react-regl-orbit-camera/node_modules
+esproposal.export_star_as=enable
 esproposal.optional_chaining=enable
+module.name_mapper='^\(.*\)\.\(frag\|vert\|mp3\)$' -> '<PROJECT_ROOT>/RAWFlowStub.js.flow'

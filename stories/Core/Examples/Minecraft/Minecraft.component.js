@@ -1,8 +1,8 @@
 import React from 'react';
+import { Resource, Frame, Context, Drawable } from '@psychobolt/react-regl';
 import attachCamera from 'canvas-orbit-camera';
 import mat4 from 'gl-mat4';
 
-import { Resource, Frame, Context, Drawable } from '@psychobolt/react-regl';
 import ReglContainer from 'stories/Core/Setup/Resizable';
 
 import frag from './Minecraft.frag';

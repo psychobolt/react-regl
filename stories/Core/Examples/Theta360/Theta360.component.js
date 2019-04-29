@@ -1,7 +1,6 @@
 import React from 'react';
-import mat4 from 'gl-mat4';
-
 import { ReglContainer, Context, Resource, Texture, Frame } from '@psychobolt/react-regl';
+import mat4 from 'gl-mat4';
 
 import oregon from './ogd-oregon-360.jpg';
 

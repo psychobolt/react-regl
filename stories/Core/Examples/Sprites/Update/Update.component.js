@@ -1,9 +1,11 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import vert from './Update.vert';
 import frag from './Update.frag';
+
+const { Drawable } = ReactRegl;
 
 const depth = {
   enable: false,

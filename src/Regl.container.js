@@ -2,46 +2,35 @@
 import * as React from 'react';
 import * as ReactIs from 'react-is';
 
+import ReglProvider, { type Callback, type ContainerProps } from './Regl.provider';
 import ReglRenderer from './Regl.renderer';
-import ReglProvider from './Regl.provider'; // eslint-disable-line no-unused-vars
-import typeof { Context } from './types';
-
-type Callback = (context: Context) => any;
 
 type Props = {
-  onMount?: Callback,
-  onRender: Callback,
-  renderer: typeof ReglRenderer,
-  context: Context,
-  initGLContext: (canvas: mixed) => Context,
-  viewProps: {
-    ref: React.Ref<any>
-  },
-  View?: React.ElementType | typeof WebGLRenderingContext | typeof Element,
-  children?: React.Node
-};
+  renderer: ReglRenderer,
+  onRender?: Callback,
+  View?: any,
+} & ContainerProps;
 
-// $FlowFixMe
-@ReglProvider
-export default class ReglContainer extends React.Component<Props> {
+export class ReglContainer extends React.Component<Props> {
   static defaultProps = {
-    onMount: () => {},
+    onRender: () => {},
     View: null,
-    children: null,
-  };
+  }
 
   constructor(props: Props) {
     super(props);
-    const { viewProps } = props;
+    const { viewProps = {} } = props;
     this.viewRef = viewProps.ref || React.createRef();
   }
 
   componentDidMount() {
-    const { View, renderer, initGLContext, onMount } = this.props;
+    const { View, renderer, initGLContext, context, onMount } = this.props;
     const view = this.viewRef.current || View;
-    const context = initGLContext(view);
-    this.mountNode = renderer.reconciler.createContainer(context);
-    if (onMount) onMount(context);
+    const glContext = initGLContext ? initGLContext(view) : context;
+    if (glContext) {
+      this.mountNode = renderer.reconciler.createContainer(glContext);
+      if (onMount) onMount(glContext);
+    }
   }
 
   componentDidUpdate() {
@@ -49,19 +38,23 @@ export default class ReglContainer extends React.Component<Props> {
     if (View instanceof Element) {
       Object.assign(View, viewProps);
     }
-    renderer.reconciler.updateContainer(children, this.mountNode, this, () => onRender(context));
-    if (context) context.update();
+    if (context) {
+      renderer.reconciler.updateContainer(children, this.mountNode, this, () => {
+        if (onRender) onRender(context);
+      });
+      context.update();
+    }
   }
 
   componentWillUnmount() {
     const { renderer, context } = this.props;
     renderer.reconciler.updateContainer(null, this.mountNode, this);
-    context.destroy();
+    if (context) context.destroy();
   }
 
   mountNode: any;
 
-  viewRef: React.Ref<any>;
+  viewRef: React.ElementRef<any>;
 
   render() {
     const { viewProps, View } = this.props;
@@ -71,3 +64,5 @@ export default class ReglContainer extends React.Component<Props> {
     return null;
   }
 }
+
+export default ReglProvider<Props>(ReglContainer);

@@ -1,7 +1,6 @@
 import React from 'react';
-import mouseChange from 'mouse-change';
-
 import { ReglContainer, Context, Frame, Drawable } from '@psychobolt/react-regl';
+import mouseChange from 'mouse-change';
 
 import Camera from './Camera';
 import CubeMap from './CubeMap';

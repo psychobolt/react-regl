@@ -1,10 +1,9 @@
 // @flow
 import * as React from 'react';
+import { Context, Drawable } from '@psychobolt/react-regl';
 import mat4 from 'gl-mat4';
 import normals from 'angle-normals';
 import conway from 'conway-hart';
-
-import { Context, Drawable } from '@psychobolt/react-regl';
 
 import frag from './Teapot.frag';
 import vert from '../CubeFBO.vert';

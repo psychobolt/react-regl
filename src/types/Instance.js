@@ -1,26 +1,28 @@
+// @flow
+import Context from './Context';
 import Collection from './Collection';
 import Drawable from './Drawable';
 
 export default class Instance extends Drawable {
-  constructor(props, context) {
+  constructor(props: any, context: Context) {
     super(props, context, false);
   }
 
   init() {
-    this.instance?.destroy(); // eslint-disable-line
+    if (this.instance) this.instance.destroy(); // eslint-disable-line
     return null;
   }
 
-  setArgs(args) {
+  setArgs(args: {}) {
     super.setArgs(args);
     this.instance = this.init();
   }
 
   getInstance() {
-    return this.instance?.get?.() || this.instance;
+    return (this.instance && this.instance.get && this.instance.get()) || this.instance;
   }
 
-  update(args, context) {
+  update(args?: {}, context?: any) {
     const argument = args || this.args;
     if (argument) {
       super.update(args, context);
@@ -30,7 +32,7 @@ export default class Instance extends Drawable {
   }
 
   destroy() {
-    this.instance?.destroy(); // eslint-disable-line
+    if (this.instance) this.instance.destroy();
     super.destroy();
   }
 }

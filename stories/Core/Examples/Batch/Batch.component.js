@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ReglContainer, Context, Frame, Drawable } from '@psychobolt/react-regl';
 
 import frag from './Batch.frag';

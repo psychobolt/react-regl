@@ -1,9 +1,11 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import vert from './Caps.vert';
 import DATA from '../Models/Rabbit/shadow_bunny.json';
+
+const { Drawable } = ReactRegl;
 
 const model = (_, props) => props.model;
 

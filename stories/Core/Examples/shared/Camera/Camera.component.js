@@ -1,11 +1,12 @@
 // @flow
 import * as React from 'react';
+import * as ReactRegl from '@psychobolt/react-regl';
 import * as ReactDOM from 'react-dom';
 import { defaultMemoize } from 'reselect';
 import rafSchedule from 'raf-schd';
 import { identity, perspective, lookAt } from 'gl-mat4';
 
-import { Context, Drawable, type MergeProps } from '@psychobolt/react-regl';
+const { Context, Drawable } = ReactRegl;
 
 const MIN_PHI = -Math.PI / 2.0;
 const MAX_PHI = Math.PI / 2.0;
@@ -36,8 +37,8 @@ type Props = {
   minDistance?: number,
   maxDistance?: number,
   regl: Object,
-  mergeProps: MergeProps,
-  children: React
+  mergeProps: (mergeProps: ReactRegl.MergeProps) => any,
+  children: React.Node
 };
 
 type State = {
@@ -45,22 +46,25 @@ type State = {
   dphi: number,
   ddistance: number,
   context: {
-    view: typeof Float32Array,
-    projection: typeof Float32Array | (context: {}) => typeof Float32Array,
-    center: typeof Float32Array,
+    view: Float32Array,
+    projection: Float32Array | (context: any) => Float32Array,
+    center: Float32Array,
     theta: number,
     phi: number,
     distance: number,
-    eye: typeof Float32Array,
-    up: typeof Float32Array,
+    eye: Float32Array,
+    up: Float32Array,
   },
+  uniforms?: {},
 };
 
 class Camera extends React.Component<Props, State> {
   updateRotation = rafSchedule(newState => ReactDOM
+    // $FlowFixMe
     .flushSync(() => this.setState(newState)));
 
   updateDistance = rafSchedule(newState => ReactDOM
+    // $FlowFixMe
     .flushSync(() => this.setState(newState)));
 
   logMinDistance = logDistance();
@@ -113,11 +117,11 @@ class Camera extends React.Component<Props, State> {
       dphi: 0,
       dtheta: 0,
       context: {
-        center: new Float32Array(props.center),
-        theta: props.theta,
-        phi: props.phi,
-        distance: Math.log(props.distance),
-        up: new Float32Array(props.up),
+        center: new Float32Array(props.center || Camera.defaultProps.center),
+        theta: props.theta || Camera.defaultProps.theta,
+        phi: props.phi || Camera.defaultProps.phi,
+        distance: Math.log(props.distance || Camera.defaultProps.distance),
+        up: new Float32Array(props.up || Camera.defaultProps.up),
         view: identity(new Float32Array(16)),
         projection: ({ viewportWidth, viewportHeight }) => perspective(
           identity(new Float32Array(16)),
@@ -158,8 +162,8 @@ class Camera extends React.Component<Props, State> {
   onMouseMove = (event: SyntheticMouseEvent<HTMLCanvasElement>) => {
     const { buttons, movementX, movementY } = event.nativeEvent;
     if (buttons === 1) {
-      const dx = movementX / (event.target: HTMLCanvasElement).clientWidth;
-      const dy = movementY / (event.target: HTMLCanvasElement).clientHeight;
+      const dx = movementX / (event.target: any).clientWidth;
+      const dy = movementY / (event.target: any).clientHeight;
       const { dtheta, dphi, context } = this.state;
       const w = Math.max(context.distance, 0.5);
       this.updateRotation({
@@ -186,7 +190,7 @@ class Camera extends React.Component<Props, State> {
   }
 }
 
-export default React.forwardRef((props, ref) => (
+export default React.forwardRef<Props, Camera>((props, ref) => (
   <Context.Consumer>
     {({ context, mergeProps }) => (
       <Camera {...props} ref={ref} regl={context.regl} mergeProps={mergeProps} />

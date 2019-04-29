@@ -1,10 +1,10 @@
 import React from 'react';
+import { Context, Frame, Drawable } from '@psychobolt/react-regl';
 import attachCamera from 'canvas-orbit-camera';
 import normals from 'angle-normals';
 import mat4 from 'gl-mat4';
 import bunny from 'bunny';
 
-import { Context, Frame, Drawable } from '@psychobolt/react-regl';
 import ReglContainer from 'stories/Core/Setup/Resizable';
 
 import frag from './InstanceMesh.frag';

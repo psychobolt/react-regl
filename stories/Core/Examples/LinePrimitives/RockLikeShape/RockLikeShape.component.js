@@ -1,8 +1,9 @@
 // @flow
 import * as React from 'react';
+import * as ReactRegl from '@psychobolt/react-regl';
 import seedrandom from 'seedrandom';
 
-import { Drawable } from '@psychobolt/react-regl';
+const { Drawable } = ReactRegl;
 
 const rng = seedrandom('my_seed');
 const N = 70;

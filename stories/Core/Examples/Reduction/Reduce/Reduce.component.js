@@ -1,8 +1,10 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import Pass from './Pass';
+
+const { Drawable } = ReactRegl;
 
 /*
   Reduction on the CPU
@@ -18,7 +20,7 @@ export function cpuReduce(data: number[]) {
 type Props = {
   data: number[],
   regl: Object,
-  onUpdate: () => void,
+  onUpdate: any => void,
   getResult: (value: number) => void,
 };
 

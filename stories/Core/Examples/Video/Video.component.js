@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ReglContainer, Resource, Texture, Context, Frame, Drawable } from '@psychobolt/react-regl';
 
 import frag from './Video.frag';

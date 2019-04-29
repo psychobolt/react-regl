@@ -1,7 +1,6 @@
 import React from 'react';
-import mouseChange from 'mouse-change';
-
 import { ReglContainer, Resource, Context, Frame, Drawable } from '@psychobolt/react-regl';
+import mouseChange from 'mouse-change';
 
 import map from './map.json';
 import image from './tiles.png';

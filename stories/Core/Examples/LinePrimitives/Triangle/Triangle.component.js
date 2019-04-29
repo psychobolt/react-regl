@@ -1,9 +1,10 @@
 // @flow
 import * as React from 'react';
-
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import { getPosition } from '../utils';
+
+const { Drawable } = ReactRegl;
 
 type Props = {
   lineWidth: number,

@@ -1,9 +1,13 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 import mat4 from 'gl-mat4';
 
-export function createModelMatrix({ translate, scale: s }) {
+const { Drawable } = ReactRegl;
+
+export function createModelMatrix(
+  { translate, scale: s }: { translate: number[], scale: number[] },
+) {
   const m = mat4.identity([]);
   mat4.translate(m, m, translate);
   mat4.scale(m, m, [s, s, s]);

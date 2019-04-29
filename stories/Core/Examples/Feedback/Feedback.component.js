@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ReglContainer, Frame, Drawable, Texture } from '@psychobolt/react-regl';
 
 import frag from './Feedback.frag';

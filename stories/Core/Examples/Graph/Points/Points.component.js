@@ -1,10 +1,12 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import { VERTEX_COUNT } from '../constants';
 import vert from './Points.vert';
 import frag from './Points.frag';
+
+const { Drawable } = ReactRegl;
 
 const depth = {
   enable: false,

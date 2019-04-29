@@ -1,9 +1,11 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 
 import vert from './Background.vert';
 import frag from './Background.frag';
+
+const { Drawable } = ReactRegl;
 
 type Props = {
   width: any,

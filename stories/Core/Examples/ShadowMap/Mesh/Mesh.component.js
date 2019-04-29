@@ -1,7 +1,9 @@
 // @flow
 import * as React from 'react';
-import { Drawable } from '@psychobolt/react-regl';
+import * as ReactRegl from '@psychobolt/react-regl';
 import mat4 from 'gl-mat4';
+
+const { Drawable } = ReactRegl;
 
 function model(_, { translate, scale: s }) {
   const m = mat4.identity([]);

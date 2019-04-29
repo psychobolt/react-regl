@@ -1,12 +1,21 @@
+// @flow
 import _ from 'lodash';
 
+import Context from './Context';
 import Collection from './Collection';
 import Updatable from './Updatable';
 
 let drawId = 0;
 
+type Props = {
+  name: string,
+  args: {},
+  render?: () => void,
+  onUpdate?: {} => void,
+}
+
 export default class Drawable extends Updatable(Collection) {
-  constructor({ name, args, ...props }, context, scoped = true) {
+  constructor({ name, args, ...props }: Props, context: Context, scoped: boolean = true) {
     super(props, context);
     drawId += 1;
     this.id = `drawable_${drawId}`;
@@ -16,17 +25,27 @@ export default class Drawable extends Updatable(Collection) {
     this.scoped = scoped;
   }
 
+  id: string
+
+  name: string
+
+  args: {}
+
+  instance: any
+
+  scoped: boolean
+
   init() {
     const { render, ...props } = this.props;
-    return render || this.context.regl(props);
+    return render || (this.context && this.context.regl(props));
   }
 
-  updateProps(props) {
+  updateProps(props: Props) {
     super.updateProps(props);
     this.instance = this.init();
   }
 
-  setArgs(args) {
+  setArgs(args: {}) {
     this.args = args;
   }
 
@@ -34,12 +53,13 @@ export default class Drawable extends Updatable(Collection) {
     return this.instance;
   }
 
-  update(args, context) {
+  update(args?: {}, context?: {}) {
     let options = typeof this.args === 'function' ? this.args(context) : this.args;
     if (_.isUndefined(options)) {
       options = args;
     } else if (_.isArray(options)) {
       if (_.isArray(args)) {
+        // $FlowFixMe
         options = [...options, ...args];
       }
     } else if (_.isObject(options) && _.isObject(args)) {
