@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default React.forwardRef<Props, Framebuffer>(({ children, ...props }: Props, ref) => {
-  const framebuffer = ref || React.createRef<Framebuffer>();
+  const framebuffer = ref || React.useRef<Framebuffer>(null);
   const [mounted, setState] = React.useState(false);
   React.useLayoutEffect(() => setState(framebuffer.current !== null), []);
   return (
