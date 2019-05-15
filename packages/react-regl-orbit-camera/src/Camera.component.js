@@ -189,7 +189,7 @@ class Camera extends React.Component<Props, State> {
     const { context, uniforms } = this.state;
     const { children } = this.props;
     return children ? (
-      <Drawable context={context} uniforms={uniforms}>
+      <Drawable name="react_regl_orbit_camera" context={context} uniforms={uniforms}>
         {children}
       </Drawable>
     ) : null;

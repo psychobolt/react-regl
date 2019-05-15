@@ -32,6 +32,13 @@ function collectDrawables(drawCalls, children) {
   });
 }
 
+function updateDrawCalls(oldDrawCalls, newDrawCalls) {
+  return Object.keys(oldDrawCalls).reduce((drawCalls, key) => ({
+    ...drawCalls,
+    [key]: Object.assign({}, oldDrawCalls[key], newDrawCalls[key]),
+  }), {});
+}
+
 const Container = styled.div`${styles.container}`;
 
 const Stats = styled.div`${styles.stats}`;
@@ -41,16 +48,16 @@ type Props = {
 }
 
 type State = {
+  drawCalls: {},
   frameTimeCount: number
 }
 
 export default class extends React.Component<Props, State> {
-  drawCalls= {};
-
   // we update the widget every second, we need to keep track of the time:
   totalTime = 1.1
 
   state = {
+    drawCalls: {},
     frameTimeCount: 0,
   }
 
@@ -70,16 +77,17 @@ export default class extends React.Component<Props, State> {
 
   update = (deltaTime: number) => {
     const { context } = this.props;
-    let { frameTimeCount } = this.state;
+    let { frameTimeCount, drawCalls } = this.state;
     this.totalTime += deltaTime;
     if (this.totalTime > 1.0) {
       this.totalTime = 0;
     }
     frameTimeCount += 1;
+    const newDrawCalls = {};
+    collectDrawables(newDrawCalls, context.children);
+    drawCalls = updateDrawCalls(newDrawCalls, drawCalls);
 
-    collectDrawables(this.drawCalls, context.children);
-
-    (Object.values(this.drawCalls): any).forEach(drawCall => {
+    (Object.values(drawCalls): any).forEach(drawCall => {
       const { gpuTime } = drawCall.instance.stats;
       let { prevGpuTimes, totalFrameTime, avgFrameTime } = drawCall;
       const frameTime = gpuTime - prevGpuTimes;
@@ -103,11 +111,11 @@ export default class extends React.Component<Props, State> {
     if (frameTimeCount === N) {
       frameTimeCount = 0;
     }
-    this.setState({ frameTimeCount });
+    this.setState({ frameTimeCount, drawCalls });
   }
 
   render() {
-    const { drawCalls } = this;
+    const { drawCalls } = this.state;
     return (
       <Container>
         <h1>Stats</h1>

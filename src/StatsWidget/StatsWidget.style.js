@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 
 export const container = css`
-  position: fixed;
+  position: absolute;
   top: 20px;
   left: 20px;
   opacity: 0.8;
