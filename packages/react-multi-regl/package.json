@@ -1,6 +1,6 @@
 {
   "name": "@psychobolt/react-multi-regl",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A react-regl container and renderer with multi-regl support",
   "main": "dist/index.js",
   "repository": "https://github.com/psychobolt/react-regl/blob/master/packages/react-multi-regl",
@@ -13,6 +13,6 @@
     "multi-regl": "^1.1.1"
   },
   "dependencies": {
-    "@psychobolt/react-regl": "^0.0.2"
+    "@psychobolt/react-regl": "^0.0.3"
   }
 }

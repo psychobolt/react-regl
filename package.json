@@ -1,6 +1,6 @@
 {
   "name": "@psychobolt/react-regl",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "React fiber renderer and component container for Regl",
   "main": "./dist/index.js",
   "repository": "https://github.com/psychobolt/react-regl.git",
