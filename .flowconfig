@@ -6,3 +6,6 @@ module.system.node.resolve_dirname=src
 esproposal.export_star_as=enable
 esproposal.optional_chaining=enable
 module.name_mapper='^\(.*\)\.\(frag\|vert\|mp3\)$' -> '<PROJECT_ROOT>/RAWFlowStub.js.flow'
+
+[lints]
+deprecated-utility=warn
