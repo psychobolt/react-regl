@@ -30,6 +30,8 @@ export default class extends React.Component<Props, State> {
     mounted: false,
   }
 
+  viewProps: {}
+
   constructor(props: Props) {
     super(props);
     const { viewCount = 0, viewProps = {} } = this.props;
@@ -44,8 +46,6 @@ export default class extends React.Component<Props, State> {
       },
     };
   }
-
-  viewProps: {}
 
   render() {
     const { viewProps, children, ...props } = this.props;

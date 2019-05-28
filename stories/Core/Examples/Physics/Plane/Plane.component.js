@@ -42,6 +42,8 @@ export default class Plane extends React.Component<Props, State> {
 
   model = null;
 
+  rigidBody: {}
+
   componentDidMount() {
     const shape = new BtStaticPlaneShape(new BtVector3(0, 1, 0), 0);
     shape.setMargin(0.05);
@@ -56,8 +58,6 @@ export default class Plane extends React.Component<Props, State> {
     this.rigidBody = rigidBody;
     this.setState({ mounted: true });
   }
-
-  rigidBody: {}
 
   render() {
     const { color } = this.props;

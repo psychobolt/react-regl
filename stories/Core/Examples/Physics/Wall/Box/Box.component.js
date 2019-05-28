@@ -76,6 +76,8 @@ type State = {
 export default class Box extends React.Component<Props, State> {
   model = null;
 
+  rigidBody: {}
+
   constructor(props: Props) {
     super(props);
     const { size: s } = this.props;
@@ -109,8 +111,6 @@ export default class Box extends React.Component<Props, State> {
     this.rigidBody = rigidBody;
     this.setState({ mounted: true });
   }
-
-  rigidBody: {}
 
   render() {
     const { state, rigidBody } = this;

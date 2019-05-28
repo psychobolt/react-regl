@@ -24,6 +24,8 @@ class Resl extends React.Component<Props, State> {
     children: () => null,
   }
 
+  ref: Ref<CollectionType<any>>
+
   constructor(props: Props) {
     super(props);
     this.ref = props.innerRef || React.createRef<CollectionType<any>>();
@@ -52,8 +54,6 @@ class Resl extends React.Component<Props, State> {
     if (onDone) onDone(assets);
     this.setState({ assets });
   }
-
-  ref: Ref<CollectionType<any>>
 
   render() {
     const { children } = this.props;

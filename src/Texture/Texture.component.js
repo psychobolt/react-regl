@@ -16,6 +16,8 @@ type State = {
 }
 
 class Texture extends React.Component<Props, State> {
+  ref: Ref<TextureType>
+
   constructor(props: Props) {
     super(props);
     this.ref = props.innerRef || React.createRef<TextureType>();
@@ -37,8 +39,6 @@ class Texture extends React.Component<Props, State> {
       this.ref.current.update();
     }
   }
-
-  ref: Ref<TextureType>
 
   render() {
     const { children, innerRef, ...props } = this.props;

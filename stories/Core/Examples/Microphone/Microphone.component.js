@@ -22,6 +22,14 @@ export default class Microphone extends React.Component<Props, State> {
     fftSize: 0,
   }
 
+  audioContext: AudioContext;
+
+  analyser: AnalyserNode;
+
+  frequencies: Uint8Array;
+
+  stream: any
+
   componentWillUnmount() {
     if (this.stream) {
       this.stream.getTracks().forEach(track => track.stop());
@@ -57,12 +65,6 @@ export default class Microphone extends React.Component<Props, State> {
     if (this.fftBuffer) this.fftBuffer.subdata(this.frequencies);
   }
 
-  audioContext: AudioContext;
-
-  analyser: AnalyserNode;
-
-  frequencies: Uint8Array;
-
   createAudioContext(regl: any, stream: MediaStream) {
     // Create an analyser node to intercept data from the mic
     this.audioContext = new AudioContext();
@@ -83,8 +85,6 @@ export default class Microphone extends React.Component<Props, State> {
 
     this.setState({ fftSize });
   }
-
-  stream: any
 
   render() {
     const { fftSize } = this.state;

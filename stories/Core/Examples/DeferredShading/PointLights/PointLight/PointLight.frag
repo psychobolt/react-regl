@@ -24,7 +24,7 @@ void main() {
   float lightDist = length(toLightVector);
   vec3 l = -toLightVector / lightDist;
 
-  // fake z-text
+  // fake z-test
   float ztest = step(0.0, lightRadius - lightDist);
 
   float attenuation = (1.0 - lightDist / lightRadius);

@@ -28,6 +28,10 @@ export default class Sphere extends React.Component<Props, State> {
     mounted: false,
   }
 
+  mesh: typeof sphere;
+
+  rigidBody: number[];
+
   constructor(props: Props) {
     super(props);
     this.mesh = sphere(1.0, { segments: 16 });
@@ -88,10 +92,6 @@ export default class Sphere extends React.Component<Props, State> {
     this.rigidBody = rigidBody;
     this.setState({ mounted: true });
   }
-
-  mesh: typeof sphere;
-
-  rigidBody: number[];
 
   render() {
     const { mesh, rigidBody, state } = this;

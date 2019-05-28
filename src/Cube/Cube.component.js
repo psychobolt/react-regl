@@ -16,6 +16,8 @@ type State = {
 }
 
 class Cube extends React.Component<Props, State> {
+  ref: Ref<CubeType>
+
   constructor(props: Props) {
     super(props);
     this.ref = props.innerRef || React.createRef<CubeType>();
@@ -38,8 +40,6 @@ class Cube extends React.Component<Props, State> {
       ref.update();
     }
   }
-
-  ref: Ref<CubeType>
 
   render() {
     const { children, innerRef, ...props } = this.props;

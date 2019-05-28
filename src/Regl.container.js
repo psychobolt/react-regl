@@ -17,6 +17,10 @@ export class ReglContainer extends React.Component<Props> {
     View: null,
   }
 
+  mountNode: any;
+
+  viewRef: React.ElementRef<any>;
+
   constructor(props: Props) {
     super(props);
     const { viewProps = {} } = props;
@@ -51,10 +55,6 @@ export class ReglContainer extends React.Component<Props> {
     renderer.reconciler.updateContainer(null, this.mountNode, this);
     if (context) context.destroy();
   }
-
-  mountNode: any;
-
-  viewRef: React.ElementRef<any>;
 
   render() {
     const { viewProps, View } = this.props;

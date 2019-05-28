@@ -108,6 +108,12 @@ export default class Audio extends React.Component<Props, State> {
 
   freqSamples = new Uint8Array(N);
 
+  source: any
+
+  analyser: any
+
+  song: any
+
   componentWillUnmount() {
     const { audio } = this.state;
     if (audio === STATES.Playing) this.song.pause();
@@ -132,12 +138,6 @@ export default class Audio extends React.Component<Props, State> {
       this.setState({ audio: STATES.Playing });
     });
   }
-
-  source: any
-
-  analyser: any
-
-  song: any
 
   render() {
     const { audio } = this.state;
