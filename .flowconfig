@@ -10,3 +10,6 @@ include_warnings=true
 
 [lints]
 deprecated-utility=warn
+
+[declarations]
+.*/raf-schd/.*
