@@ -21,10 +21,9 @@ class Texture extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.ref = props.innerRef || React.createRef<TextureType>();
-  }
-
-  state = {
-    ref: null,
+    this.state = {
+      ref: null,
+    };
   }
 
   componentDidMount() {

@@ -39,6 +39,6 @@ export default React.forwardRef<Props, Drawable>(({ view, ...props }: Props, ref
     }}
     frag={frag}
     vert={vert}
-    {...props}
+    {...(props: $Rest<Props, any>)}
   />
 ));

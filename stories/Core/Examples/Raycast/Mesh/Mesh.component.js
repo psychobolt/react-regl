@@ -41,6 +41,6 @@ export default ({ color, isRound = false, elements, position, normal, ...props }
     }}
     elements={elements}
     cull={cull}
-    {...props}
+    {...(props: $Rest<Props, any>)}
   />
 );

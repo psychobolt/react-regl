@@ -21,10 +21,9 @@ class Cube extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.ref = props.innerRef || React.createRef<CubeType>();
-  }
-
-  state = {
-    ref: null,
+    this.state = {
+      ref: null,
+    };
   }
 
   componentDidMount() {

@@ -26,7 +26,7 @@ export default ({ children, ...props }: Props) => (
     attributes={attributes}
     depth={depth}
     count={3}
-    {...props}
+    {...(props: $Rest<Props, any>)}
   >
     {children}
   </Drawable>

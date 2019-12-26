@@ -28,6 +28,6 @@ export default ({ tex, rcpDim, framebuffer, ...props }: Props) => (
     }}
     framebuffer={framebuffer}
     count={3}
-    {...props}
+    {...(props: $Rest<Props, any>)}
   />
 );

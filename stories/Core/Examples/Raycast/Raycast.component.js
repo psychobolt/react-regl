@@ -67,7 +67,7 @@ function intersectTriangle(out, pt, dir, tri) {
   out[0] = pt[0] + t * dir[0];
   out[1] = pt[1] + t * dir[1];
   out[2] = pt[2] + t * dir[2];
-  /* eslint-enable no param-reassign */
+  /* eslint-enable no-param-reassign */
   return t;
 }
 
@@ -176,8 +176,11 @@ const onFrame = ({ regl }) => regl.clear({
 });
 
 export default class Raycast extends React.Component {
-  state = {
-    iSelectedMesh: -1,
+  constructor(props) {
+    super(props);
+    this.state = {
+      iSelectedMesh: -1,
+    };
   }
 
   onMount = ({ view }) => {
@@ -212,7 +215,8 @@ export default class Raycast extends React.Component {
         // we must check all triangles of the mesh.
         for (let j = 0; j < m.elements.length; j += 1) {
           if (m.elements === planeElements) {
-            continue; // eslint-disable-line no-continue, we don't allow clicking the plane mesh
+            // we don't allow clicking the plane mesh
+            continue; // eslint-disable-line no-continue
           }
           const f = m.elements[j];
           // apply model matrix on the triangle.

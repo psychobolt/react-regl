@@ -58,6 +58,6 @@ export default ({ textures, count, width, height, ...props }: Props) => (
     count={6}
     depth={depth}
     args={args}
-    {...props}
+    {...(props: $Rest<Props, any>)}
   />
 );

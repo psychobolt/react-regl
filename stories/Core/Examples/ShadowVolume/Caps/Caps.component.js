@@ -37,6 +37,6 @@ export default ({ buffer, ...props }: Props) => (
       model,
     }}
     count={DATA.MESH.length / 6}
-    {...props}
+    {...(props: $Rest<Props, any>)}
   />
 );

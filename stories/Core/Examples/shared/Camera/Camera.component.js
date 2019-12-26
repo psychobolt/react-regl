@@ -145,7 +145,7 @@ class Camera extends React.Component<Props, State> {
     }));
     this.setState(({ context }, { regl }) => ({
       uniforms: Object.keys(context)
-        .reduce((uniforms, name) => ({ ...uniforms, [name]: regl.context(name) }), {}),
+        .reduce((uniforms, name: string) => ({ ...uniforms, [name]: regl.context(name) }), {}),
     }));
   }
 

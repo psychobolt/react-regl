@@ -96,10 +96,6 @@ const STATES = {
 };
 
 export default class Audio extends React.Component<Props, State> {
-  state = {
-    audio: 'loading',
-  };
-
   timeSamples = {
     width: N,
     height: 1,
@@ -113,6 +109,13 @@ export default class Audio extends React.Component<Props, State> {
   analyser: any
 
   song: any
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      audio: 'loading',
+    };
+  }
 
   componentWillUnmount() {
     const { audio } = this.state;
@@ -143,9 +146,7 @@ export default class Audio extends React.Component<Props, State> {
     const { audio } = this.state;
     return (
       <div>
-        <button type="button" onClick={this.play} disabled={audio !== STATES.Ready}>
-          {'Play'}
-        </button>
+        <button type="button" onClick={this.play} disabled={audio !== STATES.Ready}>Play</button>
         <ReglContainer View={View} contextProps={contextProps}>
           <Resource
             manifest={manifest}

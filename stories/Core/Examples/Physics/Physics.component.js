@@ -44,8 +44,11 @@ physicsWorld.setGravity(new BtVector3(0, -6.0, 0));
 const planeColor = [0.8, 0.8, 0.8];
 
 export default class Physics extends React.Component {
-  state = {
-    spheres: 0,
+  constructor(props) {
+    super(props);
+    this.state = {
+      spheres: 0,
+    };
   }
 
   onMount = ({ view }) => {

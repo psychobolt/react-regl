@@ -61,6 +61,6 @@ export default ({ intensity, model, ...props }: Props) => (
     attributes={attributes}
     elements={planeElements}
     cull={cull}
-    {...props}
+    {...(props: $Rest<Props, any>)}
   />
 );

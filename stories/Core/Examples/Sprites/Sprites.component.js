@@ -49,15 +49,18 @@ const toScreen = (x, size, pixelRatio) => Math
   .min(Math.max(2.0 * pixelRatio * x / size - 1.0, -0.999), 0.999);
 
 export default class Sprites extends React.Component {
-  state = {
-    count: 0,
-  }
-
   BLOCK = {
     data: new Float32Array(4 * BLOCK_SIZE),
     width: BLOCK_SIZE,
     height: 1,
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+    };
+  }
 
   onFrame = ({ tick, drawingBufferWidth, drawingBufferHeight, pixelRatio }) => {
     const mouseX = toScreen(mouse.x, drawingBufferWidth, pixelRatio);

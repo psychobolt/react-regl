@@ -43,6 +43,6 @@ export default ({ buffer, ...props }: Props) => (
     uniforms={{
       model,
     }}
-    {...props}
+    {...(props: $Rest<Props, any>)}
   />
 );

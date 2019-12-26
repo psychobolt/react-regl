@@ -19,18 +19,14 @@ type State = {
 };
 
 export default class extends React.Component<Props, State> {
+  views = [];
+
+  viewProps: {}
+
   static defaultProps = {
     viewCount: -1,
     viewProps: {},
   }
-
-  views = [];
-
-  state = {
-    mounted: false,
-  }
-
-  viewProps: {}
 
   constructor(props: Props) {
     super(props);
@@ -44,6 +40,9 @@ export default class extends React.Component<Props, State> {
           this.setState({ mounted: true });
         }
       },
+    };
+    this.state = {
+      mounted: false,
     };
   }
 

@@ -35,7 +35,10 @@ function collectDrawables(drawCalls, children) {
 function updateDrawCalls(oldDrawCalls, newDrawCalls) {
   return Object.keys(oldDrawCalls).reduce((drawCalls, key) => ({
     ...drawCalls,
-    [key]: Object.assign({}, oldDrawCalls[key], newDrawCalls[key]),
+    [key]: {
+      ...oldDrawCalls[key],
+      ...newDrawCalls[key],
+    },
   }), {});
 }
 
@@ -56,9 +59,12 @@ export default class extends React.Component<Props, State> {
   // we update the widget every second, we need to keep track of the time:
   totalTime = 1.1
 
-  state = {
-    drawCalls: {},
-    frameTimeCount: 0,
+  constructor(props) {
+    super(props);
+    this.state = {
+      drawCalls: {},
+      frameTimeCount: 0,
+    };
   }
 
   componentDidMount() {

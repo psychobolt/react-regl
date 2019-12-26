@@ -108,7 +108,7 @@ export default <T>(Container: React.ComponentType<T | ContainerProps>) => class 
 
   initGLContext = (view: any) => {
     const { contextProps } = this.props;
-    const viewType = getViewType(view);
+    const viewType: ?string = getViewType(view);
     if (viewType === VIEW_TYPE.Canvas) {
       Object.assign(view, {
         width: view.hasAttribute('width') ? view.width : view.clientWidth,

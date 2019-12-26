@@ -141,7 +141,7 @@ class Camera extends React.Component<Props, State> {
     mergeProps(this.createHandlers);
     this.setState(({ context }, { regl }) => ({
       uniforms: Object.keys(context)
-        .reduce((uniforms, name) => ({ ...uniforms, [name]: regl.context(name) }), {}),
+        .reduce((uniforms, name: string) => ({ ...uniforms, [name]: regl.context(name) }), {}),
     }));
   }
 
@@ -157,10 +157,12 @@ class Camera extends React.Component<Props, State> {
 
   createHandlers = (state, { View }) => {
     const isElement = View instanceof Element;
+    const mouseEventType: string = isElement ? 'onmousemove' : 'onMouseMove';
+    const wheelEventType: string = isElement ? 'onwheel' : 'onWheel';
     return {
       viewProps: {
-        [isElement ? 'onmousemove' : 'onMouseMove']: event => this.onMouseMove(isElement ? event : event.nativeEvent),
-        [isElement ? 'onwheel' : 'onWheel']: this.onWheel,
+        [mouseEventType]: event => this.onMouseMove(isElement ? event : event.nativeEvent),
+        [wheelEventType]: this.onWheel,
       },
     };
   }

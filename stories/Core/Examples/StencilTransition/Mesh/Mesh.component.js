@@ -50,6 +50,6 @@ export default ({ elements, position, normal, scale: s, color, ...props }: Props
     elements={elements}
     frag={frag}
     vert={vert}
-    {...props}
+    {...(props: $Rest<Props, any>)}
   />
 );

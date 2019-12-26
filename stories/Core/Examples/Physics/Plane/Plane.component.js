@@ -36,13 +36,16 @@ type State = {
 }
 
 export default class Plane extends React.Component<Props, State> {
-  state = {
-    mounted: false,
-  }
-
   model = null;
 
   rigidBody: {}
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      mounted: false,
+    };
+  }
 
   componentDidMount() {
     const shape = new BtStaticPlaneShape(new BtVector3(0, 1, 0), 0);

@@ -75,16 +75,20 @@ const addBlock = (x, y, z) => {
 
   for (let i = 0; i < 5; i += 1) {
     if (i === 0 && y <= evalHeight(x, z + 1)) { // positive z face
-      continue; // eslint-disable-line no-continue, no visible, skip
+      // not visible, skip
+      continue; // eslint-disable-line no-continue
     }
     if (i === 1 && y <= evalHeight(x + 1, z)) { // positive x face
-      continue; // eslint-disable-line no-continue, not visible, skip
+      // not visible, skip
+      continue; // eslint-disable-line no-continue
     }
     if (i === 2 && y <= evalHeight(x, z - 1)) { // negative z face
-      continue; // eslint-disable-line no-continue, not visible, skip
+      // not visible, skip
+      continue; // eslint-disable-line no-continue
     }
     if (i === 3 && y <= evalHeight(x - 1, z)) { // negative x face
-      continue; // eslint-disable-line no-continue, not visible, skip
+      // not visible, skip
+      continue; // eslint-disable-line no-continue
     }
 
     let j;

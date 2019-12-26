@@ -12,14 +12,14 @@ type Props = {
 } & ContainerProps;
 
 export class ReglContainer extends React.Component<Props> {
+  mountNode: any;
+
+  viewRef: React.ElementRef<any>;
+
   static defaultProps = {
     onRender: () => {},
     View: null,
   }
-
-  mountNode: any;
-
-  viewRef: React.ElementRef<any>;
 
   constructor(props: Props) {
     super(props);

@@ -38,6 +38,6 @@ export default ({ view, fbo, shadowRes, ...props }: Props) => (
     }}
     frag={frag}
     vert={vert}
-    {...props}
+    {...(props: $Rest<Props, any>)}
   />
 );

@@ -24,10 +24,6 @@ type State = {
 }
 
 export default class Sphere extends React.Component<Props, State> {
-  state = {
-    mounted: false,
-  }
-
   mesh: typeof sphere;
 
   rigidBody: number[];
@@ -35,6 +31,9 @@ export default class Sphere extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.mesh = sphere(1.0, { segments: 16 });
+    this.state = {
+      mounted: false,
+    };
   }
 
   componentDidMount() {

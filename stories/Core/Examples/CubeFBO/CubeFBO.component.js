@@ -57,7 +57,7 @@ export default () => (
     <Frame onFrame={onFrame}>
       <Context.Consumer>
         {({ context }) => (
-          <React.Fragment>
+          <>
             {/* render teapot cube map */}
             <CubeMap fbo={teapotFBO} center={teapotPos}>
               <Drawable
@@ -91,7 +91,7 @@ export default () => (
               <Teapot fbo={teapotFBO} args={teapotArgs} />
               <Bunny fbo={bunnyFBO} args={bunnyArgs} />
             </Camera>
-          </React.Fragment>
+          </>
         )}
       </Context.Consumer>
     </Frame>

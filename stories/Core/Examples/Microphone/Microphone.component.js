@@ -18,10 +18,6 @@ type State = {
 export default class Microphone extends React.Component<Props, State> {
   fftBuffer = null;
 
-  state = {
-    fftSize: 0,
-  }
-
   audioContext: AudioContext;
 
   analyser: AnalyserNode;
@@ -29,6 +25,13 @@ export default class Microphone extends React.Component<Props, State> {
   frequencies: Uint8Array;
 
   stream: any
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      fftSize: 0,
+    };
+  }
 
   componentWillUnmount() {
     if (this.stream) {

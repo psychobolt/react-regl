@@ -37,6 +37,6 @@ export default ({ color, position, normal, elements, ...props }: Props) => (
     }}
     elements={elements}
     cull={cull}
-    {...props}
+    {...(props: $Rest<Props, any>)}
   />
 );

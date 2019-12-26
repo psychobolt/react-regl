@@ -20,19 +20,18 @@ type State = {
 };
 
 class Resl extends React.Component<Props, State> {
+  ref: Ref<CollectionType<any>>
+
   static defaultProps = {
     children: () => null,
   }
 
-  ref: Ref<CollectionType<any>>
-
   constructor(props: Props) {
     super(props);
     this.ref = props.innerRef || React.createRef<CollectionType<any>>();
-  }
-
-  state = {
-    assets: null,
+    this.state = {
+      assets: null,
+    };
   }
 
   componentDidMount() {
