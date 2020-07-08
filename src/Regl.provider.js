@@ -116,7 +116,7 @@ export default <T>(Container: React.ComponentType<T | ContainerProps>) => class 
       });
     }
     const context = this.renderer.createInstance(CONSTANTS.Regl, {
-      ...contextProps,
+      ...(contextProps: any),
       ...(viewType ? { [viewType]: view } : undefined),
     });
     this.setState({ context });

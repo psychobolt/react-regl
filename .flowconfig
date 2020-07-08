@@ -12,5 +12,8 @@ include_warnings=true
 [lints]
 deprecated-utility=warn
 
+[ignore]
+.*/packages/.*/node_modules/@psychobolt/react-regl/.*
+
 [declarations]
 .*/raf-schd/.*
