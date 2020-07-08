@@ -1,4 +1,4 @@
-import { Types } from '@psychobolt/react-regl';
+import { Types } from '@psychobolt/react-regl'; // eslint-disable-line import/named
 
 export default class View extends Types.Collection {
   constructor(props, multiContext) {
