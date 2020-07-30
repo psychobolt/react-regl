@@ -2,12 +2,6 @@ const path = require('path');
 
 module.exports = ({ config }) => ({
   ...config,
-  resolve: {
-    ...config.resolve,
-    alias: {
-      '@psychobolt/react-regl': path.resolve(__dirname, '../dist'),
-    },
-  },
   module: {
     ...config.module,
     rules: [
