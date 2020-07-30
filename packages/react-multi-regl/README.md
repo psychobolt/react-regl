@@ -3,7 +3,7 @@
 [![Stability](https://img.shields.io/badge/Stability-Experimental-Orange.svg)](https://nodejs.org/api/documentation.html#documentation_stability_index)
 [![npm](https://img.shields.io/npm/v/@psychobolt/react-multi-regl.svg)](https://www.npmjs.com/package/@psychobolt/react-multi-regl)
 [![Build Status](https://travis-ci.org/psychobolt/react-regl.svg?branch=master)](https://travis-ci.org/psychobolt/react-regl)
-[![codecov](https://codecov.io/gh/psychobolt/react-regl/branch/master/graph/badge.svg?flag=@psychobolt/react-multi-regl)](https://codecov.io/gh/psychobolt/react-regl/tree/master/packages/react-multi-regl)
+[![codecov](https://codecov.io/gh/psychobolt/react-regl/branch/master/graph/badge.svg?flag=react-multi-regl)](https://codecov.io/gh/psychobolt/react-regl/tree/master/packages/react-multi-regl)
 
 [![Dependencies Status](https://david-dm.org/psychobolt/react-regl/status.svg?path=packages/react-multi-regl)](https://david-dm.org/psychobolt/react-regl?path=packages/react-multi-regl)
 [![Dev Dependencies Status](https://david-dm.org/psychobolt/react-regl/dev-status.svg?path=packages/react-multi-regl)](https://david-dm.org/psychobolt/react-regl?path=packages/react-multi-regl&type=dev)
