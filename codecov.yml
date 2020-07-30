@@ -1,2 +1,30 @@
 codecov:
-  strict_yaml_branch: codecov-config
+  strict_yaml_branch: master
+
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+      react-regl:
+        target: auto
+        flags:
+          - react-regl
+      react-multi-regl:
+        target: auto
+        flags:
+          - react-multi-regl
+      react-regl-orbit-camera:
+        target: auto
+        flags:
+          - react-regl-orbit-camera
+  flags:
+    react-regl:
+      paths:
+        - src/
+    react-multi-regl:
+      paths:
+        - packages/react-multi-regl/
+    react-regl-orbit-camera:
+      paths:
+        - packages/react-regl-orbit-camera/
