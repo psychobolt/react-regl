@@ -28,10 +28,7 @@
         "import/resolver": {
             "babel-module": {
                 "root": ["./"],
-                "cwd": "./",
-                "alias": {
-                    "@psychobolt/react-regl": "./src/index.js"
-                }
+                "cwd": "./"
             }
         }
     }
