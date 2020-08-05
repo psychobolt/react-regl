@@ -1,12 +1,9 @@
 [options]
-module.system.node.resolve_dirname=node_modules
-module.system.node.resolve_dirname=packages/react-multi-regl/node_modules
-module.system.node.resolve_dirname=packages/react-regl-orbit-camera/node_modules
-module.system.node.resolve_dirname=src
 esproposal.export_star_as=enable
 esproposal.optional_chaining=enable
 module.name_mapper='^\(.*\)\.\(frag\|vert\|mp3\)$' -> '<PROJECT_ROOT>/RAWFlowStub.js.flow'
 module.name_mapper='^@psychobolt/react-regl$' -> '<PROJECT_ROOT>/src/index.js'
+module.name_mapper='^@psychobolt/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1'
 include_warnings=true
 
 [lints]
