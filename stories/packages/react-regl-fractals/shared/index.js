@@ -6,7 +6,7 @@ export const withKnobs = Component => (
     degree={number('degree', 0, {
       range: true,
       min: 0,
-      max: 9,
+      max: 8,
       step: 1,
     })}
   />
