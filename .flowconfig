@@ -11,6 +11,7 @@ deprecated-utility=warn
 
 [ignore]
 .*/packages/.*/node_modules/@psychobolt/react-regl/.*
+.*/node_modules/@choojs/.*.json
 
 [declarations]
 .*/raf-schd/.*
