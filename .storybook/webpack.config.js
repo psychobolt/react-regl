@@ -30,8 +30,11 @@ module.exports = ({ config }) => ({
       },
       {
         test: /\.(frag|vert)$/,
-        loaders: ['webpack-glsl-loader'],
-        include: path.resolve(__dirname, '../stories'),
+        exclude: /node_modules/,
+        use: [
+          'raw-loader',
+          'glslify-loader',
+        ],
       },
     ],
   },

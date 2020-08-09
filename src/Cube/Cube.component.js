@@ -27,14 +27,14 @@ class Cube extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    const ref = this.ref.current;
+    const ref = (this.ref: any).current;
     if (ref) {
       this.setState({ ref });
     }
   }
 
   componentDidUpdate() {
-    const ref = this.ref.current;
+    const ref = (this.ref: any).current;
     if (ref) {
       ref.update();
     }
@@ -44,7 +44,7 @@ class Cube extends React.Component<Props, State> {
     const { children, innerRef, ...props } = this.props;
     const { ref: cube } = this.state;
     return (
-      <CONSTANTS.Cube ref={this.ref} {...props}>
+      <CONSTANTS.Cube {...props} ref={this.ref}>
         {cube ? children(cube.getInstance()) : null}
       </CONSTANTS.Cube>
     );

@@ -27,7 +27,7 @@ class Texture extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    const ref = this.ref.current;
+    const ref = (this.ref: any).current;
     if (ref) {
       this.setState({ ref });
     }
@@ -35,7 +35,7 @@ class Texture extends React.Component<Props, State> {
 
   componentDidUpdate() {
     if (this.ref.current) {
-      this.ref.current.update();
+      (this.ref: any).current.update();
     }
   }
 
@@ -43,7 +43,7 @@ class Texture extends React.Component<Props, State> {
     const { children, innerRef, ...props } = this.props;
     const { ref: texture } = this.state;
     return (
-      <CONSTANTS.Texture ref={this.ref} {...props}>
+      <CONSTANTS.Texture {...props} ref={this.ref}>
         {texture && children ? children(texture.getInstance()) : null}
       </CONSTANTS.Texture>
     );

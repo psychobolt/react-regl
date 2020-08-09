@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { type StyledComponent } from 'styled-components';
 
 import { Frame, Drawable, Context } from '../types';
 import * as styles from './StatsWidget.style';
@@ -42,7 +42,7 @@ function updateDrawCalls(oldDrawCalls, newDrawCalls) {
   }), {});
 }
 
-const Container = styled.div`${styles.container}`;
+const Container: StyledComponent<{}, {}, HTMLDivElement> = styled.div`${styles.container}`;
 
 const Stats = styled.div`${styles.stats}`;
 
@@ -59,7 +59,7 @@ export default class extends React.Component<Props, State> {
   // we update the widget every second, we need to keep track of the time:
   totalTime = 1.1
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       drawCalls: {},

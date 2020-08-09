@@ -3,6 +3,7 @@ import path from 'path';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
+import glslify from 'rollup-plugin-glslify';
 
 const { projectList, INCLUDES } = require('./project-list');
 
@@ -19,6 +20,7 @@ const config = {
       exclude: /node_modules/,
       babelHelpers: 'bundled',
     }),
+    glslify(),
   ],
   external: [
     ...projectList.map(({ name }) => name),

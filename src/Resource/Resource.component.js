@@ -44,7 +44,7 @@ class Resl extends React.Component<Props, State> {
 
   componentDidUpdate() {
     if (this.ref.current) {
-      this.ref.current.update();
+      (this.ref: any).current.update();
     }
   }
 
