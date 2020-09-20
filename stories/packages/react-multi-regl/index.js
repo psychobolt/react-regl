@@ -1,13 +1,29 @@
-import React from 'react';
+import { MultiReglContainer } from '@psychobolt/react-multi-regl';
 
-import { storiesOf } from '@storybook/react';
-import { doc } from 'storybook-readme';
+export default {
+  title: 'packages/react-multi-regl',
+  component: MultiReglContainer,
+  parameters: {
+    layout: 'fullscreen',
+  },
+};
 
-import Readme from 'packages/react-multi-regl/README.md';
-import Simple from './Simple';
-import SPHGallery from './SPHGallery';
+export const Simple = require('./Simple').default; // eslint-disable-line global-require
 
-storiesOf('packages/react-multi-regl', module)
-  .add('Readme', doc(Readme))
-  .add('Simple', () => <Simple />)
-  .add('SPH Gallery', () => <SPHGallery />);
+Simple.parameters = {
+  docs: {
+    source: {
+      code: require('!!raw-loader!./Simple/Simple.component').default, // eslint-disable-line global-require
+    },
+  },
+};
+
+export const SPHGallery = require('./SPHGallery').default; // eslint-disable-line global-require
+
+SPHGallery.parameters = {
+  docs: {
+    source: {
+      code: require('!!raw-loader!./SPHGallery/SPHGallery.component').default, // eslint-disable-line global-require
+    },
+  },
+};

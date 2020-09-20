@@ -24,7 +24,7 @@ type Props = {
   view: () => number[]
 };
 
-export default React.forwardRef<Props, Drawable>(({ view, ...props }: Props, ref) => (
+export default React.forwardRef<Props, typeof Drawable>(({ view, ...props }: Props, ref) => (
   <Drawable
     ref={ref}
     cull={cull}

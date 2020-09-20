@@ -32,6 +32,13 @@ module.exports = {
           return rule;
         }),
         {
+          test: /\.dds/,
+          loader: require.resolve('file-loader'),
+          query: {
+            name: 'static/media/[name].[hash:8].[ext]',
+          },
+        },
+        {
           test: /\.jsx?$/,
           exclude: /node_modules/,
           loader: 'source-map-loader',

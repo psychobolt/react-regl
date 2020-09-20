@@ -1,22 +1,24 @@
+// @flow
 import React from 'react';
 
 import { ReglContainer, Frame } from '@psychobolt/react-regl';
 import { Pyramid } from '@psychobolt/react-regl-fractals';
-import Readme from 'packages/react-regl-fractals/src/Pyramid/README.md';
 
-import { withKnobs } from '../shared';
+export { default as MDX } from 'packages/react-regl-fractals/src/Pyramid/README.md';
 
 const clear = ({ regl }) => regl.clear({
   color: [1, 1, 1, 1],
   depth: 1,
 });
 
-export const README = Readme;
+type Props = {
+  degree: Number,
+};
 
-export default () => (
+export default ({ degree }: Props) => (
   <ReglContainer onMount={clear}>
     <Frame onFrame={clear}>
-      {withKnobs(Pyramid)}
+      <Pyramid degree={degree} />
     </Frame>
   </ReglContainer>
 );

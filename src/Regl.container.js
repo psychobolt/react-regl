@@ -6,7 +6,7 @@ import ReglProvider, { type Callback, type ContainerProps } from './Regl.provide
 import ReglRenderer from './Regl.renderer';
 
 type Props = {
-  renderer: ReglRenderer,
+  renderer: typeof ReglRenderer,
   onRender?: Callback,
   View?: any,
 } & ContainerProps;

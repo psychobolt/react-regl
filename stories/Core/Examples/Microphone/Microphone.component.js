@@ -18,7 +18,7 @@ type State = {
 export default class Microphone extends React.Component<Props, State> {
   fftBuffer = null;
 
-  audioContext: AudioContext;
+  audioContext: typeof AudioContext;
 
   analyser: AnalyserNode;
 

@@ -39,7 +39,7 @@ const StatsWidget = React.lazy(() => import('./StatsWidget'));
 export type Callback = (context: ContextType) => any;
 
 export type ContainerProps = {
-  renderer?: ReglRenderer,
+  renderer?: typeof ReglRenderer,
   onMount?: Callback,
   onRender?: Callback,
   View?: any,

@@ -4,6 +4,7 @@
     "paths": {
       "@psychobolt/react-regl": ["./src/index.js"],
       "@psychobolt/*": ["./packages/*/src/index.js"]
-    }
-  }
+    },
+  },
+  "exclude": ["**/dist", "flow-typed/npm", "packages/react-cache", "**/node_modules"]
 }

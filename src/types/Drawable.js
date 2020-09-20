@@ -59,7 +59,8 @@ export default class Drawable extends Updatable(Collection) {
       options = args;
     } else if (_.isArray(options)) {
       if (_.isArray(args)) {
-        // $FlowFixMe
+        // $FlowFixMe[prop-missing]
+        // $FlowFixMe[incompatible-type]
         options = [...options, ...args];
       }
     } else if (_.isObject(options) && _.isObject(args)) {

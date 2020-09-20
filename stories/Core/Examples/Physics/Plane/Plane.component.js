@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import Normal from '../Normal';
 import Mesh from '../Mesh';
-import { type BtDiscreteDynamicsWorld, BtVector3, BtStaticPlaneShape, BtDefaultMotionState, BtTransform, BtQuaternion, BtRigidBodyConstructionInfo, BtRigidBody } from '../ammo';
+import { BtDiscreteDynamicsWorld, BtVector3, BtStaticPlaneShape, BtDefaultMotionState, BtTransform, BtQuaternion, BtRigidBodyConstructionInfo, BtRigidBody } from '../ammo';
 
 const A = 1000.0; // plane size.
 
@@ -28,7 +28,7 @@ const normal = [
 
 type Props = {
   color: number[],
-  physicsWorld: BtDiscreteDynamicsWorld,
+  physicsWorld: typeof BtDiscreteDynamicsWorld,
 };
 
 type State = {

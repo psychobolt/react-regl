@@ -1,19 +1,35 @@
 import React from 'react';
+import { ReglContainer } from '@psychobolt/react-regl';
 
-import { storiesOf } from '@storybook/react';
-import { doc } from 'storybook-readme';
-
-import Components from 'src/README.md';
-import Container from './Container';
-import Canvas from './Canvas';
 import Resizable from './Resizable';
-import Readme from '../../../README.md';
 
-storiesOf('Core/Setup', module)
-  .add('Readme', doc(Readme))
-  .add('Components', doc(Components))
-  .add('Container', () => <Container />)
-  .add('Canvas', () => <Canvas />)
-  .add('Dynamic Container', () => <Resizable />, {
-    notes: 'Drag the left or bottom handles to resize the canvas',
-  });
+export default {
+  title: 'Core/Setup',
+  component: ReglContainer,
+  parameters: {
+    layout: 'fullscreen',
+  },
+};
+
+export const Container = require('./Container').default; // eslint-disable-line global-require
+
+Container.parameters = {
+  docs: {
+    source: {
+      code: require('!!raw-loader!./Container/Container.component').default, // eslint-disable-line global-require
+    },
+  },
+};
+
+export const DynamicContainer = () => <Resizable />;
+
+DynamicContainer.parameters = {
+  docs: {
+    description: {
+      story: 'Passing dynamic values such as width and height...',
+    },
+    source: {
+      code: require('!!raw-loader!./Resizable/Resizable.component').default, // eslint-disable-line global-require
+    },
+  },
+};

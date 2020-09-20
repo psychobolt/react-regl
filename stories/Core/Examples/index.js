@@ -1,16 +1,23 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withReadme } from 'storybook-readme';
-import path from 'path';
 
-const reqExample = require.context('./', true, /^\.\/[a-zA-Z0-9]*\/$/);
+const reqExample = require.context('./', true, /^\.\/[\w-]+\/index\.js$/);
+const reqReadme = require.context('./', true, /^\.\/[\w-]+\/README\.mdx?$/);
 
-const category = storiesOf('Core/Examples', module);
+export default {
+  title: 'Core/Examples',
+  parameters: {
+    layout: 'fullscreen',
+  },
+};
 
 reqExample.keys().forEach(folder => {
-  const example = path.resolve('./', folder);
-  const name = /\/(.+)/.exec(example)[1];
-  const { default: Component, README } = require(`.${example}`); // eslint-disable-line global-require, import/no-dynamic-require
-  const render = () => <Component />;
-  category.add(name, README ? withReadme(README, render) : render);
+  const name = folder.match(/^\.\/([\w-]+)\/index\.js$/)[1];
+  const { default: Component } = reqExample(folder);
+  const readmePath = reqReadme.keys().find(path => path.indexOf(name) > -1);
+  module.exports[name] = () => <Component />;
+  module.exports[name].parameters = {
+    docs: {
+      page: readmePath ? reqReadme(readmePath).default : null,
+    },
+  };
 });

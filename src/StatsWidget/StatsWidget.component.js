@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import styled, { type StyledComponent } from 'styled-components';
+import styled from 'styled-components';
 
 import { Frame, Drawable, Context } from '../types';
 import * as styles from './StatsWidget.style';
@@ -42,7 +42,7 @@ function updateDrawCalls(oldDrawCalls, newDrawCalls) {
   }), {});
 }
 
-const Container: StyledComponent<{}, {}, HTMLDivElement> = styled.div`${styles.container}`;
+const Container = styled.div`${styles.container}`;
 
 const Stats = styled.div`${styles.stats}`;
 

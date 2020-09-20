@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ReglContainer } from 'dist';
+import { ReglContainer } from '@psychobolt/react-regl';
 
 import * as styles from './Container.style';
 
