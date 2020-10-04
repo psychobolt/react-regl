@@ -50,6 +50,6 @@ class Texture extends React.Component<Props, State> {
   }
 }
 
-export default React.forwardRef<Props, TextureType>(
+export default (React.forwardRef<Props, TextureType>(
   (props, ref) => <Texture {...props} innerRef={ref} />,
-);
+): React.AbstractComponent<Props>);

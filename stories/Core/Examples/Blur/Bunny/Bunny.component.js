@@ -70,7 +70,7 @@ type Props = {
   color: any
 };
 
-export default ({ color }: Props) => (
+export default (({ color }: Props) => (
   <Drawable
     frag={frag}
     vert={vert}
@@ -82,4 +82,4 @@ export default ({ color }: Props) => (
     }}
     args={args}
   />
-);
+): React.AbstractComponent<Props>);

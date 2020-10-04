@@ -7,9 +7,13 @@ import * as styles from './StatsWidget.style';
 
 const N = 50;
 
+type NodeProps = {
+  profile?: any,
+};
+
 function collectDrawables(drawCalls, children) {
   children.forEach(child => {
-    let { profile } = child.props;
+    let { profile } = (child.props: NodeProps);
     profile = typeof profile === 'undefined' || profile;
     if (profile) {
       if (child instanceof Drawable) {
@@ -42,7 +46,7 @@ function updateDrawCalls(oldDrawCalls, newDrawCalls) {
   }), {});
 }
 
-const Container = styled.div`${styles.container}`;
+const Container: React.AbstractComponent<any> = styled.div`${styles.container}`;
 
 const Stats = styled.div`${styles.stats}`;
 
@@ -57,7 +61,7 @@ type State = {
 
 export default class extends React.Component<Props, State> {
   // we update the widget every second, we need to keep track of the time:
-  totalTime = 1.1
+  totalTime: number = 1.1
 
   constructor(props: Props) {
     super(props);
@@ -81,7 +85,7 @@ export default class extends React.Component<Props, State> {
     }
   }
 
-  update = (deltaTime: number) => {
+  update: (deltaTime: number) => void = deltaTime => {
     const { context } = this.props;
     let { frameTimeCount, drawCalls } = this.state;
     this.totalTime += deltaTime;
@@ -120,7 +124,7 @@ export default class extends React.Component<Props, State> {
     this.setState({ frameTimeCount, drawCalls });
   }
 
-  render() {
+  render(): React.Node {
     const { drawCalls } = this.state;
     return (
       <Container>

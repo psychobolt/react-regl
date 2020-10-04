@@ -25,7 +25,7 @@ type Props = {
 
 const temperature = ({ tick }) => 1.0 / (0.5 * tick + 20.0);
 
-export default ({ framebuffer, vertexState, field, tick: t, args }: Props) => (
+export default (({ framebuffer, vertexState, field, tick: t, args }: Props) => (
   <Drawable
     framebuffer={framebuffer}
     frag={frag}
@@ -43,4 +43,4 @@ export default ({ framebuffer, vertexState, field, tick: t, args }: Props) => (
     count={3}
     args={args}
   />
-);
+): React.AbstractComponent<Props>);

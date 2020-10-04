@@ -25,7 +25,7 @@ const args = {
   },
 };
 
-export default ({ width, height }: Props) => (
+export default (({ width, height }: Props) => (
   <Drawable
     vert={vert}
     frag={frag}
@@ -39,4 +39,4 @@ export default ({ width, height }: Props) => (
     count={3}
     args={args}
   />
-);
+): React.AbstractComponent<Props>);

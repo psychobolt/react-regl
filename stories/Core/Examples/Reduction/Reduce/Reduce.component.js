@@ -9,7 +9,7 @@ const { Drawable } = ReactRegl;
 /*
   Reduction on the CPU
 */
-export function cpuReduce(data: number[]) {
+export function cpuReduce(data: number[]): number {
   let result = Math.max(data[0], data[1]);
   for (let i = 2; i < data.length; i += 1) {
     result = Math.max(result, data[i]);
@@ -50,7 +50,7 @@ type Props = {
   And to simplify things, we will be making the assumption that data.length will be the
   one of the numbers 1x1, 2x2, 4x4, 8x8, 16x16, ...
 */
-export default ({ data, regl, onUpdate, getResult = () => {} }: Props) => {
+export default (({ data, regl, onUpdate, getResult = () => {} }: Props) => {
   // We must use a texture format of type RGBA. Because you cannot create a single FBO of
   // type ALPHA in WebGL.
   const textureData = [];
@@ -105,4 +105,4 @@ export default ({ data, regl, onUpdate, getResult = () => {} }: Props) => {
       {passes}
     </Drawable>
   );
-};
+}: React.AbstractComponent<Props>);

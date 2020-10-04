@@ -19,25 +19,41 @@ function damp(x) {
   return Math.abs(xd) < 0.1 ? 0 : xd;
 }
 
-function clamp(x, lo, hi) {
+function clamp(x: number, lo: number, hi: number) {
   return Math.min(Math.max(x, lo), hi);
 }
 
 const logDistance = () => defaultMemoize(distance => Math.log(distance));
 
-type Props = {
-  /* eslint-disable react/no-unused-prop-types */
+type ReglContext = {
+  View?: typeof Element,
+};
+
+type DefaultProps = {
   center?: number[],
   theta?: number,
   phi?: number,
   distance?: number,
   up?: number[],
-  /* eslint-enable react/no-unused-prop-types */
+};
+
+type Props = {
+  center?: number[],
+  theta?: number,
+  phi?: number,
+  distance?: number,
+  up?: number[],
   minDistance?: number,
   maxDistance?: number,
   regl: Object,
   mergeProps: (mergeProps: ReactRegl.MergeProps) => any,
   children: React.Node
+};
+
+type AnimationState = {
+  dtheta?: number,
+  dphi?: number,
+  ddistance?: number,
 };
 
 type State = {
@@ -58,47 +74,46 @@ type State = {
 };
 
 class Camera extends React.Component<Props, State> {
-  updateRotation = rafSchedule(newState => ReactDOM
-    .flushSync(() => this.setState(newState)));
+  updateAnimationState: { cancel: () => void } & (newState: AnimationState) => any =
+    // $FlowFixMe[prop-missing]
+    rafSchedule(newState => ReactDOM.flushSync(() => this.setState(newState)));
 
-  updateDistance = rafSchedule(newState => ReactDOM
-    .flushSync(() => this.setState(newState)));
+  logMinDistance: (distance?: number) => number = logDistance();
 
-  logMinDistance = logDistance();
+  logMaxDistance: (distance?: number) => number = logDistance();
 
-  logMaxDistance = logDistance();
+  update: (dtheta: number, dphi: number, ddistance: number) => void =
+    defaultMemoize((dtheta, dphi, ddistance) => {
+      const { minDistance, maxDistance } = this.props;
+      const { context } = this.state;
+      let { theta, phi, distance, eye, view } = context;
+      const r = Math.exp(distance);
+      const vf = r * Math.sin(theta) * Math.cos(phi);
+      const vr = r * Math.cos(theta) * Math.cos(phi);
+      const vu = r * Math.sin(phi);
+      theta += dtheta;
+      phi = clamp(phi + dphi, MIN_PHI, MAX_PHI);
+      distance = clamp(context.distance + ddistance,
+        this.logMinDistance(minDistance), this.logMaxDistance(maxDistance));
+      eye = eye
+        .map((value, i) => context.center[i] + vf * front[i] + vr * right[i] + vu * context.up[i]);
+      view = lookAt(identity(new Float32Array(view)), eye, context.center, context.up);
+      this.setState({
+        dtheta: damp(dtheta),
+        dphi: damp(dphi),
+        ddistance: damp(ddistance),
+        context: {
+          ...context,
+          theta,
+          phi,
+          distance,
+          eye,
+          view,
+        },
+      });
+    })
 
-  update = defaultMemoize((dtheta, dphi, ddistance) => {
-    const { minDistance, maxDistance } = this.props;
-    const { context } = this.state;
-    let { theta, phi, distance, eye, view } = context;
-    const r = Math.exp(distance);
-    const vf = r * Math.sin(theta) * Math.cos(phi);
-    const vr = r * Math.cos(theta) * Math.cos(phi);
-    const vu = r * Math.sin(phi);
-    theta += dtheta;
-    phi = clamp(phi + dphi, MIN_PHI, MAX_PHI);
-    distance = clamp(context.distance + ddistance,
-      this.logMinDistance(minDistance), this.logMaxDistance(maxDistance));
-    eye = eye
-      .map((value, i) => context.center[i] + vf * front[i] + vr * right[i] + vu * context.up[i]);
-    view = lookAt(identity(new Float32Array(view)), eye, context.center, context.up);
-    this.setState({
-      dtheta: damp(dtheta),
-      dphi: damp(dphi),
-      ddistance: damp(ddistance),
-      context: {
-        ...context,
-        theta,
-        phi,
-        distance,
-        eye,
-        view,
-      },
-    });
-  })
-
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     center: [0.0, 0.0, 0.0],
     theta: 0,
     phi: 0,
@@ -149,11 +164,10 @@ class Camera extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    this.updateRotation.cancel();
-    this.updateDistance.cancel();
+    this.updateAnimationState.cancel();
   }
 
-  createHandlers = (state, { View }) => {
+  createHandlers: (_: any, context: ReglContext) => {} = (_, { View }) => {
     const isElement = View instanceof Element;
     const mouseEventType: string = isElement ? 'onmousemove' : 'onMouseMove';
     const wheelEventType: string = isElement ? 'onwheel' : 'onWheel';
@@ -165,27 +179,27 @@ class Camera extends React.Component<Props, State> {
     };
   }
 
-  onMouseMove = (event: MouseEvent) => {
+  onMouseMove: (event: MouseEvent) => void = event => {
     const { buttons, movementX, movementY } = event;
     if (buttons === 1) {
       const dx = movementX / (event.target: any).clientWidth;
       const dy = movementY / (event.target: any).clientHeight;
       const { dtheta, dphi, context } = this.state;
       const w = Math.max(context.distance, 0.5);
-      this.updateRotation({
+      this.updateAnimationState({
         dtheta: dtheta + w * dx,
         dphi: dphi + w * dy,
       });
     }
   }
 
-  onWheel = event => {
+  onWheel: (event: SyntheticWheelEvent<any>) => void = event => {
     let { ddistance } = this.state;
-    ddistance += event.deltaY / (event.target: HTMLCanvasElement).clientHeight;
-    this.updateDistance({ ddistance });
+    ddistance += event.deltaY / (event.target: any).clientHeight;
+    this.updateAnimationState({ ddistance });
   }
 
-  render() {
+  render(): React.Node {
     const { context, uniforms } = this.state;
     const { children } = this.props;
     return children ? (
@@ -196,10 +210,10 @@ class Camera extends React.Component<Props, State> {
   }
 }
 
-export default React.forwardRef<Props, Camera>((props, ref) => (
+export default (React.forwardRef<Props, Camera>((props, ref) => (
   <Context.Consumer>
     {({ context, mergeProps }) => (
       <Camera {...props} ref={ref} regl={context?.regl} mergeProps={mergeProps} />
     )}
   </Context.Consumer>
-));
+)): React.AbstractComponent<Props>);

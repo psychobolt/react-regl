@@ -16,7 +16,7 @@ type State = {
 };
 
 export default class Microphone extends React.Component<Props, State> {
-  fftBuffer = null;
+  fftBuffer: any = null;
 
   audioContext: typeof AudioContext;
 
@@ -39,7 +39,7 @@ export default class Microphone extends React.Component<Props, State> {
     }
   }
 
-  onMount = ({ regl }: Types.Context) => {
+  onMount: (context: Types.Context) => void = ({ regl }) => {
     if (!navigator) return;
 
     // First we need to get permission to use the microphone
@@ -54,7 +54,7 @@ export default class Microphone extends React.Component<Props, State> {
     }
   }
 
-  onFrame = ({ regl }: Types.Context) => {
+  onFrame: (context: Types.Context) => void = ({ regl }) => {
     // Clear draw buffer
     regl.clear({
       color: [0, 0, 0, 1],
@@ -89,7 +89,7 @@ export default class Microphone extends React.Component<Props, State> {
     this.setState({ fftSize });
   }
 
-  render() {
+  render(): React.Node {
     const { fftSize } = this.state;
     return (
       <ReglContainer onMount={this.onMount}>

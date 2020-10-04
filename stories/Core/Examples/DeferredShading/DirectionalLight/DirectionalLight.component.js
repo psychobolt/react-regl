@@ -26,7 +26,7 @@ type Props = {
   fbo: any
 };
 
-export default ({ fbo }: Props) => (
+export default (({ fbo }: Props) => (
   <Drawable
     frag={frag}
     vert={vert}
@@ -41,4 +41,4 @@ export default ({ fbo }: Props) => (
     depth={depth}
     count={3}
   />
-);
+): React.AbstractComponent<Props>);

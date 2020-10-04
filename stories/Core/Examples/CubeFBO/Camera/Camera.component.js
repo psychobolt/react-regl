@@ -24,26 +24,27 @@ type Props = {
 };
 
 export default class Camera extends React.Component<Props> {
-  projection = new Float32Array(16);
+  projection: Float32Array = new Float32Array(16);
 
-  view = new Float32Array(16);
+  view: Float32Array = new Float32Array(16);
 
-  getProjection = ({ viewportWidth, viewportHeight }: ReglContext) => mat4.perspective(
-    this.projection,
-    fov,
-    viewportWidth / viewportHeight,
-    0.01,
-    1000.0,
-  )
+  getProjection: (context: ReglContext) => any = ({ viewportWidth, viewportHeight }) => mat4
+    .perspective(
+      this.projection,
+      fov,
+      viewportWidth / viewportHeight,
+      0.01,
+      1000.0,
+    )
 
-  getView = (context: ReglContext, { eye, target }: Args) => mat4.lookAt(
+  getView: (_: any, args: Args) => any = (_, { eye, target }) => mat4.lookAt(
     this.view,
     eye,
     target,
     up,
   )
 
-  render() {
+  render(): React.Node {
     const { args, children } = this.props;
     return (
       <Context.Consumer>

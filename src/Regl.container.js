@@ -5,20 +5,24 @@ import * as ReactIs from 'react-is';
 import ReglProvider, { type Callback, type ContainerProps } from './Regl.provider';
 import ReglRenderer from './Regl.renderer';
 
-type Props = {
-  renderer: typeof ReglRenderer,
+type DefaultProps = {
   onRender?: Callback,
   View?: any,
-} & ContainerProps;
+};
+
+type Props = {
+  renderer?: typeof ReglRenderer,
+} & DefaultProps & ContainerProps;
 
 export class ReglContainer extends React.Component<Props> {
   mountNode: any;
 
   viewRef: React.ElementRef<any>;
 
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     onRender: () => {},
     View: null,
+    renderer: ReglRenderer,
   }
 
   constructor(props: Props) {
@@ -56,7 +60,7 @@ export class ReglContainer extends React.Component<Props> {
     if (context) context.destroy();
   }
 
-  render() {
+  render(): React.Node {
     const { viewProps, View } = this.props;
     if (View && ReactIs.isValidElementType(View)) {
       return <View {...viewProps} ref={this.viewRef} />;
@@ -65,4 +69,4 @@ export class ReglContainer extends React.Component<Props> {
   }
 }
 
-export default ReglProvider<Props>(ReglContainer);
+export default (ReglProvider(ReglContainer): React.AbstractComponent<Props>);

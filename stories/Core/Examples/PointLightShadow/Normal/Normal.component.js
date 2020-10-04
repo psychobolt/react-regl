@@ -17,7 +17,7 @@ type Props = {
   children: React.Node,
 };
 
-export default ({ view, shadowFbo, children }: Props) => (
+export default (({ view, shadowFbo, children }: Props) => (
   <Drawable
     uniforms={{
       view,
@@ -29,4 +29,4 @@ export default ({ view, shadowFbo, children }: Props) => (
   >
     {children}
   </Drawable>
-);
+): React.AbstractComponent<Props>);

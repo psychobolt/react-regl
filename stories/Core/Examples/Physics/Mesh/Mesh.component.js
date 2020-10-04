@@ -20,7 +20,7 @@ type Props = {
   rigidBody: any,
 };
 
-export default ({ elements, position, normal, color, rigidBody }: Props) => (
+export default (({ elements, position, normal, color, rigidBody }: Props) => (
   <Drawable
     uniforms={{
       model,
@@ -36,4 +36,4 @@ export default ({ elements, position, normal, color, rigidBody }: Props) => (
     cull={cull}
     args={() => ({ model: getModelMatrix(rigidBody) })}
   />
-);
+): React.AbstractComponent<Props>);

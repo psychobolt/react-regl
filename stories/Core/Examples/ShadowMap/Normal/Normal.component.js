@@ -26,7 +26,7 @@ type Props = {
   shadowRes: number,
 }
 
-export default ({ view, fbo, shadowRes, ...props }: Props) => (
+export default (({ view, fbo, shadowRes, ...props }: Props) => (
   <Drawable
     uniforms={{
       view,
@@ -40,4 +40,4 @@ export default ({ view, fbo, shadowRes, ...props }: Props) => (
     vert={vert}
     {...(props: $Rest<Props, any>)}
   />
-);
+): React.AbstractComponent<Props>);

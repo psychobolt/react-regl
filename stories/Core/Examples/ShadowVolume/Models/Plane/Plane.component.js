@@ -45,7 +45,7 @@ type Props = {
   model: any
 };
 
-export default ({ intensity, model, ...props }: Props) => (
+export default (({ intensity, model, ...props }: Props) => (
   <Drawable
     vert={vert}
     frag={frag}
@@ -63,4 +63,4 @@ export default ({ intensity, model, ...props }: Props) => (
     cull={cull}
     {...(props: $Rest<Props, any>)}
   />
-);
+): React.AbstractComponent<Props>);

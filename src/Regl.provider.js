@@ -15,7 +15,7 @@ type ProviderContext = {
   mergeProps: (mergeProps: MergeProps) => void
 }
 
-export const Context = React.createContext<ProviderContext>({});
+export const Context: React.Context<ProviderContext> = React.createContext<ProviderContext>({});
 
 const getMergeProps = () => (state, props) => ({
   ...props,
@@ -39,7 +39,7 @@ const StatsWidget = React.lazy(() => import('./StatsWidget'));
 export type Callback = (context: ContextType) => any;
 
 export type ContainerProps = {
-  renderer?: typeof ReglRenderer,
+  renderer: typeof ReglRenderer,
   onMount?: Callback,
   onRender?: Callback,
   View?: any,
@@ -47,12 +47,12 @@ export type ContainerProps = {
   contextProps?: {},
   context?: ?ContextType,
   initGLContext?: any => ?ContextType,
-  children?: React.Node
+  children?: React.Node,
+  innerRef?: React.Ref<any>,
+  statsWidget?: boolean,
 }
 
 type Props = {
-  innerRef?: React.Ref<any>,
-  statsWidget?: boolean,
 } & ContainerProps;
 
 type State = {
@@ -64,7 +64,7 @@ type State = {
   rendered: boolean,
 };
 
-export default <T>(Container: React.ComponentType<T | ContainerProps>) => class ReglProvider
+export default (Container => class ReglProvider
   extends React.Component<Props, State> {
   mergeViewProps = defaultMemoize(getMergeProps());
 
@@ -73,7 +73,6 @@ export default <T>(Container: React.ComponentType<T | ContainerProps>) => class 
   static defaultProps = {
     onMount: () => {},
     onRender: () => {},
-    renderer: ReglRenderer,
     View: null,
     viewProps: {},
     context: null,
@@ -160,4 +159,4 @@ export default <T>(Container: React.ComponentType<T | ContainerProps>) => class 
       </>
     );
   }
-};
+}: (Container: React.AbstractComponent<ContainerProps>) => React.AbstractComponent<ContainerProps>);

@@ -19,7 +19,7 @@ type Props = {
   children: React.Node
 };
 
-export default ({ children, ...props }: Props) => (
+export default (({ children, ...props }: Props) => (
   <ReactResizeDetector handleWidth handleHeight>
     {({ width, height }) => (
       <ReglContainer
@@ -31,4 +31,4 @@ export default ({ children, ...props }: Props) => (
       </ReglContainer>
     )}
   </ReactResizeDetector>
-);
+): React.AbstractComponent<Props>);

@@ -24,7 +24,7 @@ type Props = {
   axis: any,
 };
 
-export default ({ framebuffer, src, axis }: Props) => (
+export default (({ framebuffer, src, axis }: Props) => (
   <Drawable
     framebuffer={framebuffer}
     vert={vert}
@@ -41,4 +41,4 @@ export default ({ framebuffer, src, axis }: Props) => (
     depth={depth}
     count={3}
   />
-);
+): React.AbstractComponent<Props>);

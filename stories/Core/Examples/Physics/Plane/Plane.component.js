@@ -36,7 +36,7 @@ type State = {
 }
 
 export default class Plane extends React.Component<Props, State> {
-  model = null;
+  model: any = null;
 
   rigidBody: {}
 
@@ -62,7 +62,7 @@ export default class Plane extends React.Component<Props, State> {
     this.setState({ mounted: true });
   }
 
-  render() {
+  render(): React.Node {
     const { color } = this.props;
     const { mounted } = this.state;
     return mounted

@@ -16,7 +16,7 @@ type Props = {
   children: React.Node,
 };
 
-export default ({ lightPos, shadowFbo, children }: Props) => (
+export default (({ lightPos, shadowFbo, children }: Props) => (
   <Drawable
     uniforms={{
       projection,
@@ -75,4 +75,4 @@ export default ({ lightPos, shadowFbo, children }: Props) => (
   >
     {children}
   </Drawable>
-);
+): React.AbstractComponent<Props>);

@@ -19,7 +19,7 @@ type Props = {
   children: React.Node,
 }
 
-export default ({ children, ...props }: Props) => (
+export default (({ children, ...props }: Props) => (
   <Drawable
     frag={frag}
     vert={vert}
@@ -30,4 +30,4 @@ export default ({ children, ...props }: Props) => (
   >
     {children}
   </Drawable>
-);
+): React.AbstractComponent<Props>);

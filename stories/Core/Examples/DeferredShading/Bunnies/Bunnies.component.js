@@ -63,4 +63,4 @@ const getBunnies = defaultMemoize(S => {
   return bunnies;
 });
 
-export default ({ planeSize: S }: Props) => getBunnies(S);
+export default (({ planeSize: S }: Props) => getBunnies(S): React.AbstractComponent<Props>);

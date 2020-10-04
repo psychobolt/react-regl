@@ -18,7 +18,7 @@ type Props = {
   args: Args,
 } & Args;
 
-export default ({ heightTexture, rockTexture, xzPosition, elements, args }: Props) => (
+export default (({ heightTexture, rockTexture, xzPosition, elements, args }: Props) => (
   <Drawable
     frag={frag}
     vert={vert}
@@ -32,4 +32,4 @@ export default ({ heightTexture, rockTexture, xzPosition, elements, args }: Prop
     elements={elements}
     args={args}
   />
-);
+): React.AbstractComponent<Props>);

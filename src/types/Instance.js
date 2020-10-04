@@ -8,7 +8,7 @@ export default class Instance extends Drawable {
     super(props, context, false);
   }
 
-  init() {
+  init(): any {
     if (this.instance) this.instance.destroy(); // eslint-disable-line
     return null;
   }
@@ -18,7 +18,7 @@ export default class Instance extends Drawable {
     this.instance = this.init();
   }
 
-  getInstance() {
+  getInstance(): any {
     return (this.instance && this.instance.get && this.instance.get()) || this.instance;
   }
 

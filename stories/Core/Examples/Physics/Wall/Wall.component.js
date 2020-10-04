@@ -12,7 +12,7 @@ type Props = {
   physicsWorld: any,
 }
 
-export default ({ physicsWorld }: Props) => {
+export default (({ physicsWorld }: Props) => {
   const bricks = [];
   let id = 1;
 
@@ -41,4 +41,4 @@ export default ({ physicsWorld }: Props) => {
   }
 
   return bricks;
-};
+}: React.AbstractComponent<Props>);

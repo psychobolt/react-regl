@@ -5,9 +5,10 @@ import type { ContainerProps } from '@psychobolt/react-regl';
 
 import MultiReglRenderer from './MultiRegl.renderer';
 
-const { ReglContainer } = ReactRegl;
+const { ReglRenderer, ReglContainer } = ReactRegl;
 
 type Props = {
+  renderer?: typeof ReglRenderer,
   viewCount?: number,
   viewProps?: {
     ref: React.Ref<any>
@@ -19,13 +20,14 @@ type State = {
 };
 
 export default class extends React.Component<Props, State> {
-  views = [];
+  views: Array<Element> = [];
 
   viewProps: {}
 
-  static defaultProps = {
+  static defaultProps: Props = {
     viewCount: -1,
     viewProps: {},
+    renderer: MultiReglRenderer,
   }
 
   constructor(props: Props) {
@@ -46,7 +48,7 @@ export default class extends React.Component<Props, State> {
     };
   }
 
-  render() {
+  render(): React.Node {
     const { viewProps, children, ...props } = this.props;
     const { mounted } = this.state;
     return (

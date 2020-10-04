@@ -22,7 +22,7 @@ const projection = ({ viewportWidth, viewportHeight }) => mat4.perspective(
 
 const invView = (context, { view }) => mat4.invert([], view);
 
-export default ({ envmap, children }: Props) => (
+export default (({ envmap, children }: Props) => (
   <Context.Consumer>
     {({ context }) => (
       <Drawable
@@ -39,4 +39,4 @@ export default ({ envmap, children }: Props) => (
       </Drawable>
     )}
   </Context.Consumer>
-);
+): React.AbstractComponent<Props>);

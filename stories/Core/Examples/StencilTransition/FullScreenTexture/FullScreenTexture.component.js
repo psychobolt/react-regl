@@ -40,7 +40,7 @@ type Props = {
   height: number,
 };
 
-export default ({ textures, count, width, height, ...props }: Props) => (
+export default (({ textures, count, width, height, ...props }: Props) => (
   <Drawable
     frag={frag}
     vert={vert}
@@ -60,4 +60,4 @@ export default ({ textures, count, width, height, ...props }: Props) => (
     args={args}
     {...(props: $Rest<Props, any>)}
   />
-);
+): React.AbstractComponent<Props>);

@@ -28,7 +28,7 @@ const depth = {
   mask: false,
 };
 
-export default ({ id, vertexState, args }: Props) => (
+export default (({ id, vertexState, args }: Props) => (
   <Drawable
     vert={vert}
     frag={frag}
@@ -45,4 +45,4 @@ export default ({ id, vertexState, args }: Props) => (
     elements={null}
     args={args}
   />
-);
+): React.AbstractComponent<Props>);

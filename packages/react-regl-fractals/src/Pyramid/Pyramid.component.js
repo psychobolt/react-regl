@@ -31,7 +31,7 @@ type Props = {
   degree: number
 };
 
-export default ({ degree: n = 0 }: Props) => {
+export default ({ degree: n = 0 }: Props): React.Node => {
   let vertices = getTriangle();
   let edges = [[0, 1, 2, 0]];
 

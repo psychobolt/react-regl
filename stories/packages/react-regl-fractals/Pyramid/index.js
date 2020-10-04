@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 
 import { ReglContainer, Frame } from '@psychobolt/react-regl';
 import { Pyramid } from '@psychobolt/react-regl-fractals';
@@ -15,10 +15,10 @@ type Props = {
   degree: Number,
 };
 
-export default ({ degree }: Props) => (
+export default (({ degree }: Props) => (
   <ReglContainer onMount={clear}>
     <Frame onFrame={clear}>
       <Pyramid degree={degree} />
     </Frame>
   </ReglContainer>
-);
+): React.AbstractComponent<Props>);

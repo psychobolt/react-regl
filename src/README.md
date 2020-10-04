@@ -161,8 +161,7 @@ A component helper to create and provide a [framebuffer](http://regl.party/api#f
 import React from 'react';
 import { Framebuffer } from '@psychobolt/react-regl';
 
-export default ({ children, ...props }) => (
-<Framebuffer {...props}>{fbo => children(fbo)}</Framebuffer>
+export default ({ children, ...props }) => <Framebuffer {...props}>{fbo => children(fbo)}</Framebuffer>
 ```
 
 ##### Props

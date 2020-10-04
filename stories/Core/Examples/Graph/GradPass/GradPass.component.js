@@ -21,7 +21,7 @@ type Props = {
   src: any,
 };
 
-export default ({ framebuffer, src }: Props) => (
+export default (({ framebuffer, src }: Props) => (
   <Drawable
     framebuffer={framebuffer}
     vert={vert}
@@ -34,4 +34,4 @@ export default ({ framebuffer, src }: Props) => (
     depth={depth}
     count={3}
   />
-);
+): React.AbstractComponent<Props>);

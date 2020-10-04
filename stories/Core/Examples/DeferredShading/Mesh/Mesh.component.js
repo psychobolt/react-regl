@@ -35,7 +35,7 @@ type Props = {
   color: number[],
 };
 
-export default ({ position, normal, elements, color, ...props }: Props) => (
+export default (({ position, normal, elements, color, ...props }: Props) => (
   <Drawable
     uniforms={{
       model,
@@ -49,4 +49,4 @@ export default ({ position, normal, elements, color, ...props }: Props) => (
     cull={cull}
     {...(props: $Rest<Props, any>)}
   />
-);
+): React.AbstractComponent<Props>);

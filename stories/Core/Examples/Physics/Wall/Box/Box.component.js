@@ -74,7 +74,7 @@ type State = {
 };
 
 export default class Box extends React.Component<Props, State> {
-  model = null;
+  model: any = null;
 
   rigidBody: {}
 
@@ -112,7 +112,7 @@ export default class Box extends React.Component<Props, State> {
     this.setState({ mounted: true });
   }
 
-  render() {
+  render(): React.Node {
     const { state, rigidBody } = this;
     const { color } = this.props;
     const { position: p, mounted } = state;

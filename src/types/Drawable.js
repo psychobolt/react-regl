@@ -1,20 +1,24 @@
 // @flow
 import _ from 'lodash';
 
-import Context from './Context';
-import Collection from './Collection';
+import Collection, { type Context } from './Collection';
 import Updatable from './Updatable';
 
 let drawId = 0;
 
-type Props = {
-  name: string,
-  args: {},
+export type CollectionProps = {
   render?: () => void,
   onUpdate?: {} => void,
 }
 
-export default class Drawable extends Updatable(Collection) {
+type Props = {
+  name: string,
+  args: {},
+} & CollectionProps;
+
+const Base: Class<*> = Updatable(Collection);
+
+export default class Drawable extends Base {
   constructor({ name, args, ...props }: Props, context: Context, scoped: boolean = true) {
     super(props, context);
     drawId += 1;
@@ -35,12 +39,12 @@ export default class Drawable extends Updatable(Collection) {
 
   scoped: boolean
 
-  init() {
+  init(): any {
     const { render, ...props } = this.props;
     return render || (this.context && this.context.regl(props));
   }
 
-  updateProps(props: Props) {
+  updateProps(props: CollectionProps) {
     super.updateProps(props);
     this.instance = this.init();
   }
@@ -49,7 +53,7 @@ export default class Drawable extends Updatable(Collection) {
     this.args = args;
   }
 
-  getInstance() {
+  getInstance(): any {
     return this.instance;
   }
 
@@ -59,9 +63,7 @@ export default class Drawable extends Updatable(Collection) {
       options = args;
     } else if (_.isArray(options)) {
       if (_.isArray(args)) {
-        // $FlowFixMe[prop-missing]
-        // $FlowFixMe[incompatible-type]
-        options = [...options, ...args];
+        options = Array.prototype.concat.apply(options, args);
       }
     } else if (_.isObject(options) && _.isObject(args)) {
       options = { ...options, ...args };

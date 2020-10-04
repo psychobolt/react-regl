@@ -49,7 +49,7 @@ const cull = {
   enable: true,
 };
 
-export default ({ fbo, args }: Props) => (
+export default (({ fbo, args }: Props) => (
   <Context.Consumer>
     {({ context }) => (
       <Drawable
@@ -82,4 +82,4 @@ export default ({ fbo, args }: Props) => (
       />
     )}
   </Context.Consumer>
-);
+): React.AbstractComponent<Props>);

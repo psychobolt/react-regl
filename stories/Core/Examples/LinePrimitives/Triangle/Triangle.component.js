@@ -12,7 +12,7 @@ type Props = {
 
 const N = 3;
 
-export default ({ lineWidth }: Props) => (
+export default (({ lineWidth }: Props) => (
   <Drawable
     uniforms={{
       color: [0.2, 0.8, 0.3],
@@ -28,4 +28,4 @@ export default ({ lineWidth }: Props) => (
     count={N}
     primitive="line loop"
   />
-);
+): React.AbstractComponent<Props>);

@@ -19,7 +19,7 @@ export default class Framebuffer extends Instance {
 
   fitView: boolean
 
-  init() {
+  init(): any {
     if (this.instance) return this.instance;
     return this.context ? this.context.regl.framebuffer(this.props) : null;
   }

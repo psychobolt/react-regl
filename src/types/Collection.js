@@ -12,7 +12,7 @@ interface Node {
 }
 
 export default class Collection<P> implements Node {
-  children = [];
+  children: Array<Node> = [];
 
   constructor(props: P, context?: Context) {
     this.context = context;

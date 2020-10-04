@@ -60,9 +60,11 @@ type State = {
 
 class Camera extends React.Component<Props, State> {
   updateRotation = rafSchedule(newState => ReactDOM
+    // $FlowFixMe[prop-missing]
     .flushSync(() => this.setState(newState)));
 
   updateDistance = rafSchedule(newState => ReactDOM
+    // $FlowFixMe[prop-missing]
     .flushSync(() => this.setState(newState)));
 
   logMinDistance = logDistance();
@@ -188,10 +190,10 @@ class Camera extends React.Component<Props, State> {
   }
 }
 
-export default React.forwardRef<Props, Camera>((props, ref) => (
+export default (React.forwardRef<Props, Camera>((props, ref) => (
   <Context.Consumer>
     {({ context, mergeProps }) => (
       <Camera {...props} ref={ref} regl={context.regl} mergeProps={mergeProps} />
     )}
   </Context.Consumer>
-));
+)): React.AbstractComponent<Props>);

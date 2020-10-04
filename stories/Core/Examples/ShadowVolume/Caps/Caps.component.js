@@ -14,7 +14,7 @@ type Props = {
   model: any,
 };
 
-export default ({ buffer, ...props }: Props) => (
+export default (({ buffer, ...props }: Props) => (
   <Drawable
     vert={vert}
     attributes={{
@@ -39,4 +39,4 @@ export default ({ buffer, ...props }: Props) => (
     count={DATA.MESH.length / 6}
     {...(props: $Rest<Props, any>)}
   />
-);
+): React.AbstractComponent<Props>);

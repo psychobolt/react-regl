@@ -10,7 +10,9 @@ type Props = {
   onUpdate?: Callback
 }
 
-export default class Frame extends Updatable(Collection) {
+const Base: Class<*> = Updatable(Collection);
+
+export default class Frame extends Base {
   constructor({ onFrame, ...props }: Props, context: Context) {
     super(props, context);
     this.callOnFrame(onFrame);

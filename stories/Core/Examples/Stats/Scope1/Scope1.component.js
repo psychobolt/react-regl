@@ -24,7 +24,7 @@ type Props = {
   view: () => number[]
 };
 
-export default React.forwardRef<Props, typeof Drawable>(({ view, ...props }: Props, ref) => (
+export default (React.forwardRef<Props, typeof Drawable>(({ view, ...props }: Props, ref) => (
   <Drawable
     ref={ref}
     cull={cull}
@@ -41,4 +41,4 @@ export default React.forwardRef<Props, typeof Drawable>(({ view, ...props }: Pro
     vert={vert}
     {...(props: $Rest<Props, any>)}
   />
-));
+)): React.AbstractComponent<Props>);

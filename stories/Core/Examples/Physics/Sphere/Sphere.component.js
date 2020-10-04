@@ -92,7 +92,7 @@ export default class Sphere extends React.Component<Props, State> {
     this.setState({ mounted: true });
   }
 
-  render() {
+  render(): React.Node {
     const { mesh, rigidBody, state } = this;
     const { mounted } = state;
     return mounted

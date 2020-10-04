@@ -38,7 +38,7 @@ type Props = {
   lineWidth: number,
 };
 
-export default ({ vertexState, dir, lineWidth }: Props) => (
+export default (({ vertexState, dir, lineWidth }: Props) => (
   <Drawable
     vert={vert}
     frag={frag}
@@ -53,4 +53,4 @@ export default ({ vertexState, dir, lineWidth }: Props) => (
     lineWidth={lineWidth}
     args={args}
   />
-);
+): React.AbstractComponent<Props>);

@@ -27,7 +27,7 @@ type Props = {
   state: ({ tick: number }) => any,
 };
 
-export default ({ framebuffer, state }: Props) => (
+export default (({ framebuffer, state }: Props) => (
   <Drawable
     vert={vert}
     frag={frag}
@@ -46,4 +46,4 @@ export default ({ framebuffer, state }: Props) => (
     offset={0}
     count={3}
   />
-);
+): React.AbstractComponent<Props>);

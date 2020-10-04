@@ -28,8 +28,8 @@ type Props = {
   children: React.Node,
 };
 
-export default ({ children }: Props) => (
+export default (({ children }: Props) => (
   <Drawable uniforms={uniforms} cull={cull} stencil={stencil}>
     {children}
   </Drawable>
-);
+): React.AbstractComponent<Props>);

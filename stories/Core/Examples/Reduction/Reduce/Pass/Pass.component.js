@@ -17,7 +17,7 @@ type Props = {
   framebuffer: any
 };
 
-export default ({ tex, rcpDim, framebuffer, ...props }: Props) => (
+export default (({ tex, rcpDim, framebuffer, ...props }: Props) => (
   <Drawable
     frag={frag}
     vert={vert}
@@ -30,4 +30,4 @@ export default ({ tex, rcpDim, framebuffer, ...props }: Props) => (
     count={3}
     {...(props: $Rest<Props, any>)}
   />
-);
+): React.AbstractComponent<Props>);

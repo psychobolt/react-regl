@@ -2,7 +2,7 @@
 import Instance from './Instance';
 
 export default class Texture extends Instance {
-  init() {
+  init(): any {
     super.init();
     const { regl } = this.context || {};
     const { source } = this.props;

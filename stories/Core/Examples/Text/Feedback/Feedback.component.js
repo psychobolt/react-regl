@@ -21,7 +21,7 @@ type Props = {
   texture: Object,
 };
 
-export default ({ texture }: Props) => (
+export default (({ texture }: Props) => (
   <Drawable
     frag={frag}
     vert={vert}
@@ -33,4 +33,4 @@ export default ({ texture }: Props) => (
     depth={depth}
     count={3}
   />
-);
+): React.AbstractComponent<Props>);

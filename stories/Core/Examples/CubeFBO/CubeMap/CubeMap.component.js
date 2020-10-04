@@ -24,9 +24,9 @@ type Props = {
 };
 
 export default class CubeMap extends React.Component<Props> {
-  projection = new Float32Array(16);
+  projection: Float32Array = new Float32Array(16);
 
-  view = new Float32Array(16);
+  view: Float32Array = new Float32Array(16);
 
   constructor(props: Props) {
     super(props);
@@ -39,21 +39,23 @@ export default class CubeMap extends React.Component<Props> {
     );
   }
 
-  getView = (context: Context, props: DrawProps, batchId: number) => {
-    const { center } = this.props;
-    const { view } = this;
-    const side = CUBEMAP_SIDES[batchId];
-    const target = vec3.add([0, 0, 0], center, side.target);
-    mat4.lookAt(view, center, target, side.up);
-    return view;
-  }
+  getView: (context: Context, props: DrawProps, batchId: number) => Float32Array
+    = (context, props, batchId) => {
+      const { center } = this.props;
+      const { view } = this;
+      const side = CUBEMAP_SIDES[batchId];
+      const target = vec3.add([0, 0, 0], center, side.target);
+      mat4.lookAt(view, center, target, side.up);
+      return view;
+    }
 
-  framebuffer = (context: Context, props: DrawProps, batchId: number) => {
-    const { fbo } = this.props;
-    return fbo.faces[batchId];
-  }
+  framebuffer: (context: Context, props: DrawProps, batchId: number) => any
+    = (context, props, batchId) => {
+      const { fbo } = this.props;
+      return fbo.faces[batchId];
+    }
 
-  render() {
+  render(): React.Node {
     const { center, children } = this.props;
     const { projection, framebuffer, getView } = this;
     return (

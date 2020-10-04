@@ -2,7 +2,7 @@
 import Instance from './Instance';
 
 export default class Cube extends Instance {
-  init() {
+  init(): any {
     super.init();
     const { regl } = this.context || {};
     const { images } = this.props;

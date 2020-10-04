@@ -11,7 +11,7 @@ type Props = {
   lineWidth: number
 };
 
-export default ({ lineWidth }: Props) => (
+export default (({ lineWidth }: Props) => (
   <Drawable
     uniforms={{
       color: [1, 0.7, 0.2],
@@ -31,4 +31,4 @@ export default ({ lineWidth }: Props) => (
     count={N}
     primitive="line strip"
   />
-);
+): React.AbstractComponent<Props>);

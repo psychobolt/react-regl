@@ -18,7 +18,7 @@ type Props = {
   intensity: number,
 };
 
-export default ({ buffer, intensity, ...props }: Props) => (
+export default (({ buffer, intensity, ...props }: Props) => (
   <Drawable
     vert={vert}
     frag={frag}
@@ -50,4 +50,4 @@ export default ({ buffer, intensity, ...props }: Props) => (
     count={DATA.MESH.length / 6}
     {...(props: $Rest<Props, any>)}
   />
-);
+): React.AbstractComponent<Props>);

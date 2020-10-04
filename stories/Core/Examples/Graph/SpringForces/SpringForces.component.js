@@ -45,7 +45,7 @@ type Props = {
   args: {}
 }
 
-export default ({ framebuffer, vertexState, args }: Props) => (
+export default (({ framebuffer, vertexState, args }: Props) => (
   <Drawable
     framebuffer={framebuffer}
     vert={vert}
@@ -63,4 +63,4 @@ export default ({ framebuffer, vertexState, args }: Props) => (
     primitive="points"
     args={args}
   />
-);
+): React.AbstractComponent<Props>);

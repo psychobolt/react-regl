@@ -80,6 +80,12 @@ const t = ({ tick }) => 0.01 * tick;
 
 const count = 4 * N * N * 6;
 
+type TimeSamples = {
+  width: number,
+  height: number,
+  data: Uint8Array,
+}
+
 type Props = {};
 
 type State = {
@@ -96,13 +102,13 @@ const STATES = {
 };
 
 export default class Audio extends React.Component<Props, State> {
-  timeSamples = {
+  timeSamples: TimeSamples = {
     width: N,
     height: 1,
     data: new Uint8Array(N),
   };
 
-  freqSamples = new Uint8Array(N);
+  freqSamples: Uint8Array = new Uint8Array(N);
 
   source: any
 
@@ -123,13 +129,13 @@ export default class Audio extends React.Component<Props, State> {
     if (this.source) this.source.disconnect();
   }
 
-  onDone = ({ song }: { song: any }) => {
+  onDone: (options: { song: any }) => void = ({ song }) => {
     this.song = song;
     this.song.loop = true;
     this.setState({ audio: STATES.Ready });
   };
 
-  play = () => {
+  play: () => void = () => {
     const context = new AudioContext();
     const source = context.createMediaElementSource(this.song);
     const analyser = context.createAnalyser();
@@ -142,7 +148,7 @@ export default class Audio extends React.Component<Props, State> {
     });
   }
 
-  render() {
+  render(): React.Node {
     const { audio } = this.state;
     return (
       <div>

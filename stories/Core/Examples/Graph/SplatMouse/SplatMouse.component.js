@@ -20,7 +20,7 @@ const uniforms = {
   strength: () => (mouse.buttons ? 5.0 : 1.0),
 };
 
-export default () => (
+export default (() => (
   <Drawable
     vert={vert}
     frag={frag}
@@ -29,4 +29,4 @@ export default () => (
     count={1}
     primitive="points"
   />
-);
+): React.AbstractComponent<any>);

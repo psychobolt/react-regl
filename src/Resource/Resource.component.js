@@ -68,6 +68,6 @@ class Resl extends React.Component<Props, State> {
   }
 }
 
-export default React.forwardRef<Props, CollectionType<any>>(
+export default (React.forwardRef<Props, CollectionType<any>>(
   (props, ref) => <Resl {...props} innerRef={ref} />,
-);
+): React.AbstractComponent<Props>);

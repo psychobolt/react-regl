@@ -18,7 +18,7 @@ type Props = {
   vertexState: any[],
 };
 
-export default ({ id, vertexState }: Props) => (
+export default (({ id, vertexState }: Props) => (
   <Drawable
     vert={vert}
     frag={frag}
@@ -33,4 +33,4 @@ export default ({ id, vertexState }: Props) => (
     count={VERTEX_COUNT}
     elements={null}
   />
-);
+): React.AbstractComponent<Props>);

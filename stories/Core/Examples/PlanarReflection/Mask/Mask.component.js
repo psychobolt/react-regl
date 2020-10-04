@@ -32,8 +32,8 @@ type Props = {
   children: React.Node,
 };
 
-export default ({ children }: Props) => (
+export default (({ children }: Props) => (
   <Drawable stencil={stencil} colorMask={colorMask} depth={depth}>
     {children}
   </Drawable>
-);
+): React.AbstractComponent<Props>);

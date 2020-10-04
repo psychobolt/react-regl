@@ -7,7 +7,7 @@ const { Drawable } = ReactRegl;
 
 export function createModelMatrix(
   { translate, scale: s }: { translate: number[], scale: number[] },
-) {
+): any {
   const m = mat4.identity([]);
   mat4.translate(m, m, translate);
   mat4.scale(m, m, [s, s, s]);
@@ -26,7 +26,7 @@ type Props = {
   isRound: boolean,
 };
 
-export default ({ color, isRound = false, elements, position, normal, ...props }: Props) => (
+export default (({ color, isRound = false, elements, position, normal, ...props }: Props) => (
   <Drawable
     uniforms={{
       model,
@@ -43,4 +43,4 @@ export default ({ color, isRound = false, elements, position, normal, ...props }
     cull={cull}
     {...(props: $Rest<Props, any>)}
   />
-);
+): React.AbstractComponent<Props>);

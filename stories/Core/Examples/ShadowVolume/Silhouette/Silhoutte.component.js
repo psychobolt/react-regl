@@ -13,7 +13,7 @@ type Props = {
   buffer: any,
 };
 
-export default ({ buffer, ...props }: Props) => (
+export default (({ buffer, ...props }: Props) => (
   <Drawable
     vert={vert}
     attributes={{
@@ -45,4 +45,4 @@ export default ({ buffer, ...props }: Props) => (
     }}
     {...(props: $Rest<Props, any>)}
   />
-);
+): React.AbstractComponent<Props>);

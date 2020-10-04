@@ -30,7 +30,7 @@ type Props = {
   },
 }
 
-export default ({ fbo, args }: Props) => (
+export default ({ fbo, args }: Props): React.Node => (
   <Context.Consumer>
     {({ context }) => (
       <Drawable

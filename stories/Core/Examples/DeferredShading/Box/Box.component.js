@@ -48,7 +48,7 @@ type Props = {
   color: number[]
 };
 
-export default ({ scale, color }: Props) => (
+export default ({ scale, color }: Props): React.Node => (
   <Mesh
     elements={elements}
     position={position}
