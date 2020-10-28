@@ -1,4 +1,5 @@
 precision mediump float;
+
 varying vec3 vnormal;
 
 void main() {

@@ -8760,6 +8760,11 @@ glsl-resolve@0.0.1:
     resolve "^0.6.1"
     xtend "^2.1.2"
 
+glsl-solid-wireframe@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/glsl-solid-wireframe/-/glsl-solid-wireframe-1.0.1.tgz#5d9acf24b6d821974ae5e7ecb52f0cb98f0e14e8"
+  integrity sha1-XZrPJLbYIZdK5efstS8MuY8OFOg=
+
 glsl-token-assignments@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/glsl-token-assignments/-/glsl-token-assignments-2.0.2.tgz#a5d82ab78499c2e8a6b83cb69495e6e665ce019f"

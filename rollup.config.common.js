@@ -31,6 +31,7 @@ const config = {
     'multi-regl',
     'resl',
     'styled-components',
+    'glsl-solid-wireframe',
   ],
 };
 

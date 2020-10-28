@@ -23,7 +23,7 @@ yarn add @psychobolt/react-multi-regl
 
 ## Examples
 
-See [demos](https://psychobolt.github.io/react-regl/?selectedKind=packages%2Freact-multi-regl&selectedStory=Readme). Also check out their [sources](https://github.com/psychobolt/react-regl/blob/master/stories/packages/react-multi-regl). Here is one to get you started:
+See [demos](https://psychobolt.github.io/react-regl/?path=/story/packages-react-multi-regl-readme--page). Also check out their [sources](https://github.com/psychobolt/react-regl/blob/master/stories/packages/react-multi-regl). Here is one to get you started:
 
 ```jsx
 import React from 'react';

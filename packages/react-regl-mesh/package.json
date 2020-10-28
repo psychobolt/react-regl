@@ -1,0 +1,22 @@
+{
+  "name": "@psychobolt/react-regl-mesh",
+  "version": "0.0.1",
+  "description": "Standardized shader attributes for Drawables in react-regl",
+  "main": "dist/index.js",
+  "repository": "https://github.com/psychobolt/react-regl/tree/master/packages/react-multi-regl",
+  "author": "psychobolt",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "glsl-solid-wireframe": "^1.0.1"
+  },
+  "dependencies": {
+    "@psychobolt/react-regl": "^0.0.3",
+    "normals": "^1.1.0"
+  },
+  "devDependencies": {
+    "glsl-solid-wireframe": "^1.0.1"
+  }
+}

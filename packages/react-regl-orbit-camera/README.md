@@ -9,7 +9,7 @@
 [![Dev Dependencies Status](https://david-dm.org/psychobolt/react-regl/dev-status.svg?path=packages/react-regl-orbit-camera)](https://david-dm.org/psychobolt/react-regl?path=packages/react-regl-orbit-camera&type=dev)
 [![Peer Dependencies Status](https://david-dm.org/psychobolt/react-regl/peer-status.svg?path=packages/react-regl-orbit-camera)](https://david-dm.org/psychobolt/react-regl?path=packages/react-regl-orbit-camera&type=peer)
 
-Configurable orbit camera model and controls for react-regl.
+Configurable orbit camera model and controls for [react-regl](https://github.com/psychobolt/react-regl).
 
 ## Install
 
@@ -21,7 +21,7 @@ yarn add @psychobolt/react-regl-orbit-camera
 
 ## Examples
 
-See [demos](https://psychobolt.github.io/react-regl/?selectedKind=packages%2Freact-regl-orbit-camera&selectedStory=Readme). Also check out their [sources](https://github.com/psychobolt/react-regl/blob/master/stories/packages/react-regl-orbit-camera). Here is one to get you started:
+See [demos](https://psychobolt.github.io/react-regl/?path=/story/packages-react-regl-orbit-camera-readme--page). Also check out their [sources](https://github.com/psychobolt/react-regl/blob/master/stories/packages/react-regl-orbit-camera). Here is one to get you started:
 
 ```jsx
 import React from 'react';

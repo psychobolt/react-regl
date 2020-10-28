@@ -90,7 +90,8 @@ export default class ReglRenderer {
 
   defaultTypes = TYPES;
 
-  constructor() {
+  constructor({ types } = {}) {
+    this.customTypes = types;
     const instanceFactory = this.getInstanceFactory();
     let hostConfig = this.getHostConfig();
     if (this.defaultTypes !== instanceFactory) {
@@ -106,7 +107,10 @@ export default class ReglRenderer {
   }
 
   getInstanceFactory() {
-    return this.defaultTypes;
+    return {
+      ...this.defaultTypes,
+      ...this.customTypes,
+    };
   }
 
   getHostConfig() {

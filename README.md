@@ -59,7 +59,7 @@ export default () => (
 );
 ```
 
-Please see [documentation](https://github.com/psychobolt/react-regl/blob/master/src/README.md) for more details.
+Please see [API Documentation](https://github.com/psychobolt/react-regl/blob/master/src/README.md) for more details.
 
 ## Extensions
 

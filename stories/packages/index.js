@@ -1,4 +1,5 @@
 module.exports.default = [
+  './react-regl-mesh/(*.mdx|index.js)',
   './react-multi-regl/(*.mdx|index.js)',
   './react-regl-fractals/(*.mdx|index.js)',
 ];

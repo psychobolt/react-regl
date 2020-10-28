@@ -1,5 +1,5 @@
 module.exports = [
-  './Readme.mdx',
+  './*.mdx',
   './Setup/index.js',
   './Examples/index.js',
 ];

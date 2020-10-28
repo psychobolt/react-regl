@@ -8,7 +8,7 @@ module.exports = {
   ],
   collectCoverageFrom: ['src/**/*.js'],
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': `${ROOT_RESOLVE}/__mocks__/file.mock.js`,
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|frag|vert)$': `${ROOT_RESOLVE}/__mocks__/file.mock.js`,
     '\\.(css|less)$': `${ROOT_RESOLVE}/__mocks__/style.mock.js`,
   },
 };

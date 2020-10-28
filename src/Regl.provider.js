@@ -40,6 +40,7 @@ export type Callback = (context: ContextType) => any;
 
 export type ContainerProps = {
   renderer: typeof ReglRenderer,
+  types?: {},
   onMount?: Callback,
   onRender?: Callback,
   View?: any,
@@ -52,8 +53,7 @@ export type ContainerProps = {
   statsWidget?: boolean,
 }
 
-type Props = {
-} & ContainerProps;
+type Props = {} & ContainerProps;
 
 type State = {
   context: ?ContextType,
@@ -81,12 +81,16 @@ export default (Container => class ReglProvider
     innerRef: React.createRef<React.Component<ContainerProps>>(),
     statsWidget: false,
     children: null,
+    types: {},
   }
 
   constructor(props: Props) {
     super(props);
     const Renderer = props.renderer;
-    this.renderer = Renderer ? new Renderer() : new ReglRenderer();
+    const options = {
+      types: props.types,
+    };
+    this.renderer = Renderer ? new Renderer(options) : new ReglRenderer(options);
     this.state = {
       context: props.context,
       mergeProps: (mergeProps: Function) => this.setState(state => mergeProps(state, props)),

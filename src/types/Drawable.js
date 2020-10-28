@@ -46,7 +46,7 @@ export default class Drawable extends Base {
 
   updateProps(props: CollectionProps) {
     super.updateProps(props);
-    this.instance = this.init();
+    this.instance = null;
   }
 
   setArgs(args: {}) {
@@ -58,6 +58,9 @@ export default class Drawable extends Base {
   }
 
   update(args?: {}, context?: {}) {
+    if (!this.instance) {
+      this.instance = this.init();
+    }
     let options = typeof this.args === 'function' ? this.args(context) : this.args;
     if (_.isUndefined(options)) {
       options = args;

@@ -24,6 +24,10 @@ export default props => <ReglContainer {...props}><Scene /></ReglContainer>;
 
 The default is [ReglRenderer](#reglrenderer). Alternatively, you can [extend](#extension-example) and pass in your own.
 
+##### ```types?: { [type: string]: (props: {}, context: ContextContainer ) => Object }```
+
+If you prefer to not extend [ReglRenderer](#reglrenderer), another option is to provide a list of types similiar to the renderer's [default types](#defaulttypes--type-string-props--context-contextcontainer---object-).
+
 ##### ```viewProps?: {}```
 
 Props to be passed to the view.
@@ -153,7 +157,7 @@ function onUpdate({ draw, ...context)) {
   draw({}); // drawCallback?: (args: {}) => void
 }
 ```
-#### Framebuffer
+### Framebuffer
 
 A component helper to create and provide a [framebuffer](http://regl.party/api#framebuffers).
 
@@ -164,19 +168,19 @@ import { Framebuffer } from '@psychobolt/react-regl';
 export default ({ children, ...props }) => <Framebuffer {...props}>{fbo => children(fbo)}</Framebuffer>
 ```
 
-##### Props
+#### Props
 
 Inherits props from [Drawable](#drawable). Pass in any props that is taken by regl's framebuffer [constructor](http://regl.party/api#constructor-5).
 
-###### ```children?: fbo => React.Node```
+##### ```children?: fbo => React.Node```
 
 The framebuffer object can be accessed from the children prop function.
 
-###### ```fitView?: boolean```
+##### ```fitView?: boolean```
 
 If true, the framebuffer will automatically be sized as viewport's width and height. Default is false.
 
-#### Cube
+### Cube
 
 A component helper to create and provide a [cube map](http://regl.party/api#cube-maps).
 
@@ -190,15 +194,15 @@ import images from './images';
 export default () => <Cube images={images}>{cube => <Scene cube={cube} />}</Cube>;
 ```
 
-##### Props
+#### Props
 
 Inherits props from [Drawable](#drawable).
 
-###### ```images?: Image[]```
+##### ```images?: Image[]```
 
 A array of images for faces: positive X, negative X, positive Y, negative Y, positive Z, and negative Z. Providing this prop is equivilent to ```regl.cube(...images)```. Hence, other props besides ```args``` are ignored.
 
-#### Resource
+### Resource
 
 Preload and provide resource objects. See API for [resl](https://github.com/regl-project/resl) for more details.
 
@@ -224,7 +228,7 @@ export default () => <Resource manifest={manifest}>{video => <Scene video={video
 
 All props are passed to the constructor.
 
-#### Texture
+### Texture
 
 Create and provide a regl [texture](http://regl.party/api#textures).
 
@@ -238,11 +242,11 @@ import image from './image.jpg';
 export default () => <Texture source={image}>{texture => <Scene texture={texture} />}</Texture>;
 ```
 
-##### Props
+#### Props
 
 Inherits props from [Drawable](#drawable).
 
-###### ```source?: | number[] | Image | CanvasRenderingContext2D | HTMLVideoElement```
+##### ```source?: | number[] | Image | CanvasRenderingContext2D | HTMLVideoElement```
 
 A object that consist of the media. Providing this prop is equivilant to ```regl.texture(source)```. Hence, other props besides ```args``` are ignored.
 
@@ -284,7 +288,7 @@ import MyCustomType, { CONSTANTS, Types } from './types'
 class MyReglRenderer extends ReglRenderer {
   getInstanceFactory() {
     return {
-      ...this.defaultTypes,
+      ...super.getInstanceFactory(),
       [CONSTANTS.MyCustomType]: (props, context) => new Types.MyCustomType(props, context),
     };
   }
