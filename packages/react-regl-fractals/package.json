@@ -8,6 +8,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@psychobolt/react-regl": "^0.0.3"
+    "@psychobolt/react-regl": "^0.0.4"
   }
 }

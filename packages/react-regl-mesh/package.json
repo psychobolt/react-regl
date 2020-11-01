@@ -13,7 +13,7 @@
     "glsl-solid-wireframe": "^1.0.1"
   },
   "dependencies": {
-    "@psychobolt/react-regl": "^0.0.3",
+    "@psychobolt/react-regl": "^0.0.4",
     "normals": "^1.1.0"
   },
   "devDependencies": {
