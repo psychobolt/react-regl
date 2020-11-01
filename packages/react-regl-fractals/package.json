@@ -6,6 +6,7 @@
   "repository": "https://github.com/psychobolt/react-regl/blob/master/packages/react-regl-fractals",
   "author": "psychobolt",
   "license": "MIT",
+  "private": true,
   "dependencies": {
     "@psychobolt/react-regl": "^0.0.3"
   }
