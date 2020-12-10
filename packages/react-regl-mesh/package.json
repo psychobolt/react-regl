@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Standardized shader attributes for Drawables in react-regl",
   "main": "dist/index.js",
-  "repository": "https://github.com/psychobolt/react-regl/tree/master/packages/react-multi-regl",
+  "repository": "https://github.com/psychobolt/react-regl/tree/master/packages/react-regl-mesh",
   "author": "psychobolt",
   "license": "MIT",
   "publishConfig": {

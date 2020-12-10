@@ -14,7 +14,11 @@ reqExample.keys().forEach(folder => {
   const { default: Component, MDX } = reqExample(folder);
   const story = args => <Component {...args} />;
   story.args = {
+    color: 'rgba(0,0,0,1)',
+    lineColor: 'rgba(0,0,0,1)',
     degree: 0,
+    outline: false,
+    lineWidth: 1.0,
   };
   story.argTypes = {
     degree: {
@@ -25,6 +29,8 @@ reqExample.keys().forEach(folder => {
         step: 1,
       },
     },
+    color: { control: 'color' },
+    lineColor: { control: 'color' },
   };
   story.parameters = {
     docs: {

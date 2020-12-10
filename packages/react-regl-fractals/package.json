@@ -8,6 +8,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@psychobolt/react-regl": "^0.0.4"
+    "@psychobolt/react-regl": "^0.0.4",
+    "@psychobolt/react-regl-mesh": "^0.0.1",
+    "glsl-solid-wireframe": "^1.0.1"
   }
 }

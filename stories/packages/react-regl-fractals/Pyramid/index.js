@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import rgba from 'color-normalize';
 
 import { ReglContainer, Frame } from '@psychobolt/react-regl';
 import { Pyramid } from '@psychobolt/react-regl-fractals';
@@ -11,14 +12,25 @@ const clear = ({ regl }) => regl.clear({
   depth: 1,
 });
 
-type Props = {
-  degree: Number,
+const contextProps = {
+  extensions: 'oes_standard_derivatives',
 };
 
-export default (({ degree }: Props) => (
-  <ReglContainer onMount={clear}>
+type Props = {
+  color: number,
+  lineColor: number,
+  outline: boolean,
+};
+
+export default (({ color, lineColor, outline, ...props }: Props) => (
+  <ReglContainer onMount={clear} contextProps={contextProps}>
     <Frame onFrame={clear}>
-      <Pyramid degree={degree} />
+      <Pyramid
+        {...props}
+        color={rgba(color)}
+        wireframeColor={rgba(lineColor)}
+        wireframe={outline}
+      />
     </Frame>
   </ReglContainer>
 ): React.AbstractComponent<Props>);

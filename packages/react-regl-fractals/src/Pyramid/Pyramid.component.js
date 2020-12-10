@@ -1,8 +1,7 @@
 // @flow
 import * as React from 'react';
 
-import { Drawable } from '@psychobolt/react-regl';
-
+import Mesh from '../Mesh';
 import frag from './Pyramid.frag';
 import vert from './Pyramid.vert';
 
@@ -14,26 +13,28 @@ const getPointOnCircle = (centerX, centerY, radius, angle) => [
 const getMidpoint = (v0: number[], v1: number[]) => [(v0[0] + v1[0]) / 2, (v0[1] + v1[1]) / 2];
 
 const getTriangle = () => [
+  getPointOnCircle(0, 0, 1, -90 - 45), // left corner
   getPointOnCircle(0, 0, 1, 90), // top corner
   getPointOnCircle(0, 0, 1, -45), // right corner
-  getPointOnCircle(0, 0, 1, -90 - 45), // left corner
 ];
-
-const uniforms = {
-  color: [0, 0, 0, 1],
-};
 
 const depth = {
   enable: false,
 };
 
-type Props = {
-  degree: number
-};
+type Props = {|
+  degree: number,
+  color: number[],
+  wireframeColor: number[],
+  wireframe: boolean,
+  uniforms: {},
+|};
 
-export default ({ degree: n = 0 }: Props): React.Node => {
+export default (
+  { degree: n = 0, color = [0, 0, 0, 1], uniforms, ...rest }: Props,
+): React.Node => {
   let vertices = getTriangle();
-  let edges = [[0, 1, 2, 0]];
+  let edges = [[0, 2, 1]];
 
   /*
    if degree = 0,
@@ -50,42 +51,41 @@ export default ({ degree: n = 0 }: Props): React.Node => {
   */
   for (let i = 1; i < 3 ** n; i *= 3) {
     for (let j = 1; j <= i; j += 1) {
-      const [[c0, c1, c2]] = edges.splice(0, 1); // pop the item
+      const [[c0, c2, c1]] = edges.splice(0, 1); // pop the item
 
       const v0 = vertices[c0];
       const v1 = vertices[c1];
       const v2 = vertices[c2];
 
-      const m01 = getMidpoint(v0, v1);
-      const m12 = getMidpoint(v1, v2);
-      const m20 = getMidpoint(v2, v0);
+      const v3 = getMidpoint(v1, v0);
+      const v4 = getMidpoint(v2, v1);
+      const v5 = getMidpoint(v2, v0);
 
       const { length } = vertices;
-      const c01 = length;
-      const c12 = c01 + 1;
+      const c10 = length;
+      const c12 = c10 + 1;
       const c20 = c12 + 1;
 
       edges = [
         ...edges,
-        [c12, c20, c2],
-        [c12, c01, c1],
-        [c01, c20, c0],
+        [c0, c10, c20],
+        [c10, c1, c12],
+        [c20, c12, c2],
       ];
 
-      vertices = [...vertices, m01, m12, m20];
+      vertices = [...vertices, v3, v4, v5];
     }
   }
 
   return (
-    <Drawable
+    <Mesh
       frag={frag}
       vert={vert}
-      attributes={{
-        position: vertices,
-      }}
-      uniforms={uniforms}
-      elements={edges}
+      positions={vertices}
+      uniforms={{ color }}
+      cells={edges}
       depth={depth}
+      {...rest}
     />
   );
 };

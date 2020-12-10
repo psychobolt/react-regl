@@ -8,7 +8,7 @@ type Mesh = {
   cells: number[] | number[][],
   barycentric?: number[][],
   attributes: {
-    normals?: number[][],
+    normal?: number[][],
   },
 };
 
@@ -20,12 +20,16 @@ type Props = {
   attributes: {},
 };
 
-export default (({ positions, cells, normals, wireframe, attributes, ...props }: Props) => {
+export default (({ positions, cells, normals = false, wireframe, attributes, ...props }: Props) => {
   let mesh: Mesh = {
     positions,
     cells,
     attributes: {
-      normals: normals === true ? vertexNormals(cells, positions) : normals || undefined,
+      ...(
+        typeof normals !== 'boolean' && normals.length
+          ? { normal: normals }
+          : normals && { normal: vertexNormals(cells, positions) }
+      ),
     },
   };
   let attr = attributes;
@@ -36,13 +40,18 @@ export default (({ positions, cells, normals, wireframe, attributes, ...props }:
       barycentric: mesh.barycentric,
     };
   }
+  if (mesh.attributes.normal) {
+    attr = {
+      ...attr,
+      normal: mesh.attributes.normal,
+    };
+  }
   return (
     <Drawable
       {...props}
       attributes={{
         ...attr,
         position: mesh.positions,
-        normal: mesh.attributes.normals,
       }}
       elements={mesh.cells}
     />

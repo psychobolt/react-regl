@@ -75,6 +75,8 @@
     "canvas-orbit-camera": "^1.0.2",
     "cash-true": "^0.0.2",
     "codecov": "^3.7.2",
+    "color-normalize": "^1.5.2",
+    "color-rgba": "^2.2.3",
     "concurrently": "^5.3.0",
     "conway-hart": "^0.1.0",
     "cross-env": "^7.0.2",

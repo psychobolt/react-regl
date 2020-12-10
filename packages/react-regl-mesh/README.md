@@ -51,7 +51,7 @@ export default () => (
 
 #### Mesh
 
-Standardize mesh shader attributes for [Drawable](#drawable).
+Standardize mesh shader attributes for [Drawable](https://github.com/psychobolt/react-regl/tree/master/src#drawable).
 
 ```jsx
 import React from 'react';
@@ -73,7 +73,7 @@ export default () => (
 
 ##### Props
 
-Inherits props from [Drawable](#drawable).
+Inherits props from [Drawable](https://github.com/psychobolt/react-regl/tree/master/src#drawable).
 
 ##### ```positions: number[][]```
 
