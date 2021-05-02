@@ -75,7 +75,6 @@ type State = {
 
 class Camera extends React.Component<Props, State> {
   updateAnimationState: { cancel: () => void } & (newState: AnimationState) => any =
-    // $FlowFixMe[prop-missing]
     rafSchedule(newState => ReactDOM.flushSync(() => this.setState(newState)));
 
   logMinDistance: (distance?: number) => number = logDistance();

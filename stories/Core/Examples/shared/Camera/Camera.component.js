@@ -60,11 +60,9 @@ type State = {
 
 class Camera extends React.Component<Props, State> {
   updateRotation = rafSchedule(newState => ReactDOM
-    // $FlowFixMe[prop-missing]
     .flushSync(() => this.setState(newState)));
 
   updateDistance = rafSchedule(newState => ReactDOM
-    // $FlowFixMe[prop-missing]
     .flushSync(() => this.setState(newState)));
 
   logMinDistance = logDistance();
