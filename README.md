@@ -13,7 +13,7 @@ React fiber renderer and custom container for [regl](https://github.com/regl-pro
 
 ## Install
 
-> Recommended: (react|react-dom) @ 16.13.x and regl @ 1.6.x.
+> Recommended: (react|react-dom) @ 17.x and regl @ 2.1.x.
 
 ```sh
 npm install @psychobolt/react-regl
