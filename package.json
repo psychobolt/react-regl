@@ -135,7 +135,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "scheduler": "^0.20.2",
     "seedrandom": "^3.0.5",
-    "slash": "3.0.0",
+    "slash": "4.0.0",
     "source-map-loader": "^1.1.0",
     "sphere-mesh": "^0.2.2",
     "standardized-audio-context": "^25.1.17",
