@@ -136,7 +136,7 @@
     "scheduler": "^0.20.2",
     "seedrandom": "^3.0.5",
     "slash": "3.0.0",
-    "source-map-loader": "^1.1.0",
+    "source-map-loader": "^2.0.1",
     "sphere-mesh": "^0.2.2",
     "standardized-audio-context": "^25.1.17",
     "styled-components": "^5.2.3",
