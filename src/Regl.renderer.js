@@ -47,6 +47,9 @@ const defaultHostConfig = {
   },
   scheduleDeferredCallback: window.requestIdleCallback,
   prepareForCommit() {
+    return null;
+  },
+  clearContainer() {
   },
   resetAfterCommit() {
   },
