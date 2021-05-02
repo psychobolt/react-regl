@@ -1,10 +1,8 @@
 [options]
-esproposal.export_star_as=enable
-esproposal.optional_chaining=enable
-module.name_mapper='^\(.*\)\.\(mdx?\|frag\|vert\|mp3\)$' -> '<PROJECT_ROOT>/RAWFlowStub.js.flow'
-module.name_mapper='^@psychobolt/react-regl$' -> '<PROJECT_ROOT>/src/index.js'
-module.name_mapper='^@psychobolt/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1'
+module.name_mapper='^\(.*\)\.\mdx?$' -> '<PROJECT_ROOT>/RAWFlowStub.js.flow'
 module.name_mapper='^stories/\(.*\)$' -> '<PROJECT_ROOT>/stories/\1'
+; module.name_mapper='^@psychobolt/react-regl$' -> '<PROJECT_ROOT>/src/index.js'
+; module.name_mapper='^@psychobolt/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1'
 include_warnings=true
 
 [lints]

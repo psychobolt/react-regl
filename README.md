@@ -2,7 +2,7 @@
 
 [![Stability](https://img.shields.io/badge/Stability-Experimental-Orange.svg)](https://nodejs.org/api/documentation.html#documentation_stability_index)
 [![npm](https://img.shields.io/npm/v/@psychobolt/react-regl.svg)](https://www.npmjs.com/package/@psychobolt/react-regl)
-[![Build Status](https://travis-ci.com/psychobolt/react-regl.svg?branch=master)](https://travis-ci.com/psychobolt/react-regl)
+[![Main workflow](https://github.com/psychobolt/react-regl/actions/workflows/main.yml/badge.svg)](https://github.com/psychobolt/react-regl/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/psychobolt/react-regl/branch/master/graph/badge.svg?flag=react-regl)](https://codecov.io/gh/psychobolt/react-regl)
 
 [![Dependencies Status](https://david-dm.org/psychobolt/react-regl.svg)](https://david-dm.org/psychobolt/react-regl)
