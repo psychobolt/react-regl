@@ -140,7 +140,7 @@
     "sphere-mesh": "^0.2.2",
     "standardized-audio-context": "^25.1.17",
     "styled-components": "^5.2.3",
-    "stylelint": "^13.13.1",
+    "stylelint": "^15.10.1",
     "stylelint-config-recommended": "^5.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.10.0",
